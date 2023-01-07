@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import routes from './routes';
 
 import "./config/database";
 
@@ -17,11 +18,7 @@ app.use(morgan('dev'))
 app.use(cookieParser())
 
 //rotes
-app.get('/',(req, res)=>{
-    res.json({ msg: 'Hello'})
-})
-
-//Database
+app.use('/api',routes.authRouter);
 
 
 // sever lisening
