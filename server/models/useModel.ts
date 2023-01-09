@@ -10,12 +10,12 @@ const userSchema = new mongoose.Schema({
     account:{
         type: String,
         required: [true, "Please add your email or phone"],
-        trim: true
+        trim: true,
+        unique: true
     },
     password:{
         type: String,
-        required: [true, "Please add your password"],
-        trim: true
+        required: [true, "Please add your password"]
     },
     avatar:{
         type:String,
@@ -27,10 +27,9 @@ const userSchema = new mongoose.Schema({
     },
     type:{
         type: String,
-        default: 'normal'
+        default: 'register'
     }
 },{
     timestamps: true
-
 })
 export default mongoose.model('User', userSchema)
