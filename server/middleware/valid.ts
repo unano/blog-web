@@ -5,25 +5,35 @@ import { off } from "process";
 export const validRegister = async(req: Request, res: Response, next: NextFunction)=>{
     const { name, account, password } = req.body;
 
+    const errors = [];
+
     if(!name){
-        return res.status(400).json({msg: "Please add your name"});
+        errors.push("Please add your name");
     }else if(name.length > 20) {
-        return res.status(400).json({msg: "Your name is up to 20 chars long"});
+        errors.push("Your name is up to 20 chars long");
     }
 
     if(!account){
-        return res.status(400).json({msg: "Please add your email"});
+        errors.push("Please add your email");
     }else if(!validateEmail(account)) {
-        return res.status(400).json({msg: "Email format incorrect"});
+        errors.push("Email format incorrect");
     }
 
     if(password.length < 6){
-        return res.status(400).json({msg: "Password must be at least 6 chars"})
+        errors.push("Password must be at least 6 chars")
     }
-    next();
+
+    if(errors.length > 0){
+        return res.status(400).json({
+            msg:errors
+        })
+        console.log(errors);
+    }else{
+        next();
+    }
 }
 
-const validateEmail = (email: string) => {
+export const validateEmail = (email: string) => {
     return String(email)
       .toLowerCase()
       .match(
