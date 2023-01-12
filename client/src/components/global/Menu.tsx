@@ -9,7 +9,7 @@ const Menu = () => {
   ];
   return (
     <>
-      <ul>
+      <ul className="navs">
         <Search />
         {bfLoginLinks.map((link, index) => (
           <li key={index}>
@@ -18,7 +18,7 @@ const Menu = () => {
         ))}
         <li className="nav-item dropdown">
           <span
-            className="nav-link dropdown-toggle"
+            className="dropdown-toggle"
             id="navDropDown"
             role="button"
             data-bs-toggle="dropdown"

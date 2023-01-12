@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { InputChange, FormSubmit } from "../../utils/TypeScript";
 import { login } from "../../redux/actions/authAction";
-
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 const LoginPass = () => {
   const initialState = { account: "", password: "" };
   const [userLogin, setUserLogin] = useState(initialState);
@@ -24,8 +24,10 @@ const LoginPass = () => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="account">Email</label>
+      <div className="email">
+        <label htmlFor="account" className="login_label">
+          Email
+        </label>
         <input
           type="text"
           id="account"
@@ -34,8 +36,10 @@ const LoginPass = () => {
           onChange={handleChangeInput}
         ></input>
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
+      <div className="password">
+        <label htmlFor="password" className="login_label">
+          Password
+        </label>
         <div>
           <input
             type={typePass ? "text" : "password"}
@@ -44,14 +48,14 @@ const LoginPass = () => {
             value={password}
             onChange={handleChangeInput}
           ></input>
-          <small onClick={() => setTypePass(!typePass)}>
-            {typePass ? "Hide" : "Show"}
-          </small>
-        </div>
+          <div className="eye" onClick={() => setTypePass(!typePass)}>
+            {typePass ? <AiFillEye/>:<AiFillEyeInvisible/> }
           </div>
-          <button type="submit" disabled={(account && password)?false:true}>
-              Login
-          </button>
+        </div>
+      </div>
+      <button type="submit" disabled={account && password ? false : true}>
+        Login
+      </button>
     </form>
   );
 };

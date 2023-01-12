@@ -1,0 +1,26 @@
+.toastStyle{
+    width: 20rem;
+    height: 5rem;
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 5rem;
+    right: 0.3rem;
+    font-family: sans-serif;
+    font-weight: 1000;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 1s;
+}
+
+.toastStyle .toast_title{
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.toastStyle .toast_close{
+    position: absolute;
+    top: 0rem;
+    right: 0.5rem;
+    font-size: 1.7rem;
+}

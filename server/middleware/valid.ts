@@ -1,42 +1,43 @@
 import { Request, Response, NextFunction } from "express";
-import { request } from "http";
-import { off } from "process";
 
-export const validRegister = async(req: Request, res: Response, next: NextFunction)=>{
-    const { name, account, password } = req.body;
+export const validRegister = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { name, account, password } = req.body;
 
-    const errors = [];
+  const errors = [];
 
-    if(!name){
-        errors.push("Please add your name");
-    }else if(name.length > 20) {
-        errors.push("Your name is up to 20 chars long");
-    }
+  if (!name) {
+    errors.push("Please add your name");
+  } else if (name.length > 20) {
+    errors.push("Your name is up to 20 chars long");
+  }
 
-    if(!account){
-        errors.push("Please add your email");
-    }else if(!validateEmail(account)) {
-        errors.push("Email format incorrect");
-    }
+  if (!account) {
+    errors.push("Please add your email");
+  } else if (!validateEmail(account)) {
+    errors.push("Email format incorrect");
+  }
 
-    if(password.length < 6){
-        errors.push("Password must be at least 6 chars")
-    }
+  if (password.length < 6) {
+    errors.push("Password must be at least 6 chars");
+  }
 
-    if(errors.length > 0){
-        return res.status(400).json({
-            msg:errors
-        })
-        console.log(errors);
-    }else{
-        next();
-    }
-}
+  if (errors.length > 0) {
+    return res.status(400).json({
+      msg: errors,
+    });
+  } else {
+    next();
+  }
+};
 
 export const validateEmail = (email: string) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};

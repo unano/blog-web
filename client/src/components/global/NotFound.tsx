@@ -4,7 +4,7 @@ const NotFound = () => {
   return (
     <div
       className="position-relative"
-      style={{ minHeight: "calc(100vh - 70px)" }}
+      style={{ minHeight: "calc(100vh - 120px)", width:"100%" }}
     >
       <h2
         className="position-absolute"
