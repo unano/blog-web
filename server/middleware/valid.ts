@@ -29,9 +29,8 @@ export const validRegister = async (
     return res.status(400).json({
       msg: errors,
     });
-  } else {
-    next();
-  }
+  } 
+  next();
 };
 
 export const validateEmail = (email: string) => {

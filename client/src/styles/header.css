@@ -50,3 +50,41 @@
     outline: none;
     border-bottom: 1px solid white;
 }
+
+.header .drop_down{
+    position: absolute;
+    background-color: black;
+    border: 1px solid black;
+    right: -2rem;
+    top: 2.15rem;
+    padding: 0;
+    width: 8rem;
+}
+
+.header .dropdown_item{
+    list-style: none;
+    color: black;
+    padding: 0.5rem 0 0.3rem 0.5rem;
+    border-top: 0.2px solid white;
+}
+
+.header .dropdown_item:hover{
+    background-color: white;
+}
+
+.header .dropdown_item a:hover{
+    color: black;
+}
+
+
+.header .dropdown_item a{
+    list-style: none;
+    color: white;
+    font-weight: 300;
+    padding: 0.7rem;
+}
+
+
+
+
+

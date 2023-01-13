@@ -1,20 +1,19 @@
 .toastStyle{
     width: 20rem;
-    height: 5rem;
     background-color: black;
     color: white;
     position: fixed;
     top: 5rem;
     right: 0.3rem;
     font-family: sans-serif;
-    font-weight: 1000;
+    font-weight: 300;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     transition: all 1s;
 }
 
 .toastStyle .toast_title{
-    font-weight: 800;
+    font-weight: 600;
     font-size: 1.4rem;
 }
 
@@ -23,4 +22,9 @@
     top: 0rem;
     right: 0.5rem;
     font-size: 1.7rem;
+}
+
+.toastStyle ul{
+    list-style: none;
+    padding-left: 0;
 }

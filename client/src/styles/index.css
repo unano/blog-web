@@ -7,6 +7,8 @@
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
+
+  font-family:'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,7 +29,6 @@ code {
 /* ----------- Auth Page------------- */
 @import url('./auth.css');
 
-
 /* ----------- Loading Page------------- */
 @import url('./loading.css');
 
@@ -40,6 +41,8 @@ code {
 /* ----------- Header Page------------- */
 @import url('./header.css');
 
+/* ----------- Alert------------- */
+@import url('./alert.css');
 
 /* font-family: 'Comfortaa', cursive;
 font-family: 'Poppins', sans-serif;

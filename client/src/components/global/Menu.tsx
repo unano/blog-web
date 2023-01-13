@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,7 @@ const Menu = () => {
     { label: "Login", path: "/login" },
     { label: "register", path: "/register" },
   ];
+  const [showDropdown, setShowDropdown] = useState(false);
   return (
     <>
       <ul className="navs">
@@ -17,30 +18,17 @@ const Menu = () => {
           </li>
         ))}
         <li className="nav-item dropdown">
-          <span
-            className="dropdown-toggle"
-            id="navDropDown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            username
-          </span>
-          <ul className="dropdown-menu" aria-labelledby="navDropDown">
-            <li>
-              <Link className="dropdown-item" to="/profile">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/profile">
-                Logout
-              </Link>
-            </li>
-          </ul>
+          <span onClick={() => setShowDropdown(!showDropdown)}>username</span>
+          {showDropdown && (
+            <ul className="drop_down">
+              <li className="dropdown_item">
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li className="dropdown_item">
+                <Link to="/profile">Logout</Link>
+              </li>
+            </ul>
+          )}
         </li>
       </ul>
     </>
