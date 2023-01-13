@@ -6,7 +6,7 @@ export type InputChange = ChangeEvent<HTMLInputElement>
 
 export type FormSubmit = FormEvent<HTMLFormElement>;
 
-export type RootStore = ReturnType<typeof rootReducer>
+export type RootStore = ReturnType<typeof rootReducer>  //question
 
 export interface IParams {
     page?: string

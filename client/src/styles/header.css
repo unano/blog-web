@@ -84,7 +84,16 @@
     padding: 0.7rem;
 }
 
+.header .navs .actived{
+    border-bottom: 2px solid white;
+}
 
-
+.header .navs .avatar{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    transform:  translateY(-5px);
+    border-radius: 50%;
+}
 
 

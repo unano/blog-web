@@ -1,35 +1,59 @@
 import React, { useState } from "react";
 import Search from "./Search";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootStore } from "../../utils/TypeScript"; 
+import { logout } from "../../redux/actions/authAction";
 const Menu = () => {
+  const { auth } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
+
+  const { pathname } = useLocation()
+  
   const bfLoginLinks = [
     { label: "Login", path: "/login" },
     { label: "register", path: "/register" },
   ];
+
+  const afLoginLinks = [
+    { label: "Home", path: "/" },
+    { label: "CreateBlog", path: "/create_blog" },
+  ];
+
+  const navLinks = auth.access_token ? afLoginLinks : bfLoginLinks
+
+    const isActive = (pn: string) => {
+      if (pn === pathname) return "actived";
+    };
+
   const [showDropdown, setShowDropdown] = useState(false);
   return (
     <>
       <ul className="navs">
         <Search />
-        {bfLoginLinks.map((link, index) => (
-          <li key={index}>
+        {navLinks.map((link, index) => (
+          <li key={index} className={isActive(link.path)}>
             <Link to={link.path}>{link.label}</Link>
           </li>
         ))}
-        <li className="nav-item dropdown">
-          <span onClick={() => setShowDropdown(!showDropdown)}>username</span>
-          {showDropdown && (
-            <ul className="drop_down">
-              <li className="dropdown_item">
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li className="dropdown_item">
-                <Link to="/profile">Logout</Link>
-              </li>
-            </ul>
-          )}
-        </li>
+
+        {auth.user && (
+          <li className="nav-item dropdown">
+            <span onClick={() => setShowDropdown(!showDropdown)}>
+              <img src ={auth.user.avatar} alt= "avatar" className="avatar"/>
+            </span>
+            {showDropdown && (
+              <ul className="drop_down">
+                <li className="dropdown_item">
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li className="dropdown_item">
+                  <Link to="/" onClick={() => dispatch(logout() as any) }>Logout</Link>
+                </li>
+              </ul>
+            )}
+          </li>
+        )}
       </ul>
     </>
   );
