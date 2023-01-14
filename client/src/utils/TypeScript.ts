@@ -33,6 +33,11 @@ export interface IUser extends IUserLogin{
   __v: string
   _id: string
 }
+
+export interface IUserInfo extends IUserRegister {
+  avatar: string| File;
+}
+
 export interface IAuth {
   token: string
   user: IUser

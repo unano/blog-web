@@ -1,0 +1,125 @@
+
+.user_profile{
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.user_info{
+    background-color: black;
+    width: 20rem;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.user_info .avatar{
+    width: 50%;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 1px soild white;
+    cursor: pointer;
+    align-self: center;
+}
+.user_info .avatar img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.user_info .avatar span{
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    background-color: white;
+    position: absolute;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    bottom: -50%;
+    align-items: center;
+    transition: all 0.5s;
+    border-top:0.3px solid black;
+    padding-top: 0.3rem;
+}
+
+.user_info .avatar:hover span{
+    bottom: -20%;
+}
+
+.user_info .avatar span label{
+    font-size: 1.3rem;
+    display: block;
+    text-align: center;
+}
+
+
+.user_info .avatar input{
+    display: none;
+}
+
+
+
+.user_info input{
+    background-color: transparent;
+    border: none;
+}
+
+.user_info > div{
+    display: flex;
+    align-items: flex-end;
+}
+.user_info #name_userPage, .user_info #account_userPage{
+    color: white;
+    border: none;
+}
+
+.user_info > .psw{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid white;
+}
+
+.user_info > .psw div{
+    width: 100%;
+    display: flex;
+}
+
+.user_info > .psw input{
+    flex:1;
+    outline: none;
+    color: white;
+}
+
+.user_info > .psw input:hover{
+    outline: none;
+    caret-color: white;
+}
+
+.user_info label{
+   width: 70px;
+   font-weight: 300;
+   font-size: 0.8rem;
+}
+
+.user_info  #cf_password{
+    width: 100%;
+}
+
+.user_info  button{
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+    transition: all 0.6s;
+}
+
+.user_info  button:hover{
+    color: black;
+    border: 1px solid white;
+    background-color: white;
+}

@@ -44,6 +44,9 @@ code {
 /* ----------- Alert------------- */
 @import url('./alert.css');
 
+/* ----------- profile------------- */
+@import url('./profile.css');
+
 /* font-family: 'Comfortaa', cursive;
 font-family: 'Poppins', sans-serif;
 font-family: 'Sofia Sans', sans-serif; */
