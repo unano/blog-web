@@ -4,7 +4,7 @@ import { InputChange, RootStore, IUserInfo, FormSubmit } from "../../utils/TypeS
 import NotFound from "../global/NotFound";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
-import { updateUser } from "../../redux/actions/profileAction";
+import { updateUser, resetPassword } from "../../redux/actions/profileAction";
 
 const UserInfo = () => {
     const { auth } = useSelector((state: RootStore) => state);
@@ -22,7 +22,7 @@ const UserInfo = () => {
   const [typePass, setTypePass] = useState(false);
   const [typeCfPass, setTypeCfPass] = useState(false);
 
-  const { name, account, avatar, password, cf_password } = user;
+  const { name, avatar, password, cf_password } = user;
 
   const handleChangeInput = (e: InputChange) => {
     const { name, value } = e.target;
@@ -38,10 +38,13 @@ const UserInfo = () => {
     }
   };
     
-    const handleSubmit = (e:FormSubmit) => {
-        e.preventDefault()
-        if (avatar || name)
-            dispatch(updateUser((avatar as File), name, auth) as any)
+  const handleSubmit = (e: FormSubmit) => {
+    e.preventDefault()
+    if (avatar || name)
+      dispatch(updateUser((avatar as File), name, auth) as any)
+    if (password && auth.access_token)
+      dispatch(resetPassword(password, cf_password, auth.access_token) as any)
+      
     }
 
 

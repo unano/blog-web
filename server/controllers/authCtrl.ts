@@ -101,7 +101,7 @@ const authCtrl = {
 
 const loginUser = async (user: IUser, password: string, res: Response) => {
     const isMatch = await bcrypt.compare(password,user.password);
-    if(!isMatch) return res.status(500).json({msg:"password is incorrect."})
+    if(!isMatch) return res.status(400).json({msg:"password is incorrect."})
 
     const access_token = generateAccessToken({id: user._id});
     const refresh_token = generateRefreshToken({id: user._id});
