@@ -20,6 +20,7 @@ app.use(cookieParser())
 //rotes
 app.use('/api',routes.authRouter);
 app.use("/api", routes.userRouter);
+app.use("/api", routes.categoryRouter);
 
 // sever lisening
 const PORT = process.env.PORT || 8000

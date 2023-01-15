@@ -47,6 +47,9 @@ code {
 /* ----------- profile------------- */
 @import url('./profile.css');
 
+/* ----------- category ------------- */
+@import url('./category.css');
+
 /* font-family: 'Comfortaa', cursive;
 font-family: 'Poppins', sans-serif;
 font-family: 'Sofia Sans', sans-serif; */

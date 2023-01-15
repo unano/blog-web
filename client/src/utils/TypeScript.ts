@@ -48,3 +48,10 @@ export interface IAlert {
   success?: string | string[]
   errors?: string | string[]
 }
+
+export interface ICategory {
+  createdAt: string
+  name: string
+  updateAt: string
+  _id: string
+}
