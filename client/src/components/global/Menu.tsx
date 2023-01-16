@@ -29,25 +29,27 @@ const Menu = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   return (
     <>
+      <div className="head">
+      <Link to="/">BlogApp</Link>
+      <Search />
+      </div>
       <ul className="navs">
-        <Search />
         {navLinks.map((link, index) => (
           <li key={index} className={isActive(link.path)}>
             <Link to={link.path}>{link.label}</Link>
           </li>
         ))}
 
-        {
-          auth.user?.role === 'admin' &&
+        {auth.user?.role === "admin" && (
           <li className={`${isActive("/category")}`}>
-              <Link to="/category">Category</Link>
+            <Link to="/category">Category</Link>
           </li>
-        }
+        )}
 
         {auth.user && (
           <li className="nav-item dropdown">
             <span onClick={() => setShowDropdown(!showDropdown)}>
-              <img src ={auth.user.avatar} alt= "avatar" className="avatar"/>
+              <img src={auth.user.avatar} alt="avatar" className="avatar" />
             </span>
             {showDropdown && (
               <ul className="drop_down">
@@ -55,7 +57,9 @@ const Menu = () => {
                   <Link to={`/profile/${auth.user._id}`}>Profile</Link>
                 </li>
                 <li className="dropdown_item">
-                  <Link to="/" onClick={() => dispatch(logout() as any) }>Logout</Link>
+                  <Link to="/" onClick={() => dispatch(logout() as any)}>
+                    Logout
+                  </Link>
                 </li>
               </ul>
             )}

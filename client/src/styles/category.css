@@ -7,6 +7,12 @@
     border: 1px solid black;
 }
 
+@media (max-width: 780px) {
+    .categories{
+        width: 80%;
+    }
+}
+
 .categories form{
     display: flex;
     flex-direction: row;

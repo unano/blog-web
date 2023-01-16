@@ -11,6 +11,19 @@
     padding-right: 3rem;
 }
 
+@media (max-width: 1000px) {
+    .login{
+        width: 60%;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 780px) {
+    .login{
+        width: 70%;
+    }
+}
+
 .login > div{
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -34,6 +47,10 @@
 
 .login .login_jump a{
     color: white;
+}
+
+.login .login_jump p{
+   text-align: right;
 }
 
 .login form > div{
@@ -76,7 +93,7 @@
 }
 
 .login_label{
-    width: 20%;
+    width: 94px;
 }
 
 .login .password big{
@@ -91,7 +108,7 @@
 
 #account,#name,.login .password > div, .login .cf_password > div{
     display: flex;
-    width: 79%;
+    flex: 1;
     color: white;
     gap: 0.4rem;
     align-items: flex-start;
