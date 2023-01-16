@@ -12,7 +12,6 @@ export const login =
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
       const res = await postAPI("login", userLogin);
-      console.log(res);
       dispatch({
         type: AUTH,
         payload: res.data,
@@ -47,7 +46,6 @@ export const register =
         payload: { loading: true },
       });
       const res = await postAPI("register", userRegister);
-      console.log(res);
       dispatch({
         type: ALERT,
         payload: { success: res.data.msg },

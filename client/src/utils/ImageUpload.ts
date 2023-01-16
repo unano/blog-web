@@ -1,9 +1,12 @@
 export const checkImage = (file: File) => {
+  const types = ['image/png', 'image/jpeg']
   let err = ''
   if (!file) return err = 'File dose not exists.'
   
   if ((file.size > 1024 * 1024))
     err = "The largest image size is 1 mb"
+  if (!types.includes(file.type))
+    err = "Image type should be png/jpeg"
   return err;
 }
 

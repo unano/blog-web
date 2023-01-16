@@ -59,9 +59,16 @@
     border: 1px solid black;
     background-color: black;
     color: white;
-    padding: 0.2rem 1rem;
-    align-items: center;
+    padding: 0.7rem 1rem;
+    align-items: center
 }
+
+
+.categories .categ_close{
+    flex: 0 ;
+    align-self: center;
+}
+
 
 .categories > div{
     display: flex;
@@ -78,16 +85,20 @@
 .category > div{
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
-.category > div svg{
-    margin-bottom: -1rem;
+.category .category_edit, .category .category_delete{
+    padding: 4px 8px;
     font-size: 1.2rem;
     transition: all 0.5s;
 }
+.category .category_edit:hover{
+    background-color: white;
+    color: black;
+}
 
-.category > div svg:hover{
+.category .category_delete:hover{
     background-color: white;
     color: black;
 }

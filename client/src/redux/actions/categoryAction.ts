@@ -1,9 +1,15 @@
 
-
 import { Dispatch } from "redux";
 import { ALERT, IAlertType } from "../types/alertType";
-import { postAPI, getAPI } from "../../utils/FetchData";
-import { CREATE_CATEGORY, ICategoryType, GET_CATEGORIES } from "../types/categoryType";
+import { postAPI, getAPI, patchAPI, deleteAPI } from "../../utils/FetchData";
+import {
+  CREATE_CATEGORY,
+  ICategoryType,
+  GET_CATEGORIES,
+  UPDATE_CATEGORY,
+  DELETE_CATEGORY
+} from "../types/categoryType";
+import { ICategory } from "../../utils/TypeScript";
 
 export const createCategory =
   (name: string, token: string) =>
@@ -37,18 +43,55 @@ export const getCategories =
         payload: { loading: true },
       });
 
-        console.log("fsdf")
       const res = await getAPI("category");
-      console.log(res);
       dispatch({
-          type: GET_CATEGORIES,
-          payload: res.data.categories
-      })
+        type: GET_CATEGORIES,
+        payload: res.data.categories,
+      });
 
       dispatch({
         type: ALERT,
         payload: { loading: false },
       });
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };
+
+export const updateCategory =
+  (data: ICategory, token: string) =>
+  async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+    try {
+      // dispatch({
+      //   type: ALERT,
+      //   payload: { loading: true },
+      // });
+
+      const res = await patchAPI(
+        `category/${data._id}`,
+        { name: data.name },
+        token
+      );
+      dispatch({
+        type: UPDATE_CATEGORY,
+        payload: data,
+      });
+
+      // dispatch({
+      //   type: ALERT,
+      //   payload: { loading: false },
+      // });
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };
+
+export const deleteCategory =
+  (id: string, token: string) =>
+  async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+    try {
+      dispatch({ type: DELETE_CATEGORY, payload: id });
+      const res = await deleteAPI(`category/${id}`, token);
     } catch (err: any) {
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
     }

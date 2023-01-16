@@ -1,6 +1,8 @@
 
-import { IUserRegister } from "./TypeScript";
 
+import Category from "../pages/category";
+import { IUserRegister } from "./TypeScript";
+import { IBlog } from "./TypeScript";
 export const validRegister = (data: IUserRegister) => {
   const { name, account, password, cf_password } = data;
   const errors: string[] = [];
@@ -40,4 +42,39 @@ export const validateEmail = (email: string) => {
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
+};
+
+export const ValidCreateBlog = ({
+  title,
+  content,
+  description,
+  thumbnail,
+  category,
+}: IBlog) => {
+  const err: string[] = [];
+
+  if (title.trim().length < 5) {
+    err.push("Title should have at least 5 characters");
+  } else if (title.trim().length > 50) {
+    err.push("Title is up to 50 characters long");
+  }
+
+  if (content.trim().length < 100) {
+    err.push("Content should have at least 100 characters");
+  }
+
+  if (description.trim().length < 10) {
+    err.push("Description should have at least 10 characters");
+  } else if (description.trim().length > 200) {
+    err.push("Description is up to 200 characters long");
+  }
+
+  if (!thumbnail) err.push("Thumbnail cannot be blank");
+
+  if (!category) err.push("category cannot be blank");
+
+  return {
+    errMsg: err,
+    errLength: err.length,
+  };
 };

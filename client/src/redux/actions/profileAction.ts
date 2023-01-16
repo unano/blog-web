@@ -57,7 +57,6 @@ export const resetPassword =
   (password: string, cf_password: string, token: string) =>
   async (dispatch: Dispatch<IAlertType | IAuthType>) => {
       const msg = checkPassword(password, cf_password);
-      console.log(msg)
     if (msg)
       return dispatch({ type: ALERT, payload: { errors: msg } });
 
