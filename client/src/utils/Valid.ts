@@ -71,7 +71,7 @@ export const ValidCreateBlog = ({
 
   if (!thumbnail) err.push("Thumbnail cannot be blank");
 
-  if (!category) err.push("category cannot be blank");
+  if (!category) err.push("Category cannot be blank");
 
   return {
     errMsg: err,

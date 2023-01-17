@@ -12,7 +12,7 @@ const Menu = () => {
   
   const bfLoginLinks = [
     { label: "Login", path: "/login" },
-    { label: "register", path: "/register" },
+    { label: "Register", path: "/register" },
   ];
 
   const afLoginLinks = [
