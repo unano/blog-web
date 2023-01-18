@@ -1,0 +1,154 @@
+.home_blogs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  font-weight: 300;
+}
+
+.home_blogs h3 a, .home_blogs .card_title a  {
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border: 1px solid black;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.home_blogs > div > a{
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 0.3rem 1rem;
+    float: right;
+    transition: all 0.5s;
+    border: 1px solid black;
+}
+
+.home_blogs > div > a:hover{
+    background-color: white;
+    color: black;
+}
+
+
+.home_blogs h3 a > small {
+  color: black;
+  background-color: white;
+  width: 1.5rem;
+  padding: 0.8rem;
+  margin-left: 0.7rem;
+}
+
+.card_verts {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.6rem; */
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 10px;
+}
+
+.card_vert {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  height: 10rem;
+  border: 1px solid rgb(140, 140, 140);
+  /* width: 500px; */
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+  transition: all 0.5s;
+}
+
+.card_vert:hover {
+  border: 1px solid black;
+  transform: scale(102%);
+  box-shadow: 0 0 10px 0px silver;
+}
+
+.card_vert:hover img{
+  transform: scale(120%);
+}
+
+.card_vert:hover .card_thumbnail{
+    transform: scale(110%);
+  box-shadow: 0 0 10px 0 rgb(124, 124, 124);
+}
+
+.card_vert:hover .card_title > a{
+    transform: scale(105%);
+  box-shadow: 0 0 10px 0 rgb(48, 48, 48);
+}
+
+/* @media (max-width: 768px) {
+    .card_vert{
+        width: 100%;
+    }
+} */
+
+.card_vert .card_thumbnail{
+    transform-origin:top left;
+    width: 9rem;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.card_vert img {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  object-fit: cover;
+  transition: all 0.5s;
+}
+
+.card_vert .card_content{
+    padding-top: 0.4rem;
+    width: 100%;
+}
+
+.card_vert .card_title a{
+    flex: 0;
+    padding: 0.2rem 0.4rem 0 0.6rem;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1.3rem;
+    font-weight: 300;
+    transition: all 0.5s;
+}
+
+.card_vert .card_descrp{
+    font-size: 0.9rem;
+    height: 4.5rem;
+    padding: 0rem 1rem;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+}
+
+.card_vert .card_author{
+    text-align: right;
+}
+
+.card_vert .card_author :nth-child(1){
+    background-color: black;
+    padding: 0 0.2rem;
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+}
+
+.card_vert .card_author :nth-child(1) small{
+    padding: 0;
+    font-size: 0.5rem;
+    font-weight: 300;
+}
+
+.card_vert .card_author :nth-child(2){
+    padding: 0 0.2rem;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+}

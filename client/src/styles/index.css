@@ -39,7 +39,11 @@ scrollbar-darkshadow-color: #8b0000;
 @import url('./auth.css');
 
 /* ----------- Loading Page------------- */
+
 @import url('./loading.css');
+
+/* ----------- Home Page ------------- */
+@import url('./home.css');
 
 /* ----------- Login Page------------- */
 @import url('./login.css');

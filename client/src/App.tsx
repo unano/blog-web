@@ -8,12 +8,14 @@ import Footer from './components/global/Footer';
 import { Alert } from './components/alert/Alert';
 import { refreshToken } from './redux/actions/authAction'; 
 import { getCategories } from './redux/actions/categoryAction';
+import { getHomeBlogs } from './redux/actions/blogAction';
 
 const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(refreshToken() as any)
     dispatch(getCategories() as any);
+    dispatch(getHomeBlogs() as any);
   },[])
   return (
     <div className='container'>

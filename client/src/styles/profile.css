@@ -43,7 +43,7 @@
     bottom: -50%;
     align-items: center;
     transition: all 0.5s;
-    border-top:0.3px solid black;
+    box-shadow: 0 0 10px 0 rgb(140, 140, 140);
     padding-top: 0.3rem;
 }
 
