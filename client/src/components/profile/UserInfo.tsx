@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { InputChange, RootStore, IUserInfo, FormSubmit } from "../../utils/TypeScript";
+import {
+  InputChange,
+  RootStore,
+  IUserInfo,
+  FormSubmit,
+} from "../../utils/TypeScript";
 import NotFound from "../global/NotFound";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
-import { updateUser, resetPassword } from "../../redux/actions/profileAction";
+import { updateUser, resetPassword } from "../../redux/actions/userAction";
 
 const UserInfo = () => {
-    const { auth } = useSelector((state: RootStore) => state);
+  const { auth } = useSelector((state: RootStore) => state);
   const dispatch = useDispatch();
 
   const initState = {
@@ -32,21 +37,18 @@ const UserInfo = () => {
   const handleChangeFile = (e: InputChange) => {
     const target = e.target as HTMLInputElement;
     const files = target.files;
-      if (files) {
-          const file = files[0]
-        setUser({...user, avatar:file})
+    if (files) {
+      const file = files[0];
+      setUser({ ...user, avatar: file });
     }
   };
-    
-  const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault()
-    if (avatar || name)
-      dispatch(updateUser((avatar as File), name, auth) as any)
-    if (password && auth.access_token)
-      dispatch(resetPassword(password, cf_password, auth.access_token) as any)
-      
-    }
 
+  const handleSubmit = (e: FormSubmit) => {
+    e.preventDefault();
+    if (avatar || name) dispatch(updateUser(avatar as File, name, auth) as any);
+    if (password && auth.access_token)
+      dispatch(resetPassword(password, cf_password, auth.access_token) as any);
+  };
 
   if (!auth.user) return <NotFound />;
   return (
@@ -69,61 +71,63 @@ const UserInfo = () => {
           />
         </span>
       </div>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name_userPage"
-          name="name"
-          defaultValue={auth.user.name}
-          onChange={handleChangeInput}
-          disabled={true}
-        />
-      </div>
-      <div>
-        <label htmlFor="account">Account</label>
-        <input
-          type="text"
-          id="account_userPage"
-          name="account"
-          defaultValue={auth.user?.account}
-          onChange={handleChangeInput}
-          disabled={true}
-        />
-      </div>
-      <div className="psw">
-        <label htmlFor="password">Password</label>
-        <div className="pass">
+      <div className="info_exc_avatar">
+        <div>
+          <label htmlFor="name">Name</label>
           <input
-            type={typePass ? "text" : "password"}
-            id="password_userPage"
-            name="password"
-            value={password}
+            type="text"
+            id="name_userPage"
+            name="name"
+            defaultValue={auth.user.name}
             onChange={handleChangeInput}
+            disabled={true}
           />
-          <small onClick={() => setTypePass(!typePass)}>
-            {typePass ? <AiFillEye /> : <AiFillEyeInvisible />}
-          </small>
         </div>
-      </div>
-      <div className="psw">
-        <label id="cf_password" htmlFor="cf_password">
-          Confirm Password
-        </label>
-        <div className="pass">
+        <div>
+          <label htmlFor="account">Account</label>
           <input
-            type={typeCfPass ? "text" : "password"}
-            id="cf_password_userPage"
-            name="cf_password"
-            value={cf_password}
+            type="text"
+            id="account_userPage"
+            name="account"
+            defaultValue={auth.user?.account}
             onChange={handleChangeInput}
+            disabled={true}
           />
-          <small onClick={() => setTypeCfPass(!typeCfPass)}>
-            {typeCfPass ? <AiFillEye /> : <AiFillEyeInvisible />}
-          </small>
         </div>
+        <div className="psw">
+          <label htmlFor="password">Password</label>
+          <div className="pass">
+            <input
+              type={typePass ? "text" : "password"}
+              id="password_userPage"
+              name="password"
+              value={password}
+              onChange={handleChangeInput}
+            />
+            <small onClick={() => setTypePass(!typePass)}>
+              {typePass ? <AiFillEye /> : <AiFillEyeInvisible />}
+            </small>
+          </div>
+        </div>
+        <div className="psw">
+          <label id="cf_password" htmlFor="cf_password">
+            Confirm Password
+          </label>
+          <div className="pass">
+            <input
+              type={typeCfPass ? "text" : "password"}
+              id="cf_password_userPage"
+              name="cf_password"
+              value={cf_password}
+              onChange={handleChangeInput}
+            />
+            <small onClick={() => setTypeCfPass(!typeCfPass)}>
+              {typeCfPass ? <AiFillEye /> : <AiFillEyeInvisible />}
+            </small>
+          </div>
+        </div>
+        <button type="submit">Update</button>
       </div>
-      <button type="submit">Update</button>
     </form>
   );
 };

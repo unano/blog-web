@@ -66,6 +66,10 @@ scrollbar-darkshadow-color: #8b0000;
 /* ----------- create blog ------------- */
 @import url('./create_blog.css');
 
+/* ----------- blog ------------- */
+@import url('./blog.css');
+
+
 /* font-family: 'Comfortaa', cursive;
 font-family: 'Poppins', sans-serif;
 font-family: 'Sofia Sans', sans-serif; */

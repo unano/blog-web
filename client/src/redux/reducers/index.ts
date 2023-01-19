@@ -4,10 +4,15 @@ import alert from './alertReducers'
 import categories from "./categoryReducers"
 import homeBlogs from "./homeBlogReducers"
 import blogsCategory from './blogCategoryReducer'
+import otherInfo from './otherInfoReducer'
+import blogsUser from './blogUserReducer'
+
 export default combineReducers({
     auth,
     alert,
     categories,
     homeBlogs,
-    blogsCategory
+    blogsCategory,
+    otherInfo,
+    blogsUser
 })

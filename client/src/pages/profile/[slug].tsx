@@ -4,7 +4,7 @@ import { IParams, RootStore } from "../../utils/TypeScript";
 import { useSelector } from "react-redux";
 import OtherInfo from "../../components/profile/OtherInfo";
 import UserInfo from "../../components/profile/UserInfo";
-import UserBlogs from "../../components/profile/userBlogs";
+import UserBlogs from "../../components/profile/UserBlogs";
 
 const Profile = () => {
   const { slug }: IParams = useParams();
@@ -12,8 +12,17 @@ const Profile = () => {
 
   return (
     <div className="user_profile">
-        <div>{auth.user?._id === slug ? <UserInfo/> : <OtherInfo/>}</div>
-      <div><UserBlogs/></div>
+      <div>
+        {auth.user?._id === slug ? (
+          <UserInfo />
+        ) : (
+          slug && <OtherInfo id={slug} />
+        )}
+      </div>
+      <div className="user_blogs">
+        <h3>Blogs</h3>
+        <UserBlogs />
+      </div>
     </div>
   );
 };

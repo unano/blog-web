@@ -4,6 +4,8 @@ import { IBlog } from "../../utils/TypeScript";
 
 export const GET_HOME_BLOGS = "GET_HOME_BLOGS";
 export const GET_BLOGS_CATEGORY_ID = "GET_BLOGS_CATEGORY_ID";
+export const GET_BLOGS_USER_ID = "GET_BLOGS_USER_ID";
+
 
 export interface IHomeBlogs {
   _id: string;
@@ -21,9 +23,22 @@ export interface IBlogsCategory {
   id: string;
   blogs: IBlog[];
   total: number;
+  search: string;
 }
 
 export interface IGetBlogCategoryType {
   type: typeof GET_BLOGS_CATEGORY_ID;
   payload: IBlogsCategory;
+}
+
+export interface IBlogsUser {
+  id: string;
+  blogs: IBlog[];
+  total: number;
+  search: string;
+}
+
+export interface IGetBlogUserType {
+  type: typeof GET_BLOGS_USER_ID;
+  payload: IBlogsUser;
 }

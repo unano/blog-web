@@ -37,7 +37,6 @@ const categoryCtrl = {
     }
   },
   updateCategory: async (req: IReqAuth, res: Response) => {
-    console.log(req.body)
     if (!req.user)
       return res.status(400).json({ msg: "invalid Authentication" });
 

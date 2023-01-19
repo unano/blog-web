@@ -29,19 +29,27 @@ const userCtrl = {
       return res.status(400).json({ msg: "Invalid Authentication" });
 
     try {
-      const { password } = req.body
-      const passwordHash =await bcrypt.hash(password, 12)
+      const { password } = req.body;
+      const passwordHash = await bcrypt.hash(password, 12);
 
       const user = await Users.findOneAndUpdate(
         { _id: req.user._id },
         {
-          password: passwordHash
+          password: passwordHash,
         }
       );
 
-      res.json({ msg: "Reset Password Success", user })
+      res.json({ msg: "Reset Password Success", user });
     } catch (err: any) {
-      return res.status(500).json({ msg: err.message })
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getUser: async (req: IReqAuth, res: Response) => {
+    try {
+      const user = await Users.findById(req.params.id).select('-password')
+      res.json(user)
+    } catch (err: any) {
+      return res.status(500).json({ msg: err.message });
     }
   },
 };

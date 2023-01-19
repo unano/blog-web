@@ -1,15 +1,31 @@
 
 .user_profile{
     display: flex;
-    width: 100%;
+    min-width: 80%;
     gap: 2rem;
+    flex-direction: row;
+}
+.user_profile .user_blogs{
+    width: 100%;
+}
+
+.user_profile h3{
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 0.2rem 1rem;
 }
 
 .user_info{
     background-color: black;
-    width: 20rem;
+    width: 18rem;
     padding: 1rem;
     color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+.user_info .info_exc_avatar{
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
@@ -62,64 +78,89 @@
     display: none;
 }
 
-
-
 .user_info input{
     background-color: transparent;
     border: none;
 }
 
-.user_info > div{
+.info_exc_avatar > div{
     display: flex;
     align-items: flex-end;
 }
-.user_info #name_userPage, .user_info #account_userPage{
+.info_exc_avatar #name_userPage, .info_exc_avatar #account_userPage{
     color: white;
     border: none;
 }
 
-.user_info > .psw{
+.info_exc_avatar > .psw{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border-bottom: 1px solid white;
 }
 
-.user_info > .psw div{
+.info_exc_avatar > .psw div{
     width: 100%;
     display: flex;
 }
 
-.user_info > .psw input{
+.info_exc_avatar > .psw input{
     flex:1;
     outline: none;
     color: white;
 }
 
-.user_info > .psw input:hover{
+.info_exc_avatar > .psw input:hover{
     outline: none;
     caret-color: white;
 }
 
-.user_info label{
+.info_exc_avatar label{
    width: 70px;
    font-weight: 300;
    font-size: 0.8rem;
 }
 
-.user_info  #cf_password{
+.info_exc_avatar  #cf_password{
     width: 100%;
 }
 
-.user_info  button{
+.info_exc_avatar button{
     color: white;
     border: 1px solid white;
     background-color: black;
     transition: all 0.6s;
 }
 
-.user_info  button:hover{
+.info_exc_avatar  button:hover{
     color: black;
     border: 1px solid white;
     background-color: white;
+}
+
+.user_blogs{
+    width: 100%;
+}
+
+.user_blogs .blogs{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .user_profile{
+        flex-direction: column;
+    }
+    .user_info{
+        width: 100%;
+        flex-direction: row;
+        gap: 2rem;
+    }
+    .user_info .avatar{
+        width: 40%;
+    }
+    .cardHoriz{
+    }
+
 }

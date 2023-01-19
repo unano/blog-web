@@ -1,15 +1,14 @@
-import React from 'react'
-import { IBlog } from '../../utils/TypeScript'
-import { Link } from 'react-router-dom'
-import userBlogs from '../profile/userBlogs'
-import homeBlogsReducer from '../../redux/reducers/homeBlogReducers'
-interface IProps{
-    blog: IBlog
+import React from "react";
+import { IBlog } from "../../utils/TypeScript";
+import { Link } from "react-router-dom";
+
+interface IProps {
+  blog: IBlog;
 }
-const CardVert:React.FC<IProps> = ({blog}) => {
+const CardVert: React.FC<IProps> = ({ blog }) => {
   return (
     <div className="card_vert">
-      <div className='card_thumbnail'>
+      <div className="card_thumbnail">
         {typeof blog.thumbnail === "string" && (
           <img src={blog.thumbnail} alt="..." />
         )}
@@ -32,6 +31,6 @@ const CardVert:React.FC<IProps> = ({blog}) => {
       </div>
     </div>
   );
-}
+};
 
-export default CardVert
+export default CardVert;

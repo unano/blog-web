@@ -1,5 +1,6 @@
 
 
+
 import { IBlog } from "../../utils/TypeScript";
 import { Dispatch } from "react";
 import { ALERT, IAlertType } from "../types/alertType";
@@ -11,6 +12,8 @@ import {
   IGetHomeBlogType,
   GET_BLOGS_CATEGORY_ID,
   IGetBlogCategoryType,
+  GET_BLOGS_USER_ID,
+  IGetBlogUserType
 } from "../types/blogType";
 
 export const createBlog =
@@ -52,16 +55,38 @@ export const getHomeBlogs =
   };
 
 export const getBlogsByCategoryId =
-  (id: string) =>
+  (id: string, search: string) =>
   async (dispatch: Dispatch<IAlertType | IGetBlogCategoryType>) => {
     try {
+      let limit = 8;
+      search = search ? search : "?page=1";
       dispatch({ type: ALERT, payload: { loading: true } });
-      const res = await getAPI(`blogs/${id}`);
-      // dispatch({
-      //   type: GET_HOME_BLOGS,
-      //   payload: res.data,
-      // });
-      dispatch({ type: GET_BLOGS_CATEGORY_ID, payload: { ...res.data, id } });
+      const res = await getAPI(`blogs/category/${id}${search}&limit=${limit}`);
+
+      dispatch({
+        type: GET_BLOGS_CATEGORY_ID,
+        payload: { ...res.data, id, search },
+      });
+      dispatch({ type: ALERT, payload: { loading: false } });
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };
+
+export const getBlogsByUserId =
+  (id: string, search: string) =>
+  async (dispatch: Dispatch<IAlertType | IGetBlogUserType>) => {
+    try {
+      let limit = 8;
+      search = search ? search : "?page=1";
+      dispatch({ type: ALERT, payload: { loading: true } });
+      const res = await getAPI(`blogs/user/${id}${search}&limit=${limit}`);
+
+      dispatch({
+        type: GET_BLOGS_USER_ID,
+        payload: { ...res.data, id, search },
+      });
+
       dispatch({ type: ALERT, payload: { loading: false } });
     } catch (err: any) {
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });

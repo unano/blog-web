@@ -79,7 +79,7 @@
 }
 
 .card_vert:hover .card_title > a{
-    transform: scale(105%);
+  transform: scale(105%);
   box-shadow: 0 0 10px 0 rgb(48, 48, 48);
 }
 
@@ -106,13 +106,24 @@
 }
 
 .card_vert .card_content{
-    padding-top: 0.4rem;
+    padding-top: 0.1rem;
     width: 100%;
+}
+
+.card_vert .card_title{
+  display: inline-block;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  padding-right: 0.5rem;
 }
 
 .card_vert .card_title a{
     position: relative;
-    background-color: black;
     color: white;
     text-decoration: none;
     flex: 0;
@@ -120,9 +131,9 @@
     border: none;
     border-bottom: 1px solid black;
     font-size: 1.3rem;
-    font-weight: 300;
     transition: all 0.5s;
     z-index: 5;
+    font-weight: 600;
 }
 
 .card_vert .card_descrp{

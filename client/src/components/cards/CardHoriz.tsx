@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import { IBlog } from "../../utils/TypeScript";
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ interface IProps {
 }
 const CardHoriz: React.FC<IProps> = ({ blog }) => {
   return (
-    <div>
+    <div className="cardHoriz">
       <div className="thumbnail">
         {blog.thumbnail && (
           <>
@@ -28,7 +29,9 @@ const CardHoriz: React.FC<IProps> = ({ blog }) => {
         )}
       </div>
       <div className="shown_content">
-        <div className="shown_title">{blog.title}</div>
+        <div className="shown_title">
+          <Link to={`/blog/${blog._id}`}>{blog.title}</Link>
+        </div>
         <div className="shown_descrp">{blog.description}</div>
         <small>{new Date(blog.createdAt).toLocaleString()}</small>
       </div>

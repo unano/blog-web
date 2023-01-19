@@ -38,19 +38,16 @@ const authCtrl = {
     activeAccount: async(req:Request, res: Response) => {
         try{
             const { active_token } = req.body;
-            console.log(active_token)
 
             const decoded = <IDecodedToken>jwt.verify(active_token,`${process.env.ACTIVE_TOKEN_SECRET}`);
             const { newUser } = decoded;
 
             if (!newUser) return res.status(400).json({ msg: "invalid authentication" })
             
-            console.log(newUser)
             const user = await Users.findOne({ account: newUser.account })
             if(user) return res.status(400).json({msg:"Account already exists"})
             const new_user = new Users(newUser);
             await new_user.save();
-            console.log(newUser)
             res.json({msg: "Account has been activated!"});
 
         }catch(err: any){
