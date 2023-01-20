@@ -17,12 +17,9 @@ const DetailBlog = () => {
         setLoading(true)
         getAPI(`blog/${id}`)
             .then(res => {
-                console.log(res)
                 setBlog(res.data)
                 setLoading(false)
             }).catch(err => {
-                console.log(err.response.data);
-                console.log(err);
                 setError(err.response.data.msg)
                 setLoading(false);
             })

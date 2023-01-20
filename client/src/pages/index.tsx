@@ -26,7 +26,7 @@ const Index = () => {
               </div>
             </>
           )}
-          {homeBlog.count > 4 && <Link to={`/blogs/${homeBlog.name}`}>
+          {homeBlog.count > 4 && <Link to={`/blogs/${homeBlog.name}?page=1`}>
             Read more &gt; &gt;
           </Link>}
         </div>

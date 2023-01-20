@@ -9,6 +9,7 @@
     font-weight: 300;
     padding: 0rem 2rem 0 2rem;
     align-items: center;
+    z-index: 50;
 }
 
 @media (max-width: 768px) {

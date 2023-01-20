@@ -54,7 +54,7 @@ const Menu = () => {
             {showDropdown && (
               <ul className="drop_down">
                 <li className="dropdown_item">
-                  <Link to={`/profile/${auth.user._id}`}>Profile</Link>
+                  <Link to={`/profile/${auth.user._id}?page=1`}>Profile</Link>
                 </li>
                 <li className="dropdown_item">
                   <Link to="/" onClick={() => dispatch(logout() as any)}>

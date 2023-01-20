@@ -1,7 +1,7 @@
 
 .user_profile{
     display: flex;
-    min-width: 80%;
+    width: 90%;
     gap: 2rem;
     flex-direction: row;
 }
@@ -148,8 +148,14 @@
     gap: 1rem;
 }
 
+@media (max-width: 1000px) {
+    .user_profile{
+        width: 100%;
+    }
+}
 @media (max-width: 768px) {
     .user_profile{
+        width: 100%;
         flex-direction: column;
     }
     .user_info{
@@ -161,6 +167,7 @@
         width: 40%;
     }
     .cardHoriz{
+        width: 100%;
     }
 
 }

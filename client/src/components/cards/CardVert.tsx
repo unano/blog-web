@@ -21,7 +21,7 @@ const CardVert: React.FC<IProps> = ({ blog }) => {
         <p className="card_author">
           <small>
             {typeof blog.user !== "string" && (
-              <Link to={`/profile/${blog.user._id}`}>
+              <Link to={`/profile/${blog.user._id}?page=1`}>
                 <small>By: </small> {blog.user.name}
               </Link>
             )}

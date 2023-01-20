@@ -1,0 +1,33 @@
+.pagination{
+    float: right;
+}
+
+.pagination ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+.pagination ul li:first-child{
+    border-left: 1px solid black;
+}
+
+.pagination li{
+    margin-top: 1rem;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border:1px solid black;
+    border-left: none;
+    transition: all 0.5s;
+}
+
+.pagination li:hover{
+    background-color: rgb(88, 88, 88);
+    color: white;
+}
+
+.pagination .choosed{
+    background-color: black;
+    color: white;
+}

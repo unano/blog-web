@@ -69,6 +69,12 @@ scrollbar-darkshadow-color: #8b0000;
 /* ----------- blog ------------- */
 @import url('./blog.css');
 
+/* ----------- comments ------------- */
+@import url('./comments.css');
+
+/* ----------- pagination ------------- */
+@import url('./pagination.css');
+
 
 /* font-family: 'Comfortaa', cursive;
 font-family: 'Poppins', sans-serif;

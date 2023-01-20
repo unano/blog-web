@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import RegisterForm from "../components/auth/RegisterForm";
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const Register = () => {
+  const location = useLocation();
   return (
     <div className="auth_page  login">
       <div>Register</div>
@@ -13,7 +14,7 @@ const Register = () => {
         </small>
         <p>
           <small>Already have an account? </small>
-          <Link to={`/login`}>Login</Link>
+          <Link to={`/login${location.search}`}>Login</Link>
         </p>
       </div>
     </div>

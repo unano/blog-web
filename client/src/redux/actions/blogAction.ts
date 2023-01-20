@@ -58,7 +58,7 @@ export const getBlogsByCategoryId =
   (id: string, search: string) =>
   async (dispatch: Dispatch<IAlertType | IGetBlogCategoryType>) => {
     try {
-      let limit = 8;
+      let limit = 9;
       search = search ? search : "?page=1";
       dispatch({ type: ALERT, payload: { loading: true } });
       const res = await getAPI(`blogs/category/${id}${search}&limit=${limit}`);

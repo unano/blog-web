@@ -1,17 +1,22 @@
 import { useEffect } from 'react'
 import LoginPass from '../components/auth/LoginPass';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { RootStore } from '../utils/TypeScript';
 
 const Login = () => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const { auth } = useSelector((state: RootStore)=>state)
-
+      console.log(location);
   useEffect(() => {
-    if(auth.access_token) navigate('/')
-  },[auth.access_token, navigate])
+    if (auth.access_token) {
+      let url = location.search.replace('?','/')
+       return navigate(url);
+    }
+  }, [auth.access_token, navigate])
+  
   return (
     <div className="auth_page  login">
       <div>Login</div>
@@ -22,7 +27,7 @@ const Login = () => {
         </small>
         <p>
           <small>No account? </small>
-          <Link to={`/register`}>Register Now</Link>
+          <Link to={`/register${location.search}`}>Register Now</Link>
         </p>
       </div>
     </div>

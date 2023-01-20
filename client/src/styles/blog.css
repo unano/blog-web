@@ -43,7 +43,7 @@
     font-weight: 300;
 }
 
-.detail_blog h2{
+.detail_blog .blog_intro h2{
     color: white;
     display: inline-block;
     background-color: black;
@@ -60,16 +60,22 @@
 }
 
 .detail_blog .blog_thumbnail img{
+    object-fit: cover;
     height: 100%;
     width: 100%;
 }
 
 @media (max-width: 768px) {
-    .detail_blog h2{
+    .detail_blog .blog_intro h2{
         font-size: 1.6rem;
     }
     .detail_blog{
         width: 100%;
     }
 
+}
+
+.blog_content{
+    width: 100%;
+    word-break: break-word;
 }
