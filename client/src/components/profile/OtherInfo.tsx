@@ -23,12 +23,21 @@ const OtherInfo: React.FC<IProps> = ({ id }) => {
 
   if (!other) return <Loading />;
   return (
-    <div>
-      <img src={other.avatar} alt="img" />
-      <div>{other.role}</div>
-      <div>{other.name}</div>
-      <div>email : {other.account}</div>
-      <div>Join Date: {new Date(other.createdAt).toDateString().slice(4)}</div>
+    <div className="user_info other_info">
+      <div className="avatar">
+        <img src={other.avatar} alt="img" />
+      </div>
+      <div className="user_name_and_role">
+        <div className="role">{other.role}</div>
+        <div>{other.name}</div>
+      </div>
+      <div>
+        <span>email</span> {other.account}
+      </div>
+      <div>
+        <span>Join Date</span>{" "}
+        {new Date(other.createdAt).toDateString().slice(4)}
+      </div>
     </div>
   );
 };

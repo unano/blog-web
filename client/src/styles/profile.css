@@ -148,6 +148,36 @@
     gap: 1rem;
 }
 
+.other_info{
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.other_info .user_name_and_role{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: -1.5rem;
+}
+
+.other_info .role{
+    max-width: fit-content;
+    background-color: white;
+    color: black;
+    padding: 0 0.5rem;
+}
+
+.other_info span{
+    max-width: fit-content;
+    border: 1px solid white;
+    padding: 0 0.5rem;
+    margin-right: 0.5rem;
+}
+
+
+
 @media (max-width: 1000px) {
     .user_profile{
         width: 100%;

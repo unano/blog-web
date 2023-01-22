@@ -26,34 +26,105 @@
         gray 50%, gray 60%, transparent 60%, transparent
       );
       background-size: 10px 10px;
+      /* margin-bottom: 1rem; */
 }
+
+.blog_outer_reply .comment_content .name{
+    display: inline-block;
+    font-size: 1rem;
+    height: 1.4rem;
+    border:  0.8px solid black;
+    background-color: black;
+    padding: 0 0.6rem;
+    vertical-align: middle;
+}
+
+.blog_comment_content, .comment_content{
+    width: 100%;
+}
+
+.comment_content .info .reply_to{
+    font-size: 0.7rem;
+    display: inline-block;
+    height: 1.4rem;
+    font-weight: 300;
+    padding: 0 0.5rem;
+    border:  0.8px solid black;
+    vertical-align: middle;
+    line-height: 1.5rem;
+    margin-left: 0.1rem;
+}
+
+.comment_content .info .reply_to a{
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+}
+
 .blog_comment{
+    position: relative;
     background-color: white;
-    width: calc(100% - 2rem);
+    width: calc(100% - 1rem);
     display: flex;
-    margin-left: 2rem;
+    margin-left: 1rem;
     padding-left: 0.5rem;
     flex-direction: row;
     gap: 0.5rem;
+    font-weight: 300;
+}
+
+.blog_outer_reply .blog_comment{
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .blog_comment_avatar{
+    flex-shrink: 0;
     gap: 0.5rem;
     display: flex;
     flex-direction: column;
     width: 4rem;
+    height: 4rem;
+    object-fit: cover;
 }
 
-.blog_comment_avatar small{
+.blog_comment .reply_comment{
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.blog_outer_reply .comment_content .reply{
+    width: 3rem;
+}
+
+.blog_outer_reply .comment_content .reply{
+    font-size: 0.8rem;
+    font-weight: 300;
+    width: 3rem;
+    left: 0rem;
+    top: 3.5rem;
+}
+
+.blog_outer_reply .comment_content .time{
+    font-size: 0.7rem;
+}
+
+.comment_content .reply{
     display: inline-block;
     width: 4rem;
     border: 1px solid black;
     text-align: center;
     transition: all 0.5s;
     cursor: pointer;
+    position: absolute;
+    left: 0.5rem;
+    top: 4.5rem;
 }
 
-.blog_comment_avatar small:hover{
+.comment_content .reply:hover{
     color: white;
     background-color: black;
 }
@@ -81,6 +152,12 @@
     flex-direction: column;
     gap: 1rem;
 }
+
+.blog_comment .make_comment button{
+    font-size: 1rem;
+    padding: 0.1rem 0.8rem;
+}
+
 .make_comment button{
     font-size: 1.2rem;
     font-weight: 300;
