@@ -88,7 +88,8 @@ export const refreshToken =
 export const logout =
   () => async (dispatch: Dispatch<IAuthType | IAlertType>) => {
       try {
-          localStorage.removeItem('logged')
+        localStorage.removeItem('logged')
+        //dispatch({ type: AUTH, payload: {} })
           await getAPI('/logout')
           window.location.href = "/"  //this will reset redux data
     } catch (err: any) {

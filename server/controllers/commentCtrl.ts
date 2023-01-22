@@ -7,6 +7,7 @@ const Pagination = (req: IReqAuth) => {
   let page = Number(req.query.page) * 1 || 1;
   let limit = Number(req.query.limit) * 1 || 4;
   let skip = (page - 1) * limit;
+  console.log(page, limit, skip)
 
   return { page, limit, skip };
 };
@@ -48,8 +49,11 @@ const commentCtrl = {
               {
                 $lookup: {
                   from: "users",
-                  localField: "user",
-                  foreignField: "_id",
+                  let: { user_id: "$user" },
+                  pipeline: [
+                    { $match: { $expr: { $eq: ["$_id", "$$user_id"] } } },
+                    { $project: { name: 1, avatar: 1 } },
+                  ],
                   as: "user",
                 },
               },
@@ -63,8 +67,11 @@ const commentCtrl = {
                     {
                       $lookup: {
                         from: "users",
-                        localField: "user",
-                        foreignField: "_id",
+                        let: { user_id: "$user" },
+                        pipeline: [
+                          { $match: { $expr: { $eq: ["$_id", "$$user_id"] } } },
+                          { $project: { name: 1, avatar: 1 } },
+                        ],
                         as: "user",
                       },
                     },
@@ -72,8 +79,11 @@ const commentCtrl = {
                     {
                       $lookup: {
                         from: "users",
-                        localField: "reply_user",
-                        foreignField: "_id",
+                        let: { user_id: "$reply_user" },
+                        pipeline: [
+                          { $match: { $expr: { $eq: ["$_id", "$$user_id"] } } },
+                          { $project: { name: 1, avatar: 1 } },
+                        ],
                         as: "reply_user",
                       },
                     },

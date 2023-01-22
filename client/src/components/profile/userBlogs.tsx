@@ -31,7 +31,6 @@ const UserBlogs = () => {
       } else {
         const data = blogsUser.find(item => item.id === user_id)
         if (!data) return
-        
         setBlogs(data.blogs)
         setTotal(data.total)
       }

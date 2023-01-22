@@ -9,7 +9,6 @@ const Login = () => {
   const location = useLocation()
 
   const { auth } = useSelector((state: RootStore)=>state)
-      console.log(location);
   useEffect(() => {
     if (auth.access_token) {
       let url = location.search.replace('?','/')

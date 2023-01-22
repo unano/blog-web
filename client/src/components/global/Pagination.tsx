@@ -23,8 +23,9 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
       callback(num);
   };
     
-    useEffect(() => {
-      setPage(Number(searchParams.get("page")));
+  useEffect(() => {
+    let page = Number(searchParams.get("page"));
+      setPage(page === 0 ? 1: page);
     }, [searchParams]);
 
   return (
