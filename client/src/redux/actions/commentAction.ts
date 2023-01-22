@@ -1,3 +1,6 @@
+
+
+
 import { Dispatch } from "react";
 import { ALERT, IAlertType } from "../types/alertType";
 import {
@@ -5,11 +8,17 @@ import {
   ICreateCommentType,
   GET_COMMENTS,
   IGetCommentType,
-  REPLY_COMMENT, 
-  IReplyCommentType
+  REPLY_COMMENT,
+  IReplyCommentType,
+  UPDATE_COMMENT,
+  IUpdateType,
+  UPDATE_REPLY,
+  DELETE_COMMENT,
+  DELETE_REPLY,
+  IDeleteType
 } from "../types/commentTypes";
 import { IComment } from "../../utils/TypeScript";
-import { postAPI, getAPI } from "../../utils/FetchData";
+import { postAPI, getAPI, patchAPI, deleteAPI } from "../../utils/FetchData";
 
 export const createComment =
   (data: IComment, token: string) =>
@@ -26,7 +35,8 @@ export const createComment =
   };
 
 export const getComments =
-  (id: string, num: number) => async (dispatch: Dispatch<IAlertType | IGetCommentType>) => {
+  (id: string, num: number) =>
+  async (dispatch: Dispatch<IAlertType | IGetCommentType>) => {
     try {
       let limit = 8;
       const res = await getAPI(
@@ -57,3 +67,41 @@ export const replyComment =
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
     }
   };
+
+export const updateComment =
+  (data: IComment, token: string) =>
+  async (dispatch: Dispatch<IAlertType | IUpdateType>) => {
+    try {
+      dispatch({
+        type: data.comment_root ? UPDATE_REPLY : UPDATE_COMMENT,
+        payload: data,
+      });
+      console.log(data);
+      const res = await patchAPI(
+        `comment/${data._id}`,
+        { content: data.content },
+        token
+      );
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };
+
+export const deleteComment =
+  (data: IComment, token: string) =>
+  async (dispatch: Dispatch<IAlertType | IDeleteType>) => {
+    try {
+      dispatch({
+        type: data.comment_root ? DELETE_REPLY :DELETE_COMMENT,
+        payload: data,
+      });
+      console.log(data);
+      const res = await deleteAPI(
+        `comment/${data._id}`,
+        token
+      );
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };
+    

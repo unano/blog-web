@@ -55,7 +55,7 @@ const Comments: React.FC<IProps> = ({ comment }) => {
                 </div>
               </div>
             ))}
-            <div>
+            <div className="more_comment">
               {showReply.length - next > 0 ? (
                 <small onClick={()=> setNext(next + 5)}>See more comments</small>
               ) : (
