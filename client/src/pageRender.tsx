@@ -13,7 +13,7 @@ const generatePage = (name: string) =>{
 }
 
 const PageRender = () => {
-    const { page, slug }:IParams= useParams();
+    const { page, slug }: IParams = useParams();
 
     let name = "";
     if(page){

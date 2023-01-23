@@ -10,9 +10,10 @@ import { getLeadingCommentRanges } from "typescript";
 
 interface IProps {
   setBody: (value: string) => void;
+  body: string
 }
 
-const Quill: React.FC<IProps> = ({ setBody }) => {
+const Quill: React.FC<IProps> = ({ setBody, body }) => {
   const dispatch = useDispatch();
   const quillRef = useRef<ReactQuill>(null);
   const modules = { toolbar: { container } };
@@ -63,7 +64,8 @@ const Quill: React.FC<IProps> = ({ setBody }) => {
         modules={modules}
         placeholder="Write something..."
         onChange={handleChange}
-        ref={quillRef}
+      ref={quillRef}
+      value = {body}
       />
   );
 };

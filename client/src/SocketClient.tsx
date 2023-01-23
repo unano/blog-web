@@ -67,7 +67,7 @@ const SocketClient = () => {
     };
   }, [socket, dispatch]);
 
-  return <div>SocketClient</div>;
+  return <div></div>;
 };
 
 export default SocketClient;

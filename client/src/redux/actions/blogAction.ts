@@ -1,19 +1,15 @@
-
-
-
 import { IBlog } from "../../utils/TypeScript";
 import { Dispatch } from "react";
 import { ALERT, IAlertType } from "../types/alertType";
 import { ImageUpload } from "../../utils/ImageUpload";
-import { getAPI, postAPI } from "../../utils/FetchData";
-
+import { getAPI, postAPI, putAPI } from "../../utils/FetchData";
 import {
   GET_HOME_BLOGS,
   IGetHomeBlogType,
   GET_BLOGS_CATEGORY_ID,
   IGetBlogCategoryType,
   GET_BLOGS_USER_ID,
-  IGetBlogUserType
+  IGetBlogUserType,
 } from "../types/blogType";
 
 export const createBlog =
@@ -88,6 +84,30 @@ export const getBlogsByUserId =
       });
 
       dispatch({ type: ALERT, payload: { loading: false } });
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };
+
+export const updateBlog =
+  (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType>) => {
+    let url = "";
+    try {
+      dispatch({ type: ALERT, payload: { loading: true } });
+      if (typeof blog.thumbnail !== "string") {
+        const photo = await ImageUpload(blog.thumbnail);
+        url = photo.url;
+      } else {
+        url = blog.thumbnail;
+      }
+      const newBlog = { ...blog, thumbnail: url };
+
+      const res = await putAPI(`blog/${newBlog._id}`, newBlog, token);
+
+      dispatch({
+        type: ALERT,
+        payload: { success: res.data.msg },
+      });
     } catch (err: any) {
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
     }

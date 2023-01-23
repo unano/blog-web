@@ -205,17 +205,34 @@ const blogCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
-  getBlog: async (req: Request, res: Response)=>{
+  getBlog: async (req: Request, res: Response) => {
     try {
-      const blog = await Blogs.findOne({ _id: req.params.id })
-        .populate("user", "-paassword")
-      
-      if (!blog) return res.status(400).json({ msg: "Blog does not exists" })
-      return res.json(blog)
-    } catch (err:any) {
-      return res.status(500).json({msg:err.message})
+      const blog = await Blogs.findOne({ _id: req.params.id }).populate(
+        "user",
+        "-paassword"
+      );
+
+      if (!blog) return res.status(400).json({ msg: "Blog does not exists" });
+      return res.json(blog);
+    } catch (err: any) {
+      return res.status(500).json({ msg: err.message });
     }
-  }
+  },
+  updateBlog: async (req: IReqAuth, res: Response) => {
+    if (!req.user)
+      return res.status(400).json({ msg: "Invalid Authentication" });
+
+    try {
+      const blog = await Blogs.findOneAndUpdate({
+        _id: req.params.id, user:req.user._id
+      }, req.body)
+
+      if (!blog) return res.status(400).json({ msg: "Invalid Authentication"})
+      res.json({ msg: "Update Success!", blog })
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 export default blogCtrl;

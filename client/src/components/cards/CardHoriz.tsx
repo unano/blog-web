@@ -1,13 +1,16 @@
 
 
 import React from "react";
-import { IBlog } from "../../utils/TypeScript";
-import { Link } from "react-router-dom";
+import { IBlog, IParams, IUser, RootStore } from "../../utils/TypeScript";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 interface IProps {
   blog: IBlog;
 }
 const CardHoriz: React.FC<IProps> = ({ blog }) => {
+  const { slug }: IParams = useParams();
+  const { auth } = useSelector((state: RootStore) => state)
   return (
     <div className="cardHoriz">
       <div className="thumbnail">
@@ -35,6 +38,11 @@ const CardHoriz: React.FC<IProps> = ({ blog }) => {
         <div className="shown_descrp">{blog.description}</div>
         <small>{new Date(blog.createdAt).toLocaleString()}</small>
       </div>
+      {slug && ((blog.user as IUser)._id === auth.user?._id) &&(
+        <div>
+          <Link to={`/update_blog/${blog._id}`}>Update</Link>
+        </div>
+      )}
     </div>
   );
 };
