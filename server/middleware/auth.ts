@@ -10,7 +10,7 @@ const auth = async (req: IReqAuth, res: Response, next: NextFunction) => {
         const decoded = <IDecodedToken>jwt.verify(token, `${process.env.ACCESS_TOKEN_SECRET}`)
         if (!decoded) return res.status(400).json({ msg: "Invaild authentication" })
         
-        const user = await User.findOne({ _id: decoded.id })
+        const user = await User.findOne({ _id: decoded.id }).select("-password")
         if (!user) return res.status(400).json({ msg: "User dose not exists" })
         req.user = user;
         next()

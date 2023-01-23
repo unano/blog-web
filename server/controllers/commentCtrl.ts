@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import comments from "../models/commentsModel";
 import { IReqAuth } from "../config/interface";
 import mongoose from "mongoose";
-
+import { io } from "../index"
 const Pagination = (req: IReqAuth) => {
   let page = Number(req.query.page) * 1 || 1;
   let limit = Number(req.query.limit) * 1 || 4;
@@ -25,6 +25,15 @@ const commentCtrl = {
         blog_id,
         blog_user_id,
       });
+      
+      const data = {
+        ...newComment._doc,
+        user: req.user,
+        createdAt: new Date().toISOString()
+      }
+      
+      io.to(`${blog_id}`).emit('createComment', data)
+
       await newComment.save();
 
       return res.json(newComment);
@@ -154,6 +163,17 @@ const commentCtrl = {
         }
       );
 
+      const data = {
+        ...newComment._doc,
+        user: req.user,
+        reply_user: reply_user,
+        createdAt: new Date().toISOString(),
+      };
+      console.log("twice")
+      console.log(data)
+
+      io.to(`${blog_id}`).emit("replyComment", data);
+
       await newComment.save();
 
       return res.json(newComment);
@@ -166,16 +186,18 @@ const commentCtrl = {
       return res.status(400).json({ msg: "invalid Authentication." });
 
     try {
-      const { content } = req.body;
+      const { data } = req.body;
       const comment = await comments.findOneAndUpdate(
         {
           _id: req.params.id,
           user: req.user.id,
         },
-        { content }
+        { content: data.content }
       );
       if (!comment)
         return res.status(500).json({ msg: "Comment does not exists" });
+      io.to(`${data.blog_id}`).emit("updateComment", data);
+      
       return res.json({ msg: "Update Success!" });
     } catch (err: any) {
       return res.status(500).json({ msg: err.message });
@@ -186,7 +208,6 @@ const commentCtrl = {
       return res.status(400).json({ msg: "invalid Authentication." });
 
     try {
-      console.log(req)
       const comment = await comments.findOneAndDelete(
         {
           _id: req.params.id,
@@ -197,7 +218,7 @@ const commentCtrl = {
         },
       );
       if (!comment)
-        return res.status(500).json({ msg: "Comment does not exists" });
+        return res.status(400).json({ msg: "Comment does not exists" });
       if (comment.comment_root) {
         await comments.findOneAndUpdate({ _id: comment.comment_root }, {
           $pull : { replyCM: comment._id}
@@ -205,6 +226,8 @@ const commentCtrl = {
       } else {
         await comments.deleteMany({_id: {$in: comment.replyCM}})
       }
+
+      io.to(`${comment.blog_id}`).emit('deleteComment', comment)
       
       return res.json({ msg: "Update Success!" });
     } catch (err: any) {

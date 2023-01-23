@@ -36,9 +36,8 @@ const Comments: React.FC<IProps> = ({ comment }) => {
             setShowReply={setShowReply}
           >
             {showReply.slice(0, next).map((comment, index) => (
-              <div className="blog_outer blog_outer_reply">
+              <div className="blog_outer blog_outer_reply" key={index}>
                 <div
-                  key={index}
                   className="blog_comment"
                   style={{
                     opacity: comment._id ? 1 : 0.5,
@@ -57,10 +56,13 @@ const Comments: React.FC<IProps> = ({ comment }) => {
             ))}
             <div className="more_comment">
               {showReply.length - next > 0 ? (
-                <small onClick={()=> setNext(next + 5)}>See more comments</small>
+                <small onClick={() => setNext(next + 5)}>
+                  See more comments
+                </small>
               ) : (
-                  showReply.length > 2 && 
-                <small onClick={()=> setNext(2)}>Hide comments</small>
+                showReply.length > 2 && (
+                  <small onClick={() => setNext(2)}>Hide comments</small>
+                )
               )}
             </div>
           </CommentList>
