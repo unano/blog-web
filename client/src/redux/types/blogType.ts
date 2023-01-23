@@ -5,7 +5,9 @@ import { IBlog } from "../../utils/TypeScript";
 export const GET_HOME_BLOGS = "GET_HOME_BLOGS";
 export const GET_BLOGS_CATEGORY_ID = "GET_BLOGS_CATEGORY_ID";
 export const GET_BLOGS_USER_ID = "GET_BLOGS_USER_ID";
-
+export const CREATE_BLOGS_USER_ID = "CREATE_BLOGS_USER_ID";
+export const DELETE_BLOGS_USER_ID = "DELETE_BLOGS_USER_ID";
+export const UPDATE_BLOGS_USER_ID = "UPDATE_BLOGS_USER_ID";
 
 export interface IHomeBlogs {
   _id: string;
@@ -42,3 +44,24 @@ export interface IGetBlogUserType {
   type: typeof GET_BLOGS_USER_ID;
   payload: IBlogsUser;
 }
+
+export interface ICreateBlogUserType {
+  type: typeof CREATE_BLOGS_USER_ID;
+  payload: IBlog;
+}
+
+export interface IDeleteBlogUserType {
+  type: typeof DELETE_BLOGS_USER_ID;
+  payload: IBlog;
+}
+
+export interface IUpdateBlogUserType {
+  type: typeof UPDATE_BLOGS_USER_ID;
+  payload: IBlog;
+}
+
+export type IBlogUserType =
+  | IGetBlogUserType
+  | ICreateBlogUserType
+  | IDeleteBlogUserType
+  | IUpdateBlogUserType

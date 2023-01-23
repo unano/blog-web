@@ -37,9 +37,12 @@ const UserBlogs = () => {
   }, [user_id, blogsUser, dispatch])
   
   if (!blogs) return <Loading />
-  if (blogs.length === 0) return (
-    <h3>No Blogs</h3>
-  )
+  if (blogs.length === 0 && total <= 0) return (
+    <>
+      <br/>
+      <h3 className='no_blogs'>No Blogs</h3>
+    </>
+  );
   return (
     <div className="user_blogs">
       <div className='blogs'>

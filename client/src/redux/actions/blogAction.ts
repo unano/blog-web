@@ -2,7 +2,7 @@ import { IBlog } from "../../utils/TypeScript";
 import { Dispatch } from "react";
 import { ALERT, IAlertType } from "../types/alertType";
 import { ImageUpload } from "../../utils/ImageUpload";
-import { getAPI, postAPI, putAPI } from "../../utils/FetchData";
+import { getAPI, postAPI, putAPI, deleteAPI } from "../../utils/FetchData";
 import {
   GET_HOME_BLOGS,
   IGetHomeBlogType,
@@ -10,10 +10,16 @@ import {
   IGetBlogCategoryType,
   GET_BLOGS_USER_ID,
   IGetBlogUserType,
+  CREATE_BLOGS_USER_ID,
+  ICreateBlogUserType,
+  DELETE_BLOGS_USER_ID,
+  IDeleteBlogUserType,
+  UPDATE_BLOGS_USER_ID,
+  IUpdateBlogUserType
 } from "../types/blogType";
 
 export const createBlog =
-  (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType>) => {
+  (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType | ICreateBlogUserType>) => {
     let url = "";
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
@@ -26,6 +32,10 @@ export const createBlog =
       const newBlog = { ...blog, thumbnail: url };
 
       const res = await postAPI("blog", newBlog, token);
+      dispatch({
+        type: CREATE_BLOGS_USER_ID,
+        payload:res.data.blog
+      })
       dispatch({
         type: ALERT,
         payload: { success: res.data.msg },
@@ -90,7 +100,8 @@ export const getBlogsByUserId =
   };
 
 export const updateBlog =
-  (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType>) => {
+  (blog: IBlog, token: string) =>
+  async (dispatch: Dispatch<IAlertType | IUpdateBlogUserType>) => {
     let url = "";
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
@@ -103,7 +114,11 @@ export const updateBlog =
       const newBlog = { ...blog, thumbnail: url };
 
       const res = await putAPI(`blog/${newBlog._id}`, newBlog, token);
-
+      console.log(res.data)
+      dispatch({
+        type: UPDATE_BLOGS_USER_ID,
+        payload: res.data.blog,
+      });
       dispatch({
         type: ALERT,
         payload: { success: res.data.msg },
@@ -112,3 +127,27 @@ export const updateBlog =
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
     }
   };
+
+  export const deleteBlog =
+    (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType | IDeleteBlogUserType>) => {
+      let url = "";
+      try {
+        dispatch({ type: ALERT, payload: { loading: true } });
+
+        dispatch({
+          type: DELETE_BLOGS_USER_ID,
+          payload: blog
+        })
+
+        await deleteAPI(`blog/${blog._id}`, token);
+
+        // dispatch({
+        //   type: ALERT,
+        //   payload: { success: res.data.msg },
+        // });
+        dispatch({ type: ALERT, payload: { loading: false } });
+
+      } catch (err: any) {
+        dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+      }
+    };

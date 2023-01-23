@@ -176,7 +176,11 @@
     margin-right: 0.5rem;
 }
 
-
+.user_profile .no_blogs{
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+}
 
 @media (max-width: 1000px) {
     .user_profile{

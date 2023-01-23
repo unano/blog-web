@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Blogs from "../models/blogModel";
 import { IReqAuth } from "../config/interface";
 import mongoose from "mongoose";
+import Comments from "../models/commentsModel";
 
 const Pagination = (req: IReqAuth) => {
   let page = Number(req.query.page) * 1 || 1;
@@ -28,8 +29,8 @@ const blogCtrl = {
         category,
       });
       await newBlog.save();
-      //res.json({newBlog})
-      res.json({ msg: "Upload Success" });
+      res.json({ msg: "Upload Success", blog: { ...newBlog._doc, user: req.user } })
+      //res.json({ msg: "Upload Success" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -223,12 +224,38 @@ const blogCtrl = {
       return res.status(400).json({ msg: "Invalid Authentication" });
 
     try {
-      const blog = await Blogs.findOneAndUpdate({
-        _id: req.params.id, user:req.user._id
-      }, req.body)
+      const blog = await Blogs.findOneAndUpdate(
+        {
+          _id: req.params.id,
+          user: req.user._id,
+        },
+        req.body,
+        { new: true }
+      );
 
-      if (!blog) return res.status(400).json({ msg: "Invalid Authentication"})
-      res.json({ msg: "Update Success!", blog })
+      if (!blog) return res.status(400).json({ msg: "Invalid Authentication" });
+      res.json({ msg: "Update Success!", blog: { ...blog._doc, user: req.user } });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  deleteBlog: async (req: IReqAuth, res: Response) => {
+    if (!req.user)
+      return res.status(400).json({ msg: "Invalid Authentication" });
+
+    try {
+      const blog = await Blogs.findOneAndDelete(
+        {
+          _id: req.params.id,
+          user: req.user._id,
+        }
+      );
+
+      if (!blog) return res.status(400).json({ msg: "Invalid Authentication" });
+      
+      await Comments.deleteMany({blog_id: blog._id})
+      
+      res.json({ msg: "Delete Success!"});
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

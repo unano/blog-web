@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore, IBlog, IUser } from "../utils/TypeScript";
 import { ValidCreateBlog, shallowRqual } from "../utils/Valid";
-import { ImageUpload } from "../utils/ImageUpload";
 import NotFound from "../components/global/NotFound";
 import CardHoriz from "../components/cards/CardHoriz";
 import CreateForm from "../components/cards/CreateForm";
@@ -11,6 +10,7 @@ import ReactQuill from "../components/editor/ReactQuill";
 import { ALERT } from "../redux/types/alertType";
 import { createBlog, updateBlog } from "../redux/actions/blogAction";
 import { getAPI } from "../utils/FetchData";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   id?: string;
@@ -34,6 +34,7 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
   const { auth } = useSelector((state: RootStore) => state);
   const dispatch = useDispatch();
   const [oldData, setOldData] = useState<IBlog>(initState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!id) return;
@@ -46,10 +47,21 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
       })
       .catch((err) => console.log(err));
 
+    //prevent unmount error, 不知道情况就试试直接从该界面切换
+    const initData = {
+      user: "",
+      title: "",
+      content: "",
+      description: "",
+      thumbnail: "",
+      category: "",
+      createdAt: new Date().toISOString(),
+    };
+
     return () => {
-      setBlog(initState);
+      setBlog(initData);
       setBody("");
-      setOldData(initState);
+      setOldData(initData);
     };
   }, [id]);
 
@@ -61,7 +73,6 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
   }, [body]);
 
   const handleSubmit = async () => {
-    let url = "";
     if (!auth.access_token) return;
     const check = ValidCreateBlog({ ...blog, content: text });
     if (check.errLength > 0)
@@ -80,9 +91,13 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
           type: ALERT,
           payload: { errors: "The data does not change" },
         });
-      dispatch(updateBlog(newData, auth.access_token) as any);
-    } else dispatch(createBlog(newData, auth.access_token) as any);
-  };
+      await dispatch(updateBlog(newData, auth.access_token) as any)
+      navigate(`/profile/${auth.user?._id}`);
+    } else {
+      await dispatch(createBlog(newData, auth.access_token) as any);
+      navigate(`/profile/${auth.user?._id}`);
+    } 
+  }
 
   if (!auth.access_token) return <NotFound />;
 

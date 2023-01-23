@@ -94,10 +94,9 @@ export const deleteComment =
   async (dispatch: Dispatch<IAlertType | IDeleteType>) => {
     try {
       dispatch({
-        type: data.comment_root ? DELETE_REPLY :DELETE_COMMENT,
-        payload: data,
+        type: ALERT, payload: { loading: true }
       });
-      console.log(data);
+
       const res = await deleteAPI(
         `comment/${data._id}`,
         token
