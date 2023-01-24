@@ -23,6 +23,21 @@
     gap: 0.1rem;
 } */
 
+.detail_blog h5 a{
+    border: 1px solid black;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 0 0.3rem;
+    transition: all 0.5s;
+}
+
+.detail_blog h5 a:hover{
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+}
+
 .detail_blog .blog_intro .blog_intro_extra{  
     display: inline-block;
     flex-grow: 0;

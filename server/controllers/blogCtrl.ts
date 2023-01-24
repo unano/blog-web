@@ -29,7 +29,10 @@ const blogCtrl = {
         category,
       });
       await newBlog.save();
-      res.json({ msg: "Upload Success", blog: { ...newBlog._doc, user: req.user } })
+      res.json({
+        msg: "Upload Success",
+        blog: { ...newBlog._doc, user: req.user },
+      });
       //res.json({ msg: "Upload Success" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
@@ -234,7 +237,10 @@ const blogCtrl = {
       );
 
       if (!blog) return res.status(400).json({ msg: "Invalid Authentication" });
-      res.json({ msg: "Update Success!", blog: { ...blog._doc, user: req.user } });
+      res.json({
+        msg: "Update Success!",
+        blog: { ...blog._doc, user: req.user },
+      });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -244,18 +250,50 @@ const blogCtrl = {
       return res.status(400).json({ msg: "Invalid Authentication" });
 
     try {
-      const blog = await Blogs.findOneAndDelete(
-        {
-          _id: req.params.id,
-          user: req.user._id,
-        }
-      );
+      const blog = await Blogs.findOneAndDelete({
+        _id: req.params.id,
+        user: req.user._id,
+      });
 
       if (!blog) return res.status(400).json({ msg: "Invalid Authentication" });
-      
-      await Comments.deleteMany({blog_id: blog._id})
-      
-      res.json({ msg: "Delete Success!"});
+
+      await Comments.deleteMany({ blog_id: blog._id });
+
+      res.json({ msg: "Delete Success!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  searchBlogs: async (req: IReqAuth, res: Response) => {
+    console.log("fsdff")
+    try {
+      console.log(req.query)
+      const blogs = await Blogs.aggregate([
+        {
+          $search: {
+            index: "searchTitle",
+            autocomplete: {
+              query: `${req.query.title}`,
+              path: "title"
+            }
+          }
+        },
+        { $sort: { createdAt: -1 } },
+        { $limit: 5 },
+        {
+          $project: {
+            title: 1,
+            description: 1,
+            thumbnail: 1,
+            createdAt: 1
+          }
+        }
+      ])
+
+      if (!blogs.length) 
+        return res.status(400).json({msg: "No Blogs"})
+
+      res.json(blogs);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

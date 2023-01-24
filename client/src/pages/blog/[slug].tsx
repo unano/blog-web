@@ -14,7 +14,7 @@ const DetailBlog = () => {
     const [blog, setBlog] = useState<IBlog>();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    console.log("in")
+
     useEffect(() => {
         if (!id) return;
         setLoading(true)
