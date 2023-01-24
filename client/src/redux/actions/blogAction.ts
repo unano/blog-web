@@ -17,9 +17,12 @@ import {
   UPDATE_BLOGS_USER_ID,
   IUpdateBlogUserType
 } from "../types/blogType";
+import { checkTokenExp } from "../../utils/checkTokenExp";
 
 export const createBlog =
   (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType | ICreateBlogUserType>) => {
+    const result = await checkTokenExp(token, dispatch);
+    const access_token = result ? result : token;
     let url = "";
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
@@ -31,7 +34,7 @@ export const createBlog =
       }
       const newBlog = { ...blog, thumbnail: url };
 
-      const res = await postAPI("blog", newBlog, token);
+      const res = await postAPI("blog", newBlog, access_token);
       dispatch({
         type: CREATE_BLOGS_USER_ID,
         payload:res.data.blog
@@ -102,6 +105,8 @@ export const getBlogsByUserId =
 export const updateBlog =
   (blog: IBlog, token: string) =>
   async (dispatch: Dispatch<IAlertType | IUpdateBlogUserType>) => {
+    const result = await checkTokenExp(token, dispatch);
+    const access_token = result ? result : token;
     let url = "";
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
@@ -113,7 +118,7 @@ export const updateBlog =
       }
       const newBlog = { ...blog, thumbnail: url };
 
-      const res = await putAPI(`blog/${newBlog._id}`, newBlog, token);
+      const res = await putAPI(`blog/${newBlog._id}`, newBlog, access_token);
       console.log(res.data)
       dispatch({
         type: UPDATE_BLOGS_USER_ID,
@@ -130,7 +135,8 @@ export const updateBlog =
 
   export const deleteBlog =
     (blog: IBlog, token: string) => async (dispatch: Dispatch<IAlertType | IDeleteBlogUserType>) => {
-      let url = "";
+      const result = await checkTokenExp(token, dispatch);
+      const access_token = result ? result : token;
       try {
         dispatch({ type: ALERT, payload: { loading: true } });
 
@@ -139,7 +145,7 @@ export const updateBlog =
           payload: blog
         })
 
-        await deleteAPI(`blog/${blog._id}`, token);
+        await deleteAPI(`blog/${blog._id}`, access_token);
 
         // dispatch({
         //   type: ALERT,

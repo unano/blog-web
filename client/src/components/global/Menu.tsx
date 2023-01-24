@@ -25,6 +25,11 @@ const Menu = () => {
     const isActive = (pn: string) => {
       if (pn === pathname) return "actived";
     };
+  
+  const handleLogout = () => {
+    if (!auth.access_token) return;
+     dispatch(logout(auth.access_token) as any)
+  }
 
   const [showDropdown, setShowDropdown] = useState(false);
   return (
@@ -57,7 +62,7 @@ const Menu = () => {
                   <Link to={`/profile/${auth.user._id}?page=1`}>Profile</Link>
                 </li>
                 <li className="dropdown_item">
-                  <Link to="/" onClick={() => dispatch(logout() as any)}>
+                  <Link to="/" onClick={handleLogout}>
                     Logout
                   </Link>
                 </li>

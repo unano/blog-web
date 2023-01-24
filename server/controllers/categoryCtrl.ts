@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import Categories from "../models/categoryModel";
 import { IReqAuth } from "../config/interface";
 import { rejects } from "assert";
+import Blogs from "../models/blogModel"
 
 const categoryCtrl = {
   createCategory: async (req: IReqAuth, res: Response) => {
@@ -63,7 +64,14 @@ const categoryCtrl = {
       return res.status(400).json({ msg: "invalid Authentication" });
 
     try {
+      const blog = await Blogs.findOne({ category: req.params.id })
+      if (blog)
+        return res.status(400).json({
+          msg: "Cannot delete this category since blog with this category exists"
+        })
       const category = await Categories.findByIdAndDelete(req.params.id);
+      if (!category)
+        return res.status(400).json({msg: "Category does not exists"})
       res.json({ msg: "Delete Success" });
     } catch (err: any) {
       return res.status(500).json({ msg: err.message });

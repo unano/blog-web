@@ -25,7 +25,7 @@ const CardHoriz: React.FC<IProps> = ({ blog }) => {
         type: ALERT,
         payload: { errors: "invalid Authentication" },
       });
-    if (window.confirm("Do you want to delete this token?")) {
+    if (window.confirm("Do you want to delete this blog?")) {
       dispatch(deleteBlog(blog, auth.access_token) as any);
     }
   };

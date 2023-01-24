@@ -10,17 +10,20 @@ import {
   DELETE_CATEGORY
 } from "../types/categoryType";
 import { ICategory } from "../../utils/TypeScript";
+import { checkTokenExp } from "../../utils/checkTokenExp";
 
 export const createCategory =
   (name: string, token: string) =>
   async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+    const result = await checkTokenExp(token, dispatch);
+    const access_token = result ? result : token;
     try {
       dispatch({
         type: ALERT,
         payload: { loading: true },
       });
 
-      const res = await postAPI("category", { name }, token);
+      const res = await postAPI("category", { name }, access_token);
       dispatch({
         type: CREATE_CATEGORY,
         payload: res.data.newCategory,
@@ -60,17 +63,19 @@ export const getCategories =
 
 export const updateCategory =
   (data: ICategory, token: string) =>
-  async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+    async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+    const result = await checkTokenExp(token, dispatch);
+    const access_token = result ? result : token;
     try {
       // dispatch({
       //   type: ALERT,
       //   payload: { loading: true },
       // });
 
-      const res = await patchAPI(
+      await patchAPI(
         `category/${data._id}`,
         { name: data.name },
-        token
+        access_token
       );
       dispatch({
         type: UPDATE_CATEGORY,
@@ -88,10 +93,12 @@ export const updateCategory =
 
 export const deleteCategory =
   (id: string, token: string) =>
-  async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+    async (dispatch: Dispatch<IAlertType | ICategoryType>) => {
+      const result = await checkTokenExp(token, dispatch)
+      const access_token = result ? result: token
     try {
       dispatch({ type: DELETE_CATEGORY, payload: id });
-      const res = await deleteAPI(`category/${id}`, token);
+      await deleteAPI(`category/${id}`, access_token);
     } catch (err: any) {
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
     }

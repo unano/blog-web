@@ -1,10 +1,12 @@
 
+
 import { AUTH, IAuthType } from "../types/authType";
 import { ALERT, IAlertType } from "../types/alertType";
 import { IUserLogin, IUserRegister } from "../../utils/TypeScript";
 import { postAPI, getAPI } from "../../utils/FetchData";
 import { Dispatch } from "redux";
 import { validRegister } from "../../utils/Valid";
+import { checkTokenExp } from "../../utils/checkTokenExp";
 
 export const login =
   (userLogin: IUserLogin) =>
@@ -86,12 +88,14 @@ export const refreshToken =
   };
 
 export const logout =
-  () => async (dispatch: Dispatch<IAuthType | IAlertType>) => {
-      try {
-        localStorage.removeItem('logged')
-        //dispatch({ type: AUTH, payload: {} })
-          await getAPI('/logout')
-          window.location.href = "/"  //this will reset redux data
+  (token: string) => async (dispatch: Dispatch<IAuthType | IAlertType>) => {
+    const result = await checkTokenExp(token, dispatch)
+    const access_token = result ? result : token;
+    try {
+      localStorage.removeItem("logged");
+      dispatch({ type: AUTH, payload: {} })
+      await getAPI("/logout", access_token);
+      window.location.href = "/"; //this will reset redux data
     } catch (err: any) {
       dispatch({
         type: ALERT,
