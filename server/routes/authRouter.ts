@@ -15,4 +15,6 @@ router.get('/logout', auth, authCtrl.logout);
 
 router.get('/refresh_token', authCtrl.refreshToken);
 
+router.post("/forget_password", authCtrl.forgetPassword);
+
 export default router;

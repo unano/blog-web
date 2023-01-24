@@ -82,7 +82,7 @@ const RegisterForm = () => {
             placeholder="confirm password"
           ></input>
           <div className="eye" onClick={() => setTypeCfPass(!typeCfPass)}>
-            {typePass ? <AiFillEye /> : <AiFillEyeInvisible />}
+            {typeCfPass ? <AiFillEye /> : <AiFillEyeInvisible />}
           </div>
         </div>
       </div>

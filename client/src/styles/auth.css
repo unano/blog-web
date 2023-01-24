@@ -1,10 +1,4 @@
 .auth_page{
-    background-color: aqua;
-}
-
-.auth_page input::placeholder{
-    font-size: 80%;
-    font-weight: 300;
 }
 
 .auth_page a{

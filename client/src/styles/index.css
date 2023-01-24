@@ -34,6 +34,11 @@ scrollbar-3dlight-color: #ffebcd;
 scrollbar-darkshadow-color: #8b0000;
 }
 
+input::placeholder{
+    font-size: 80%;
+    font-weight: 300;
+}
+
 
 /* ----------- Auth Page------------- */
 @import url('./auth.css');
