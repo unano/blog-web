@@ -1,7 +1,5 @@
-import { isTemplateSpan } from "typescript";
 import { IUser } from "../../utils/TypeScript";
 import {
-  IGetBlogUserType,
   IBlogsUser,
   GET_BLOGS_USER_ID,
   IBlogUserType,

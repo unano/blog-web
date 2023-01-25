@@ -1,48 +1,51 @@
-import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import Header from './components/global/Header';
-import PageRender from './pageRender';
-import Footer from './components/global/Footer';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Header from "./components/global/Header";
+import PageRender from "./pageRender";
+import Footer from "./components/global/Footer";
 
-import { Alert } from './components/alert/Alert';
-import { refreshToken } from './redux/actions/authAction'; 
-import { getCategories } from './redux/actions/categoryAction';
-import { getHomeBlogs } from './redux/actions/blogAction';
+import { Alert } from "./components/alert/Alert";
+import { refreshToken } from "./redux/actions/authAction";
+import { getCategories } from "./redux/actions/categoryAction";
+import { getHomeBlogs } from "./redux/actions/blogAction";
 
-import io from 'socket.io-client'
+import io from "socket.io-client";
 
-import SocketClient from './SocketClient';
+import SocketClient from "./SocketClient";
+import { API_URL } from "./utils/config";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(refreshToken() as any)
+    dispatch(refreshToken() as any);
     dispatch(getCategories() as any);
     dispatch(getHomeBlogs() as any);
-  }, [dispatch])
-  
+  }, [dispatch]);
+
   useEffect(() => {
-    const socket = io()
-    dispatch({type: 'SOCKET', payload: socket })
-    return () => {socket.close()}
-  },[])
+    const socket = io(API_URL);
+    dispatch({ type: "SOCKET", payload: socket });
+    return () => {
+      socket.close();
+    };
+  }, []);
 
   return (
-    <div className='container'>
-      <SocketClient/>
+    <div className="container">
+      <SocketClient />
       <Router>
-        <Alert/>
-        <Header/>
+        <Alert />
+        <Header />
         <Routes>
-          <Route path="/:page" element = {<PageRender/>}/>
-          <Route path="/:page/:slug" element = {<PageRender/>}/>
-          <Route path="/" element = {<PageRender/>}/>
+          <Route path="/:page" element={<PageRender />} />
+          <Route path="/:page/:slug" element={<PageRender />} />
+          <Route path="/" element={<PageRender />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

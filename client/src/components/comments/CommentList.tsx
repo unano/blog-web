@@ -9,7 +9,6 @@ import { RootStore } from "../../utils/TypeScript";
 import { replyComment } from "../../redux/actions/commentAction";
 import { IUser } from "../../utils/TypeScript";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { endsWith } from "cypress/types/lodash";
 import { updateComment } from "../../redux/actions/commentAction";
 import { deleteComment } from "../../redux/actions/commentAction";
 

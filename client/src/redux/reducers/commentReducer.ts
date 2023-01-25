@@ -1,6 +1,3 @@
-
-
-import React from "react";
 import {
   CREATE_COMMENT,
   ICommentType,

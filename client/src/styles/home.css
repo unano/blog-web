@@ -52,6 +52,7 @@
 }
 
 .card_vert {
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 0.6rem;
@@ -173,4 +174,10 @@
 .blogs_catetgory{
     font-weight: 300;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+  .card_vert .card_title{
+    max-width: 200px;
+  }
 }

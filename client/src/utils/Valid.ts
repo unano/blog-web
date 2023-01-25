@@ -1,6 +1,3 @@
-
-
-import Category from "../pages/category";
 import { IUserRegister } from "./TypeScript";
 import { IBlog } from "./TypeScript";
 export const validRegister = (data: IUserRegister) => {

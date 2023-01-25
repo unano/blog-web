@@ -10,7 +10,7 @@ const Login = () => {
 
   const { auth } = useSelector((state: RootStore)=>state)
   useEffect(() => {
-    if (auth.access_token) {
+    if (auth.access_token && location.search.includes('?')) {
       let url = location.search.replace('?','/')
        return navigate(url);
     }
@@ -26,6 +26,7 @@ const Login = () => {
         </small>
         <p>
           <small>No account? </small>
+          <br/>
           <Link to={`/register${location.search}`}>Register Now</Link>
         </p>
       </div>

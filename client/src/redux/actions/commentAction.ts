@@ -4,17 +4,13 @@
 import { Dispatch } from "react";
 import { ALERT, IAlertType } from "../types/alertType";
 import {
-  CREATE_COMMENT,
   ICreateCommentType,
   GET_COMMENTS,
   IGetCommentType,
-  REPLY_COMMENT,
   IReplyCommentType,
   UPDATE_COMMENT,
   IUpdateType,
   UPDATE_REPLY,
-  DELETE_COMMENT,
-  DELETE_REPLY,
   IDeleteType
 } from "../types/commentTypes";
 import { IComment } from "../../utils/TypeScript";

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore, IBlog } from "../../utils/TypeScript";
 import { getBlogsByCategoryId } from "../../redux/actions/blogAction";
@@ -10,7 +10,6 @@ import Pagination from "../../components/global/Pagination";
 
 const BlogsByCategory = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { categories, blogsCategory } = useSelector((state: RootStore) => state);
   const dispatch = useDispatch();
   const { slug } = useParams();

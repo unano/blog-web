@@ -1,27 +1,39 @@
 
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootStore } from "../../utils/TypeScript"; 
 import { InputChange, FormSubmit } from "../../utils/TypeScript";
 import { login } from "../../redux/actions/authAction";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+
 const LoginPass = () => {
   const initialState = { account: "", password: "" };
   const [userLogin, setUserLogin] = useState(initialState);
-    const { account, password } = userLogin;
+  const { account, password } = userLogin;
 
-    const [typePass, setTypePass] = useState(false);
-    
-    const dispatch = useDispatch();
+  const [typePass, setTypePass] = useState(false);
+  const { auth } = useSelector((state: RootStore) => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChangeInput = (e: InputChange) => {
     const { value, name } = e.target;
     setUserLogin({ ...userLogin, [name]: value });
   };
-    
-    const handleSubmit = (e: FormSubmit) => {
-    e.preventDefault()
-    dispatch(login(userLogin) as any)
-  }
+
+  const handleSubmit = async (e: FormSubmit) => {
+    e.preventDefault();
+    await dispatch(login(userLogin) as any);
+  };
+
+  useEffect(() => {
+    if (auth.access_token) {
+      navigate(`/`);
+    } 
+  }, [auth.access_token, navigate])
+  
   return (
     <form onSubmit={handleSubmit}>
       <div className="email">
@@ -49,7 +61,7 @@ const LoginPass = () => {
             onChange={handleChangeInput}
           ></input>
           <div className="eye" onClick={() => setTypePass(!typePass)}>
-            {typePass ? <AiFillEye/>:<AiFillEyeInvisible/> }
+            {typePass ? <AiFillEye /> : <AiFillEyeInvisible />}
           </div>
         </div>
       </div>

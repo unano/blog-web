@@ -1,4 +1,3 @@
-import { IUser } from "../../utils/TypeScript";
 import { ICategory } from "../../utils/TypeScript";
 
 export const CREATE_CATEGORY = "CREATE_CATEGORY";

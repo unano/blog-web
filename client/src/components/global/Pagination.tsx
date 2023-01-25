@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -40,7 +38,7 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
         {page !== 1 && <li className={`${isActive(1)}`} onClick={() => handlePagination(1)}>
           <span>{1}</span>
         </li>}
-        {total > 4 && page > 3 && (
+        {total >= 4 && page > 3 && (
           <li
             className={`${isActive(page + 1)}`}
             // onClick={() => handlePagination(page + 1)}
@@ -70,7 +68,7 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
             <span>{page + 1}</span>
           </li>
         )}
-        {total > 4 && page < total - 2 && (
+        {total >= 4 && page < total - 2 && (
           <li
             className={`${isActive(page + 1)}`}
             // onClick={() => handlePagination(page + 1)}

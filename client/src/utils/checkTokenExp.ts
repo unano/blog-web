@@ -1,5 +1,4 @@
 import jwt_decode from "jwt-decode";
-import axios from 'axios';
 import { AUTH } from "../redux/types/authType";
 import { getAPI } from "./FetchData";
 

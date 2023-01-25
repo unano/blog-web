@@ -1,8 +1,7 @@
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAPI } from "../../utils/FetchData";
 import { IBlog } from "../../utils/TypeScript";
-import CardHoriz from "../cards/CardHoriz";
 import { useLocation } from "react-router-dom";
 import SearchCard from "../cards/SearchCard";
 

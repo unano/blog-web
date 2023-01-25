@@ -50,7 +50,6 @@ export const createBlog =
 
 export const getHomeBlogs =
   () => async (dispatch: Dispatch<IAlertType | IGetHomeBlogType>) => {
-    let url = "";
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
       const res = await getAPI("home/blogs");
