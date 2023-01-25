@@ -272,13 +272,15 @@ textarea::-webkit-scrollbar-thumb {
 
 .cardHoriz .modify{
     position: absolute;
-    right: 2.3rem;
+    left: 12.8rem;
+    bottom: 0.5rem;
     transition: all 0.5s;
     height: 1.5rem;
     width: 1.5rem;
     text-align: center;
     border: 0.2px solid transparent;
     line-height: 1.2rem;
+    background-color: white;
 }
 
 .cardHoriz .modify:hover{
@@ -291,17 +293,17 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .cardHoriz .delete{
-    right: 0.5rem;
+    left: 11rem;
 }
 
 
 @media (max-width: 768px) {
     .create_blog .create_blog_up_right{
-        border: 1px solid silver;
-        /* display: flex; */
+        display: flex;
+        border: none;
         flex: 1;
         flex-direction: column;
-        padding: 0.5rem;
+        padding: 0rem;
     }
     .cardHoriz .shown_title{
         max-width: 220px;

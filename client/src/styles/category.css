@@ -50,6 +50,7 @@
 .categories form button{
     background-color: white;
     border: 1px solid black;
+    color: black;
     padding: 0 0.4rem;
     transition: all 0.5s;
 }
