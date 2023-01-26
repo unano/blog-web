@@ -10,7 +10,7 @@ export const checkImage = (file: File) => {
   return err;
 }
 
-export const ImageUpload = async(file: File) => {
+export const imageUpload = async(file: File) => {
   const formData = new FormData()
   formData.append("file", file)
   formData.append("upload_preset", "fhcixktr")

@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import { AUTH, IAuth, IAuthType } from "../types/authType";
 import { IAlertType, ALERT } from "../types/alertType";
 import { checkImage } from "../../utils/ImageUpload";
-import { ImageUpload } from "../../utils/ImageUpload";
+import { imageUpload } from "../../utils/ImageUpload";
 import { patchAPI, getAPI } from "../../utils/FetchData";
 import { checkPassword } from "../../utils/Valid";
 import { GET_OTHER_INFO, IGetBlogCategoryType } from "../types/profileType";
@@ -25,7 +25,7 @@ export const updateUser =
         }
 
         // it should verify token first?
-        const photo = await ImageUpload(avatar);
+        const photo = await imageUpload(avatar);
         url = photo.url;
 
         const res = await patchAPI(

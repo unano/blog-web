@@ -1,29 +1,29 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 import { useDispatch } from "react-redux";
-import { checkImage, ImageUpload } from "../../utils/ImageUpload";
+import { checkImage, imageUpload } from "../../utils/ImageUpload";
 import { ALERT } from "../../redux/types/alertType";
-import { Alert } from "../alert/Alert";
-import { getLeadingCommentRanges } from "typescript";
 
 interface IProps {
   setBody: (value: string) => void;
   body: string
 }
 
-const Quill: React.FC<IProps> = ({ setBody, body }) => {
+
+const Quill: React.FC<IProps> = ({ setBody, body}) => {
   const dispatch = useDispatch();
   const quillRef = useRef<ReactQuill>(null);
   const modules = { toolbar: { container } };
+  const [changed, setChanged] = useState(false);
 
   const handleChange = (e: any) => {
     setBody(e);
   };
 
-    const handleChangeImage = useCallback(() => {
-      //question
+  const handleChangeImage = useCallback(() => {
+    //question
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
@@ -40,33 +40,39 @@ const Quill: React.FC<IProps> = ({ setBody, body }) => {
       const check = checkImage(file);
       if (check) return dispatch({ type: ALERT, payload: { errors: check } });
 
-      dispatch({ type: ALERT, payload: { laoding: true } });
-      const photo = await ImageUpload(file);
+      dispatch({ type: ALERT, payload: { loading: true } });
+      const photo = await imageUpload(file);
       const quill = quillRef.current;
       const range = quill?.getEditor().getSelection()?.index;
       if (range !== undefined) {
         quill?.getEditor().insertEmbed(range, "image", `${photo.url}`);
       }
-      dispatch({ type: ALERT, payload: { laoding: false } });
+      dispatch({ type: ALERT, payload: { loading: false } });
     };
-  }, []);
-
+  }, [dispatch]); //dispatch 不要写
   useEffect(() => {
     const quill = quillRef.current;
     if (!quill) return;
     //question
     let toolbar = quill.getEditor().getModule("toolbar");
     toolbar.addHandler("image", handleChangeImage);
-  }, [handleChangeImage]);
+  }, [handleChangeImage,changed]);
+
+  useEffect(() => {
+    if (body && changed === false) setChanged(true)
+  },[body])
+
   return (
-      <ReactQuill
-        theme="snow"
-        modules={modules}
-        placeholder="Write something..."
-        onChange={handleChange}
+    <ReactQuill
+      theme="snow"
+      modules={modules}
+      placeholder="Write something..."
+      onChange={handleChange}
       ref={quillRef}
-      value = {body}
-      />
+      defaultValue={body}
+      key={body ? "notLoadedYet" : "loaded"}
+      //value={body} //problem
+    />
   );
 };
 

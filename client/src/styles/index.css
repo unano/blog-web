@@ -39,6 +39,10 @@ input::placeholder{
     font-weight: 300;
 }
 
+.footer{
+  margin-top: 4rem;
+}
+
 
 /* ----------- Auth Page------------- */
 @import url('./auth.css');

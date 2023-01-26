@@ -33,6 +33,7 @@
 
 .user_info .avatar{
     width: 50%;
+    min-width: 5rem;
     background-color: #fff;
     border-radius: 50%;
     position: relative;
@@ -202,7 +203,7 @@
     }
     .user_info{
         width: 100%;
-        flex-direction: row;
+        /* flex-direction: row; */
         gap: 2rem;
     }
     .user_info .avatar{

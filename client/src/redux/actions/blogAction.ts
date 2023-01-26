@@ -1,7 +1,7 @@
 import { IBlog } from "../../utils/TypeScript";
 import { Dispatch } from "react";
 import { ALERT, IAlertType } from "../types/alertType";
-import { ImageUpload } from "../../utils/ImageUpload";
+import { imageUpload } from "../../utils/ImageUpload";
 import { getAPI, postAPI, putAPI, deleteAPI } from "../../utils/FetchData";
 import {
   GET_HOME_BLOGS,
@@ -27,7 +27,7 @@ export const createBlog =
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
       if (typeof blog.thumbnail !== "string") {
-        const photo = await ImageUpload(blog.thumbnail);
+        const photo = await imageUpload(blog.thumbnail);
         url = photo.url;
       } else {
         url = blog.thumbnail;
@@ -110,7 +110,7 @@ export const updateBlog =
     try {
       dispatch({ type: ALERT, payload: { loading: true } });
       if (typeof blog.thumbnail !== "string") {
-        const photo = await ImageUpload(blog.thumbnail);
+        const photo = await imageUpload(blog.thumbnail);
         url = photo.url;
       } else {
         url = blog.thumbnail;

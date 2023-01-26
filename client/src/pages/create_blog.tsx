@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore, IBlog, IUser } from "../utils/TypeScript";
-import { ValidCreateBlog, shallowRqual } from "../utils/Valid";
+import { validCreateBlog, shallowEqual } from "../utils/Valid";
 import NotFound from "../components/global/NotFound";
 import CardHoriz from "../components/cards/CardHoriz";
 import CreateForm from "../components/cards/CreateForm";
@@ -40,7 +40,6 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
     if (!id) return;
     getAPI(`blog/${id}`)
       .then((res) => {
-        console.log(res);
         setBlog(res.data);
         setBody(res.data.content);
         setOldData(res.data);
@@ -74,13 +73,13 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
 
   const handleSubmit = async () => {
     if (!auth.access_token) return;
-    const check = ValidCreateBlog({ ...blog, content: text });
+    const check = validCreateBlog({ ...blog, content: text });
     if (check.errLength > 0)
       return dispatch({ type: ALERT, payload: { errors: check.errMsg } });
 
     let newData = { ...blog, content: body };
     if (id) {
-      const result = shallowRqual(newData, oldData);
+      const result = shallowEqual(newData, oldData);
       if ((blog.user as IUser)._id !== auth.user?._id)
         return dispatch({
           type: ALERT,

@@ -13,6 +13,11 @@
     z-index: 50;
 }
 
+.head > a > img{
+    height: 3rem;
+    margin: 0.2rem;
+}
+
 
 .header a{
     color: white;
@@ -236,7 +241,7 @@
         margin-right: 0rem;
     }
     .header .search_result{
-        width: calc(100% + 10rem);
+        width: calc(100% + 7rem);
         margin-right: 0rem;
     }
 }

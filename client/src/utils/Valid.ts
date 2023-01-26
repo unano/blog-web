@@ -41,7 +41,7 @@ export const validateEmail = (email: string) => {
     );
 };
 
-export const ValidCreateBlog = ({
+export const validCreateBlog = ({
   title,
   content,
   description,
@@ -76,7 +76,7 @@ export const ValidCreateBlog = ({
   };
 };
 
-export const shallowRqual = (object1: any, object2: any) => {
+export const shallowEqual = (object1: any, object2: any) => {
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
   if (keys1.length !== keys2.length) {

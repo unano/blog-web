@@ -36,7 +36,9 @@ const Menu = () => {
   return (
     <>
       <div className="head">
-      <Link to="/">BlogApp</Link>
+      <Link to="/">
+          <img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1674656342/source/blorg_gtallk.png" alt="logo" />
+        </Link>
       <Search />
       </div>
       <ul className="navs">
