@@ -234,6 +234,34 @@ const commentCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  dealThumbs: async(req: Request, res: Response) => {
+    const { user_id, thumbed } = req.body; //state为true,说明要取消点赞
+    console.log(req.body)
+    const comment_id = req.params.id;
+    const user = await comments.findOne({ _id: comment_id, thumbs: user_id })
+    if (thumbed) {
+      if (!user) return res.status(400).json({ msg: "Invalid Input" });
+      await comments.findOneAndUpdate(
+        { _id: comment_id },
+        {
+          $pull: { thumbs: user_id },
+          $inc: { thumbs_count: -1 },
+        },
+        { returnOriginal: false }
+      );
+    } else {
+      if (user)
+        return res.status(400).json({ msg: "Duplicate thumb is not allowed" });
+      await comments.findOneAndUpdate(
+        { _id: comment_id },
+        {
+          $push: { thumbs: user_id },
+          $inc: { thumbs_count: 1 },
+        },
+        { returnOriginal: false }
+      );
+    }
+    res.json({msg:"Success"})
+  }
 };
-
 export default commentCtrl;

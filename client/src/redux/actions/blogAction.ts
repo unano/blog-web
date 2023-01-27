@@ -15,7 +15,10 @@ import {
   DELETE_BLOGS_USER_ID,
   IDeleteBlogUserType,
   UPDATE_BLOGS_USER_ID,
-  IUpdateBlogUserType
+  IUpdateBlogUserType,
+  IThumbBlogType,
+  THUMB_BLOG_DOWN,
+  THUMB_BLOG_UP
 } from "../types/blogType";
 import { checkTokenExp } from "../../utils/checkTokenExp";
 
@@ -156,3 +159,24 @@ export const updateBlog =
         dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
       }
     };
+
+    // export const thumbs =
+    // (user_id: string, blog_id: string, state: boolean, token:string) => async (dispatch: Dispatch<IAlertType | IThumbBlogType>) => {
+    //   const result = await checkTokenExp(token, dispatch);
+    // try {
+
+    //   //const res = await postAPI("blog", newBlog, access_token);
+    //   if(!state)
+    //   dispatch({
+    //     type: THUMB_BLOG_UP,
+    //     payload: blog_id
+    //   })
+    //   else 
+    //   dispatch({
+    //     type: THUMB_BLOG_DOWN,
+    //     payload: blog_id,
+    //   });
+    // } catch (err: any) {
+    //   dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    // }
+    // };

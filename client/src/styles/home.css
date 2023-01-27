@@ -1,3 +1,121 @@
+.home_page{
+  width: 100%;
+  /* display: flex;
+  flex-direction: row;
+  gap: 1rem; */
+}
+
+.home_page .home_categories{
+  font-size: 1.5rem;
+  width: 13rem;
+  height: 80%;
+  position: fixed;
+  left: -13rem;
+  background-color: white;
+  box-shadow: 0 0 10px 2px rgb(172, 172, 172);
+  border: 1px solid black;
+  border-left: 0;
+  z-index: 80;
+  padding: 0.5rem;
+  transition: all 0.5s;
+}
+
+.home_categories::-webkit-scrollbar {
+    width: 3px;
+}
+.home_categories::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 0px;
+}
+
+.home_categories::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background: black; 
+}
+.home_categories .category_search{
+  display: flex;
+  align-items: flex-start
+}
+.home_categories .category_search .search_icon{
+  font-size: 1rem;
+}
+
+.create_blog .form_group select{
+    border: 1px solid black;
+    width: 100%;
+    outline: none;
+    font-weight: 300;
+    transition: all 0.5s;
+}
+
+.home_page  .home_categories_list{
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  height: calc(100% - 3rem);
+  overflow: auto;
+}
+.home_page  h2{
+  margin-bottom: 0.3rem;
+}
+
+.home_page  .open_close{
+  text-align: center;
+  right: -3rem;
+  top: -1px;
+  width: 3rem;
+  height: 4rem;
+  position: absolute;
+  background-color: black;
+  color: white;
+  line-height: 4rem;
+  border: 1px solid white;
+  border-top: 0;
+  border-left: 0;
+}
+.home_page .expanded{
+    left: 0rem;
+}
+.home_page  .home_categories_list a{
+  text-decoration: none;
+
+}
+.home_page  .home_categories_list .home_category{
+  border: 1px solid black;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.4rem;
+  position: relative;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: white;
+  transition: all 0.5s;
+  cursor: pointer;
+  color: black;
+}
+
+
+.home_page  .home_categories_list .home_category:hover{
+  min-width: fit-content;
+  background-color: black;
+  color: white;
+}
+
+.home_page .category_filter{
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  border-radius: 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
+}
+.home_page .category_filter:focus{
+  outline: none;
+}
+
 .home_blogs {
   display: flex;
   flex-direction: column;
@@ -179,5 +297,8 @@
 @media (max-width: 768px) {
   .card_vert .card_title{
     max-width: 200px;
+  }
+  .home_page .home_categories{
+    height: 72%;
   }
 }

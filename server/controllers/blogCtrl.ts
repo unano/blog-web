@@ -1,3 +1,4 @@
+
 import { Request, Response } from "express";
 import Blogs from "../models/blogModel";
 import { IReqAuth } from "../config/interface";
@@ -265,18 +266,16 @@ const blogCtrl = {
     }
   },
   searchBlogs: async (req: IReqAuth, res: Response) => {
-    console.log("fsdff")
     try {
-      console.log(req.query)
       const blogs = await Blogs.aggregate([
         {
           $search: {
             index: "searchTitle",
             autocomplete: {
               query: `${req.query.title}`,
-              path: "title"
-            }
-          }
+              path: "title",
+            },
+          },
         },
         { $sort: { createdAt: -1 } },
         { $limit: 5 },
@@ -285,16 +284,52 @@ const blogCtrl = {
             title: 1,
             description: 1,
             thumbnail: 1,
-            createdAt: 1
-          }
-        }
-      ])
+            createdAt: 1,
+          },
+        },
+      ]);
 
-      if (!blogs.length) 
-        return res.status(400).json({msg: "No Blogs"})
+      if (!blogs.length) return res.status(400).json({ msg: "No Blogs" });
 
       res.json(blogs);
     } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  thumbBlogs: async (req: IReqAuth, res: Response) => {
+    try {
+      const { user_id, thumbed } = req.body;
+
+      const thumb_user = await Blogs.findOne({
+        _id: req.params.id,
+        thumbs: { $elemMatch: { user_id: user_id } },
+      });
+      console.log(thumb_user)
+
+      if (thumbed) {
+        if (!thumb_user) return res.status(400).json({ msg: "Invalid Input" });
+        const blogs = await Blogs.findOneAndUpdate(
+          { _id: req.params.id },
+          {
+            $pull: { thumbs: { user_id: user_id } },
+            $inc: { thumbs_count: -1 },
+          },
+          { returnOriginal: false }
+        );
+      } else {
+        if (thumb_user) return res.status(400).json({ msg: "Duplicate thumb is not allowed" });
+        const blogs = await Blogs.findOneAndUpdate(
+          { _id: req.params.id },
+          {
+            $addToSet: { thumbs: { user_id: user_id } },
+            $inc: { thumbs_count: 1 },
+          },
+          { returnOriginal: false }
+        );
+      }
+      res.json({ msg: "Updated" });
+    } catch (err) {
+      console.log(res);
       return res.status(500).json({ msg: err.message });
     }
   },

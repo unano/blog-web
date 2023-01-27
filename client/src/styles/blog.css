@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    position: relative;
 }
 
 /* .detail_blog .blog_intro{
@@ -22,6 +23,30 @@
     flex-direction: column;
     gap: 0.1rem;
 } */
+.detail_blog .thumbs{
+    /* position: absolute;
+    top: 6rem;
+    left: 0; */
+    display: flex;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    justify-content: flex-end;
+}
+
+.detail_blog .count{
+    background-color: black;
+    color: whitesmoke;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+}
+.detail_blog .thumbing{
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 1.7rem;
+}
 
 .detail_blog h5 a{
     border: 1px solid black;

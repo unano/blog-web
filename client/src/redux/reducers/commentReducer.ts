@@ -1,3 +1,4 @@
+
 import {
   CREATE_COMMENT,
   ICommentType,
@@ -8,6 +9,8 @@ import {
   UPDATE_REPLY,
   DELETE_COMMENT,
   DELETE_REPLY,
+  UPDATE_COMMENT_THUMB,
+  UPDATE_REPLY_THUMB,
 } from "../types/commentTypes";
 
 const initialState = {
@@ -69,8 +72,38 @@ const commentReducer = (
           item._id === action.payload.comment_root
             ? {
                 ...item,
-                replyCM: item.replyCM?.filter((reply) =>
-                  reply._id !== action.payload._id 
+                replyCM: item.replyCM?.filter(
+                  (reply) => reply._id !== action.payload._id
+                ),
+              }
+            : item
+        ),
+      };
+    case UPDATE_COMMENT_THUMB:
+      let comment_thumb_count = action.payload.thumbed ? -1 : 1;
+      return {
+        ...state,
+        data: state.data.map((item) =>
+          item._id === action.payload.data._id
+            ? { ...item, thumbs_count: item.thumbs_count + comment_thumb_count }
+            : item
+        ),
+      };
+    case UPDATE_REPLY_THUMB:
+      let reply_thumb_count = action.payload.thumbed ? -1 : 1;
+      return {
+        ...state,
+        data: state.data.map((item) =>
+          item._id === action.payload.data.comment_root
+            ? {
+                ...item,
+                replyCM: item.replyCM?.map((reply) =>
+                  reply._id === action.payload.data._id
+                    ? {
+                        ...item,
+                        thumbs_count: item.thumbs_count + reply_thumb_count,
+                      }
+                    : reply
                 ),
               }
             : item

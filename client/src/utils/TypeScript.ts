@@ -59,6 +59,10 @@ export interface ICategory {
   _id: string;
 }
 
+interface IThumb{
+  user_id: string
+}
+
 export interface IBlog {
   _id?: string;
   user: string | IUser;
@@ -67,6 +71,8 @@ export interface IBlog {
   description: string;
   thumbnail: string | File;
   category: string;
+  thumbs_count?: number;
+  thumbs?: IThumb[];
   createdAt: string;
 }
 
@@ -79,5 +85,7 @@ export interface IComment {
   replyCM: IComment[];
   reply_user?: IUser;
   comment_root?: string;
+  thumbs_count: number;
+  thumbs: string[];
   createdAt: string;
 }

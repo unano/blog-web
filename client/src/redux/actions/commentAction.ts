@@ -11,7 +11,10 @@ import {
   UPDATE_COMMENT,
   IUpdateType,
   UPDATE_REPLY,
-  IDeleteType
+  IDeleteType,
+  IUpdateThumbType,
+  UPDATE_COMMENT_THUMB,
+  UPDATE_REPLY_THUMB
 } from "../types/commentTypes";
 import { IComment } from "../../utils/TypeScript";
 import { postAPI, getAPI, patchAPI, deleteAPI } from "../../utils/FetchData";
@@ -81,7 +84,6 @@ export const updateComment =
         type: data.comment_root ? UPDATE_REPLY : UPDATE_COMMENT,
         payload: data,
       });
-      console.log(data);
       await patchAPI(
         `comment/${data._id}`,
         { data },
@@ -111,3 +113,22 @@ export const deleteComment =
     }
   };
     
+export const handleCommentThumb =
+  (data: IComment, user_id: string, thumbed: boolean, token: string) =>
+  async (dispatch: Dispatch<IAlertType | IUpdateThumbType>) => {
+    const result = await checkTokenExp(token, dispatch);
+    const access_token = result ? result : token;
+    try {
+      dispatch({
+        type: data.comment_root ? UPDATE_REPLY_THUMB : UPDATE_COMMENT_THUMB,
+        payload: { data: data, thumbed: thumbed },
+      });
+      await postAPI(
+        `comment/thumb/${data._id}`,
+        { user_id: user_id, thumbed: thumbed },
+        access_token
+      );
+    } catch (err: any) {
+      dispatch({ type: ALERT, payload: { errors: err.response.data.msg } });
+    }
+  };

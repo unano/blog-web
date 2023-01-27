@@ -9,6 +9,8 @@ export const UPDATE_COMMENT = "UPDATE_COMMENT";
 export const UPDATE_REPLY = "UPDATE_REPLY";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const DELETE_REPLY = "DELETE_REPLY";
+export const UPDATE_REPLY_THUMB = "UPDATE_REPLY_THUMB";
+export const UPDATE_COMMENT_THUMB = "UPDATE_COMMENT_THUMB";
 
 export interface ICommentState {
   data: IComment[];
@@ -40,9 +42,19 @@ export interface IDeleteType {
   payload: IComment;
 }
 
+export interface IUpdateThumbType {
+  type: typeof UPDATE_COMMENT_THUMB | typeof UPDATE_REPLY_THUMB;
+  payload: {
+    data: IComment
+    thumbed: boolean
+  }
+}
+
+
 export type ICommentType =
   | ICreateCommentType
   | IGetCommentType
   | IReplyCommentType
   | IUpdateType
   | IDeleteType
+  | IUpdateThumbType
