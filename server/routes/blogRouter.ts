@@ -20,7 +20,7 @@ router.route("/blog/:id")
 
 router.get('/search/blogs', blogCtrl.searchBlogs)
 
-router.post("/blog/thumb/:id", auth, blogCtrl.thumbBlogs);
+router.patch("/blog/thumb/:id", auth, blogCtrl.thumbBlogs);
 
 
 export default router;

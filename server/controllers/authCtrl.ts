@@ -6,6 +6,7 @@ import { generateActiveToken, generateRefreshToken, generateAccessToken } from "
 import sendMail from "../config/sendMail";
 import { validateEmail } from "../middleware/valid";
 import { IDecodedToken, IUser, IReqAuth } from "../config/interface";
+import mongoose from "mongoose";
 
 const CLIENT_URL = `${process.env.BASE_URL}`
 
@@ -61,12 +62,56 @@ const authCtrl = {
   login: async (req: Request, res: Response) => {
     try {
       const { account, password } = req.body;
+      console.log(account, password)
 
-      const user = await Users.findOne({ account });
+      let user = await Users.findOne({ account });
       if (!user)
         return res.status(400).json({ msg: "This account dose not exists" });
-
-      loginUser(user, password, res);
+      
+      let user_temp = await Users.aggregate([
+        { $match: { account: account } },
+        {
+          $lookup: {
+            from: "users",
+            let: { user_id: "$followings" },
+            pipeline: [
+              { $match: { $expr: { $in: ["$_id", "$$user_id"] } } },
+              {
+                $project: {
+                  password: 0,
+                  follower_num: 0,
+                  followers: 0,
+                  following_num: 0,
+                  followings: 0,
+                  rf_token: 0,
+                },
+              },
+            ],
+            as: "followings",
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            let: { user_id: "$followers" },
+            pipeline: [
+              { $match: { $expr: { $in: ["$_id", "$$user_id"] } } },
+              {
+                $project: {
+                  password: 0,
+                  follower_num: 0,
+                  followers: 0,
+                  following_num: 0,
+                  followings: 0,
+                  rf_token: 0,
+                },
+              },
+            ],
+            as: "followers",
+          },
+        },
+      ]);
+      loginUser(user_temp[0], password, res);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -100,14 +145,63 @@ const authCtrl = {
       );
       if (!decoded.id) return res.status(400).json({ msg: "Please login now" });
 
-      const user = await Users.findById(decoded.id).select(
-        "-password +rf_token"
-      );
+      const user_temp = await Users.aggregate([
+        { $match: { _id: new mongoose.Types.ObjectId(decoded.id) } },
+        {
+          $lookup: {
+            from: "users",
+            let: { user_id: "$followings" },
+            pipeline: [
+              { $match: { $expr: { $in: ["$_id", "$$user_id"] } } },
+              {
+                $project: {
+                  password: 0,
+                  follower_num: 0,
+                  followers: 0,
+                  following_num: 0,
+                  followings: 0,
+                  rf_token: 0,
+                },
+              },
+            ],
+            as: "followings",
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            let: { user_id: "$followers" },
+            pipeline: [
+              { $match: { $expr: { $in: ["$_id", "$$user_id"] } } },
+              {
+                $project: {
+                  password: 0,
+                  follower_num: 0,
+                  followers: 0,
+                  following_num: 0,
+                  followings: 0,
+                  rf_token: 0,
+                },
+              },
+            ],
+            as: "followers",
+          },
+        },
+        {
+          $project: {
+            password: 0
+          },
+        },
+      ]);
+
+      // const user = await Users.findById(decoded.id).select(
+      //   "-password +rf_token"
+      // );
+      const user = user_temp[0]
       if (!user)
         return res.status(400).json({ msg: "This account doesn't exist" });
 
       if (refresh_token !== user.rf_token) {
-        console.log("sdsd");
         return res.status(400).json({ msg: "Please login now" });
       }
       const access_token = generateAccessToken({ id: user._id });
@@ -140,6 +234,7 @@ const authCtrl = {
 };
 
 const loginUser = async (user: IUser, password: string, res: Response) => {
+  console.log(user)
     const isMatch = await bcrypt.compare(password,user.password);
     if(!isMatch) return res.status(400).json({msg:"password is incorrect"})
 
@@ -159,7 +254,7 @@ const loginUser = async (user: IUser, password: string, res: Response) => {
     res.json({
         msg: 'Login Success',
         access_token,
-        user: {...user._doc, password:""}
+        user: {...user, password:""}
     })
 
 }

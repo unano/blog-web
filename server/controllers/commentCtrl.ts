@@ -246,8 +246,7 @@ const commentCtrl = {
         {
           $pull: { thumbs: user_id },
           $inc: { thumbs_count: -1 },
-        },
-        { returnOriginal: false }
+        }
       );
     } else {
       if (user)
@@ -257,8 +256,7 @@ const commentCtrl = {
         {
           $push: { thumbs: user_id },
           $inc: { thumbs_count: 1 },
-        },
-        { returnOriginal: false }
+        }
       );
     }
     res.json({msg:"Success"})

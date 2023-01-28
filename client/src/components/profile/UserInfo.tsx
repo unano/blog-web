@@ -5,13 +5,19 @@ import {
   RootStore,
   IUserInfo,
   FormSubmit,
+  IUser,
 } from "../../utils/TypeScript";
 import NotFound from "../global/NotFound";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
 import { updateUser, resetPassword } from "../../redux/actions/userAction";
 
-const UserInfo = () => {
+interface IProps {
+  setFollow: (follow: IUser[]) => void;
+  setFollowing: (following: boolean) => void;
+}
+
+const UserInfo: React.FC<IProps> = ({setFollow, setFollowing}) => {
   const { auth } = useSelector((state: RootStore) => state);
   const dispatch = useDispatch();
 
@@ -49,6 +55,15 @@ const UserInfo = () => {
     if (password && auth.access_token)
       dispatch(resetPassword(password, cf_password, auth.access_token) as any);
   };
+  const handleFollowers = () => {
+    setFollow(auth.user?.followers || []);
+    setFollowing(false)
+  }
+
+  const handleFollowings = () => {
+    setFollow(auth.user?.followings || []);
+    setFollowing(true);
+  };
 
   if (!auth.user) return <NotFound />;
   return (
@@ -72,6 +87,14 @@ const UserInfo = () => {
         </span>
       </div>
       <div className="info_exc_avatar">
+        <div className="follow_info">
+          <div onClick={handleFollowers}>
+            <b>{auth.user.follower_num}</b> followers
+          </div>
+          <div onClick={handleFollowings}>
+            <b>{auth.user.following_num}</b> following
+          </div>
+        </div>
         <div>
           <label htmlFor="name">Name</label>
           <input

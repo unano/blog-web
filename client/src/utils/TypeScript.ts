@@ -35,6 +35,10 @@ export interface IUser extends IUserLogin {
   updatedAt: string;
   __v: string;
   _id: string;
+  followings: IUser[];
+  followers: IUser[];
+  follower_num: number;
+  following_num: number;
 }
 
 export interface IUserInfo extends IUserRegister {

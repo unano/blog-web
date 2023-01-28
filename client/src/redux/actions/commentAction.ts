@@ -123,7 +123,7 @@ export const handleCommentThumb =
         type: data.comment_root ? UPDATE_REPLY_THUMB : UPDATE_COMMENT_THUMB,
         payload: { data: data, thumbed: thumbed },
       });
-      await postAPI(
+      await patchAPI(
         `comment/thumb/${data._id}`,
         { user_id: user_id, thumbed: thumbed },
         access_token

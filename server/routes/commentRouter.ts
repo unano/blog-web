@@ -14,6 +14,6 @@ router.patch("/comment/:id", auth, commentCtrl.updateComment);
 
 router.delete("/comment/:id", auth, commentCtrl.deleteComment);
 
-router.post("/comment/thumb/:id", commentCtrl.dealThumbs);
+router.patch("/comment/thumb/:id", commentCtrl.dealThumbs);
 
 export default router;

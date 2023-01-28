@@ -217,6 +217,7 @@ const blogCtrl = {
         "-paassword"
       );
 
+
       if (!blog) return res.status(400).json({ msg: "Blog does not exists" });
       return res.json(blog);
     } catch (err: any) {

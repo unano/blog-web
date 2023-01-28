@@ -48,3 +48,13 @@ export interface IBlog extends Document {
   category: string;
   _doc: object;
 }
+
+export interface IBlog extends Document {
+  user: string;
+  titie: string;
+  content: string;
+  description: string[];
+  thumbnail: string;
+  category: string;
+  _doc: object;
+}

@@ -10,7 +10,7 @@ import { getComments, createComment } from "../../redux/actions/commentAction";
 import Loading from "../alert/Loading";
 import Pagination from "../global/Pagination";
 import { MdOutlineThumbUpAlt, MdThumbUpAlt } from "react-icons/md";
-import { postAPI } from "../../utils/FetchData";
+import { patchAPI } from "../../utils/FetchData";
 import { ALERT } from "../../redux/types/alertType";
 import { checkTokenExp } from "../../utils/checkTokenExp";
 
@@ -68,7 +68,7 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
     setThumbed(!thumbed);
     if (thumb_count !== undefined) setThumbeCount(thumb_count + num);
     try {
-      await postAPI(`blog/thumb/${blog._id}`, {
+      await patchAPI(`blog/thumb/${blog._id}`, {
         user_id: auth.user._id,
         thumbed: thumbed,
       }, access_token);
