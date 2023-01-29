@@ -100,7 +100,7 @@ const commentReducer = (
                 replyCM: item.replyCM?.map((reply) =>
                   reply._id === action.payload.data._id
                     ? {
-                        ...item,
+                        ...reply,
                         thumbs_count: item.thumbs_count + reply_thumb_count,
                       }
                     : reply
