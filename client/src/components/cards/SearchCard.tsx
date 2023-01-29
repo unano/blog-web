@@ -6,7 +6,6 @@ interface IProps{
 }
 
 const SearchCard: React.FC<IProps> = ({ blog }) => {
-  console.log(blog);
     return (
       <Link to={`/blog/${blog._id}`}>
         <div className="searchCard">

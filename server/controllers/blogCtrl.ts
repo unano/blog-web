@@ -305,7 +305,6 @@ const blogCtrl = {
         _id: req.params.id,
         thumbs: { $elemMatch: { user_id: user_id } },
       });
-      console.log(thumb_user)
 
       if (thumbed) {
         if (!thumb_user) return res.status(400).json({ msg: "Invalid Input" });
@@ -330,7 +329,6 @@ const blogCtrl = {
       }
       res.json({ msg: "Updated" });
     } catch (err) {
-      console.log(res);
       return res.status(500).json({ msg: err.message });
     }
   },

@@ -1,4 +1,6 @@
 
+import { click } from "@testing-library/user-event/dist/click";
+
 const new_password1 = "1234567";
 const new_password2 = "123456";
 const new_password3 = "12345";
@@ -15,7 +17,7 @@ describe("Category page tests", () => {
       cy.url().should("include", "/profile");
     });
   });
-  describe("Modify password success test", () => {
+  describe("Modify profile test", () => {
     describe("Modify password success test", () => {
       it("should succesfully update password(01)", () => {
         cy.get(".pass").eq(0).type(new_password1);
@@ -69,6 +71,22 @@ describe("Category page tests", () => {
         cy.get(".toast_title").should("have.text", "Success");
         cy.get(".toast_title").next().should("have.text", "Update Success");
       });
+    });
+  });
+  describe("Manage blogs", () => {
+    it("should successfully modify blogs", () => {
+      cy.createBlog();
+      cy.get(".modify").eq(0).click();
+      cy.wait(2000);
+      cy.get("input[name=title]").clear().type("new title");
+      cy.get(".create_post button").click();
+      cy.get(".shown_title").eq(0).should("contain", "new title");
+    });
+    it("should successfully delete blogs", () => {
+      cy.get(".shown_title").eq(0).should("contain", "new title");
+      cy.get(".delete").eq(0).click();
+      cy.on("window: confirm", () => true);
+      cy.get(".shown_title").eq(0).should("not.contain", "new title");
     });
   });
 });

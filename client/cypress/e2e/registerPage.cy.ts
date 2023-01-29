@@ -1,6 +1,6 @@
 
 const invalid_email = "testgmail.com";
-const valid_email = "";/* add a valid email when you want to test.
+const valid_email = "romanroll997@gmail.com";/* add a valid email when you want to test.
 Add an valid email that not belongs to you may affect other people,
 so please don't do so.
 */
@@ -18,7 +18,7 @@ describe("Register page tests", () => {
       cy.url().should("include", "/register");
     });
     it("should navigates to login page", () => {
-      cy.contains("Already have an account? ").next().click();
+      cy.contains("Already have an account? ").next().next().click();
       cy.url().should("include", "/login");
     });
   });

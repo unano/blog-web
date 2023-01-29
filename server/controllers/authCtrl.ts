@@ -62,7 +62,6 @@ const authCtrl = {
   login: async (req: Request, res: Response) => {
     try {
       const { account, password } = req.body;
-      console.log(account, password)
 
       let user = await Users.findOne({ account });
       if (!user)
@@ -234,7 +233,6 @@ const authCtrl = {
 };
 
 const loginUser = async (user: IUser, password: string, res: Response) => {
-  console.log(user)
     const isMatch = await bcrypt.compare(password,user.password);
     if(!isMatch) return res.status(400).json({msg:"password is incorrect"})
 

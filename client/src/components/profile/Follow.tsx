@@ -7,7 +7,6 @@ interface IProps {
   follow: IUser[];
 }
 const Follow: React.FC<IProps> = ({ follow}) => {
-  console.log(follow);
 
   return (
     <div className="follow_users">

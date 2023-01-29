@@ -7,7 +7,6 @@ const Pagination = (req: IReqAuth) => {
   let page = Number(req.query.page) * 1 || 1;
   let limit = Number(req.query.limit) * 1 || 4;
   let skip = (page - 1) * limit;
-  console.log(page, limit, skip)
 
   return { page, limit, skip };
 };
@@ -169,8 +168,6 @@ const commentCtrl = {
         reply_user: reply_user,
         createdAt: new Date().toISOString(),
       };
-      console.log("twice")
-      console.log(data)
 
       io.to(`${blog_id}`).emit("replyComment", data);
 
@@ -236,7 +233,6 @@ const commentCtrl = {
   },
   dealThumbs: async(req: Request, res: Response) => {
     const { user_id, thumbed } = req.body; //state为true,说明要取消点赞
-    console.log(req.body)
     const comment_id = req.params.id;
     const user = await comments.findOne({ _id: comment_id, thumbs: user_id })
     if (thumbed) {

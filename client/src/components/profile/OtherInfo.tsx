@@ -18,7 +18,6 @@ const OtherInfo: React.FC<IProps> = ({ id }) => {
   const [other, setOther] = useState<IUser>();
   const { otherInfo, auth } = useSelector((state: RootStore) => state);
   const [isFollowing, setIsfollowing] = useState<boolean | null>(null);
-  console.log(other);
 
   const dispatch = useDispatch();
   useEffect(() => {

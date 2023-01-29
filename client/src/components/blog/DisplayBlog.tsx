@@ -93,7 +93,6 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
   }, [blog.thumbs_count]);
 
   useEffect(() => {
-    console.log(comments.data)
     if (comments.data.length === 0) return;
     setShowComments(comments.data);
     setTotal(comments.total);

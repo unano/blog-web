@@ -71,6 +71,7 @@ describe("Create blog page tests", () => {
     it("should succeed with valid input", () => {
       cy.get("input[name=title]").type(valid_title);
       cy.get("textarea").type(valid_description);
+      cy.get(".ql-editor").type(" ");
       cy.get(".ql-editor").type(valid_content);
       cy.wait(500);
       cy.get("select[name=category]").select("test");

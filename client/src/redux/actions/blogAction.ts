@@ -121,7 +121,6 @@ export const updateBlog =
       const newBlog = { ...blog, thumbnail: url };
 
       const res = await putAPI(`blog/${newBlog._id}`, newBlog, access_token);
-      console.log(res.data)
       dispatch({
         type: UPDATE_BLOGS_USER_ID,
         payload: res.data.blog,

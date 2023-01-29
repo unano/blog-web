@@ -14,7 +14,6 @@ const Input:React.FC<IProps> = ({callback, edit, setEdit}) => {
         const div = divRef.current;
         const text = (div?.innerText as string)
       if (!text.trim()) {
-        console.log(setEdit)
         if (setEdit) return setEdit(undefined);
         return;
       }

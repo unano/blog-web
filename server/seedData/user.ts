@@ -7,6 +7,10 @@ export const users = [
       "https://res.cloudinary.com/drspqpjo3/image/upload/v1657433630/defaluts/default_himttk.png",
     role: "admin",
     type: "register",
+    follower_num: 0,
+    followers: [],
+    following_num: 0,
+    followings: [],
   },
   {
     name: "test2",
@@ -16,5 +20,9 @@ export const users = [
       "https://res.cloudinary.com/drspqpjo3/image/upload/v1657433630/defaluts/default_himttk.png",
     role: "user",
     type: "register",
+    follower_num: 0,
+    followers: [],
+    following_num: 0,
+    followings: [],
   },
 ];

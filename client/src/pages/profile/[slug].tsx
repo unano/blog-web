@@ -14,7 +14,6 @@ const Profile = () => {
   const { auth } = useSelector((state: RootStore) => state);
   const [follow, setFollow] = useState([] as IUser[]);
   const [following, setFollowing] = useState(true);
-  console.log(auth);
 
   return (
     <div className="user_profile">
