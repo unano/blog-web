@@ -189,12 +189,22 @@
     gap: 0.5rem;
 }
 
+.other_info .info div{
+    order: 3;
+}
+
+
 .other_info .user_name_and_role{
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
     margin-left: -1rem;
+    order: 1;
+}
+
+.other_info .follow_info{
+    order: 2;
 }
 
 .other_info .role{
@@ -287,10 +297,6 @@
 }
 
 
-
-
-
-
 @media (max-width: 1000px) {
     .user_profile{
         width: 100%;
@@ -315,6 +321,11 @@
     .other_info .user_name_and_role{
         justify-content: flex-start;
         margin-left: 0;
+        order: 2;
     }
+    .other_info .info .follow_info{
+        margin-bottom: 0;
+        order: 1;
+    }   
 
 }

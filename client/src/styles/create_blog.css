@@ -246,6 +246,7 @@ textarea::-webkit-scrollbar-thumb {
     font-size: 0.9rem;   
     height: 7.4rem;  
     color: black;
+    overflow: hidden;
 }
 
 .cardHoriz .shown_content small{
@@ -308,4 +309,7 @@ textarea::-webkit-scrollbar-thumb {
     .cardHoriz .shown_title{
         max-width: 220px;
     }
-}
+    /* .cardHoriz .shown_content .shown_descrp{
+
+    } */
+} 

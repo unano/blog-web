@@ -157,7 +157,7 @@ const CommentList: React.FC<IProps> = ({
                 </div>
               </small>
             </div>
-            <div
+            <div style={{"wordBreak":"break-all"}}
               dangerouslySetInnerHTML={{
                 __html: comment.content,
               }}

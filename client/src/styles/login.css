@@ -124,6 +124,48 @@
 }
 
 
+.forget-password .head{
+    margin-bottom: 0.5rem;
+}
+
+.forget-password .inputs{
+    display: flex;
+}
+.forget-password form{
+    color: white;
+    display: flex;
+    gap: 1rem;
+    background-color: black;
+    padding: 0.4rem 1rem;
+}
+.forget-password input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    flex: 1;
+}
+
+.forget-password button{
+    background-color: transparent;
+    border: none;
+    border: 1px solid white;
+    color: white;
+    padding: 0 0.4rem;
+    margin-left: 1rem;
+    transition: all 0.5s;
+}
+
+.forget-password button:hover{
+    background-color: white;
+    color: black;
+}
+
+.forget-password input:focus{
+    outline: none;
+}
+
+
 
 @media (max-width: 1000px) {
     .login, .forget_pass{
