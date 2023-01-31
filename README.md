@@ -13,13 +13,6 @@
 
 <br/>
 
-## Website URL  ##
-
-https://transcendent-marshmallow-982b7d.netlify.app/forget_password
-
-
-<br/>
-
 ### Deployed on  ###
 
 [![Netlify](https://img.shields.io/badge/Netlify-005eff?style=for-the-badge&logo=netlify&logoColor=26d7b2)](https://www.netlify.com/)[![Render](https://img.shields.io/badge/Render-073763?style=for-the-badge&logo=render&logoColor=28f2c8)](https://render.com)
@@ -31,6 +24,13 @@ https://transcendent-marshmallow-982b7d.netlify.app/forget_password
 [![InkScape](https://img.shields.io/badge/Inkscape-f3f6f4?style=for-the-badge&logo=inkscape&logoColor=black)](https://inkscape.org)
 
  <br /> 
+
+ ## Website URL  ##
+
+https://transcendent-marshmallow-982b7d.netlify.app/forget_password
+
+
+<br/>
 
 ## Index ##
 
@@ -246,17 +246,17 @@ _password = 123456_
 移动端页面适配测试:
 
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172948/blorg-readme/917F859391A706D0671D54385FE3C96D_h77epo.png" alt="drawing" width="48%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172945/blorg-readme/E82DFEA130F05DF25E89452B7FBE360D_wt9tgu.jpg" alt="drawing" width="48%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172948/blorg-readme/917F859391A706D0671D54385FE3C96D_h77epo.png" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172945/blorg-readme/E82DFEA130F05DF25E89452B7FBE360D_wt9tgu.jpg" alt="drawing" width="45%"/>
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172927/blorg-readme/74EAC750DF761D89C55A8C9F7C177E52_bj2tfh.jpg" alt="drawing" width="48%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172943/blorg-readme/91DB53F0D15529D86BC483E614D001EE_dhtnoh.png" alt="drawing" width="48%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172927/blorg-readme/74EAC750DF761D89C55A8C9F7C177E52_bj2tfh.jpg" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172943/blorg-readme/91DB53F0D15529D86BC483E614D001EE_dhtnoh.png" alt="drawing" width="45%"/>
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172868/blorg-readme/60E793F4A2542ED5C84AB4DE0A260868_jhfrkv.jpg" alt="drawing" width="48%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172865/blorg-readme/3212E43D8277FCAB7C1464714D8D1F28_jcqkbm.jpg" alt="drawing" width="48%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172868/blorg-readme/60E793F4A2542ED5C84AB4DE0A260868_jhfrkv.jpg" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172865/blorg-readme/3212E43D8277FCAB7C1464714D8D1F28_jcqkbm.jpg" alt="drawing" width="45%"/>
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172858/blorg-readme/E4A2E57D9B8A3C29449526CAB953B676_hwph2y.jpg" alt="drawing" width="48%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172938/blorg-readme/F223F638182B669631F145FC9EED5679_lbxrcm.png" alt="drawing" width="48%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172858/blorg-readme/E4A2E57D9B8A3C29449526CAB953B676_hwph2y.jpg" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172938/blorg-readme/F223F638182B669631F145FC9EED5679_lbxrcm.png" alt="drawing" width="45%"/>
 
 
 
