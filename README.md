@@ -27,7 +27,7 @@
 
  ## Website URL  ##
 
-https://transcendent-marshmallow-982b7d.netlify.app/forget_password
+https://transcendent-marshmallow-982b7d.netlify.app
 
 
 <br/>
@@ -41,8 +41,6 @@ https://transcendent-marshmallow-982b7d.netlify.app/forget_password
  <br /> 
 
 ## How to set up the app locally ##
-
- <br /> 
 
 ### dependencies install
 
@@ -245,18 +243,19 @@ _password = 123456_
 
 移动端页面适配测试:
 
+<p float="left">
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172948/blorg-readme/917F859391A706D0671D54385FE3C96D_h77epo.png" alt="drawing" width="40%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172945/blorg-readme/E82DFEA130F05DF25E89452B7FBE360D_wt9tgu.jpg" alt="drawing" width="40%"/>
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172948/blorg-readme/917F859391A706D0671D54385FE3C96D_h77epo.png" alt="drawing" width="45%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172945/blorg-readme/E82DFEA130F05DF25E89452B7FBE360D_wt9tgu.jpg" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172927/blorg-readme/74EAC750DF761D89C55A8C9F7C177E52_bj2tfh.jpg" alt="drawing" width="40%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172943/blorg-readme/91DB53F0D15529D86BC483E614D001EE_dhtnoh.png" alt="drawing" width="40%"/>
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172927/blorg-readme/74EAC750DF761D89C55A8C9F7C177E52_bj2tfh.jpg" alt="drawing" width="45%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172943/blorg-readme/91DB53F0D15529D86BC483E614D001EE_dhtnoh.png" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172868/blorg-readme/60E793F4A2542ED5C84AB4DE0A260868_jhfrkv.jpg" alt="drawing" width="40%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172865/blorg-readme/3212E43D8277FCAB7C1464714D8D1F28_jcqkbm.jpg" alt="drawing" width="40%"/>
 
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172868/blorg-readme/60E793F4A2542ED5C84AB4DE0A260868_jhfrkv.jpg" alt="drawing" width="45%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172865/blorg-readme/3212E43D8277FCAB7C1464714D8D1F28_jcqkbm.jpg" alt="drawing" width="45%"/>
-
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172858/blorg-readme/E4A2E57D9B8A3C29449526CAB953B676_hwph2y.jpg" alt="drawing" width="45%"/>
-<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172938/blorg-readme/F223F638182B669631F145FC9EED5679_lbxrcm.png" alt="drawing" width="45%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172858/blorg-readme/E4A2E57D9B8A3C29449526CAB953B676_hwph2y.jpg" alt="drawing" width="40%"/>
+<img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1675172938/blorg-readme/F223F638182B669631F145FC9EED5679_lbxrcm.png" alt="drawing" width="40%"/>
+</p>
 
 
 
