@@ -8,44 +8,44 @@ import CardHoriz from '../cards/CardHoriz'
 import Pagination from '../global/Pagination'
 
 const UserBlogs = () => {
-  const { blogsUser } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
-  const { slug }: IParams = useParams();
-  const location = useLocation();
-  let search = location.search;
-  let user_id = slug;
+  const { blogsUser } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
+  const { slug }: IParams = useParams()
+  const location = useLocation()
+  const search = location.search
+  const user_id = slug
 
-  const [blogs, setBlogs] = useState<IBlog[]>();
-  const [total, setTotal] = useState(0);
+  const [blogs, setBlogs] = useState<IBlog[]>()
+  const [total, setTotal] = useState(0)
 
   const handlePagination = (num: number) => {
-    const search = `?page=${num}`;
-    if(user_id) dispatch(getBlogsByUserId(user_id, search) as any);
+    const search = `?page=${num}`
+    if (user_id) dispatch(getBlogsByUserId(user_id, search) as any)
   }
 
-
   useEffect(() => {
-    if (!user_id) return;
-      if (blogsUser.every((item) => item.id !== user_id)) {
-        dispatch(getBlogsByUserId(user_id, search) as any) ;
-      } else {
-        const data = blogsUser.find(item => item.id === user_id)
-        if (!data) return
-        setBlogs(data.blogs)
-        setTotal(data.total)
-      }
+    if (!user_id) return
+    if (blogsUser.every((item) => item.id !== user_id)) {
+      dispatch(getBlogsByUserId(user_id, search) as any)
+    } else {
+      const data = blogsUser.find((item) => item.id === user_id)
+      if (!data) return
+      setBlogs(data.blogs)
+      setTotal(data.total)
+    }
   }, [user_id, blogsUser, dispatch])
-  
+
   if (!blogs) return <Loading />
-  if (blogs.length === 0 && total <= 0) return (
-    <>
-      <br/>
-      <h3 className='no_blogs'>No Blogs</h3>
-    </>
-  );
+  if (blogs.length === 0 && total <= 0)
+    return (
+      <>
+        <br />
+        <h3 className="no_blogs">No Blogs</h3>
+      </>
+    )
   return (
     <div className="user_blogs">
-      <div className='blogs'>
+      <div className="blogs">
         {blogs.map((blog) => (
           <CardHoriz key={blog._id} blog={blog} />
         ))}
@@ -54,7 +54,7 @@ const UserBlogs = () => {
         {total > 1 && <Pagination total={total} callback={handlePagination} />}
       </div>
     </div>
-  );
+  )
 }
 
 export default UserBlogs

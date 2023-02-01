@@ -1,39 +1,36 @@
-
-
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootStore } from "../../utils/TypeScript"; 
-import { InputChange, FormSubmit } from "../../utils/TypeScript";
-import { login } from "../../redux/actions/authAction";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootStore, InputChange, FormSubmit } from '../../utils/TypeScript'
+import { login } from '../../redux/actions/authAction'
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPass = () => {
-  const initialState = { account: "", password: "" };
-  const [userLogin, setUserLogin] = useState(initialState);
-  const { account, password } = userLogin;
+  const initialState = { account: '', password: '' }
+  const [userLogin, setUserLogin] = useState(initialState)
+  const { account, password } = userLogin
 
-  const [typePass, setTypePass] = useState(false);
-  const { auth } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [typePass, setTypePass] = useState(false)
+  const { auth } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChangeInput = (e: InputChange) => {
-    const { value, name } = e.target;
-    setUserLogin({ ...userLogin, [name]: value });
-  };
+    const { value, name } = e.target
+    setUserLogin({ ...userLogin, [name]: value })
+  }
 
   const handleSubmit = async (e: FormSubmit) => {
-    e.preventDefault();
-    await dispatch(login(userLogin) as any);
-  };
+    e.preventDefault()
+    await dispatch(login(userLogin) as any)
+  }
 
   useEffect(() => {
     if (auth.access_token) {
-      navigate(`/`);
-    } 
+      navigate(`/`)
+    }
   }, [auth.access_token, navigate])
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="email">
@@ -54,13 +51,19 @@ const LoginPass = () => {
         </label>
         <div>
           <input
-            type={typePass ? "text" : "password"}
+            type={typePass ? 'text' : 'password'}
             id="password"
             name="password"
             value={password}
             onChange={handleChangeInput}
           ></input>
-          <div className="eye" onClick={() => setTypePass(!typePass)}>
+          <div
+            className="eye"
+            onClick={() => setTypePass(!typePass)}
+            onKeyUp={() => setTypePass(!typePass)}
+            role="button"
+            tabIndex={0}
+          >
             {typePass ? <AiFillEye /> : <AiFillEyeInvisible />}
           </div>
         </div>
@@ -69,7 +72,7 @@ const LoginPass = () => {
         Login
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default LoginPass;
+export default LoginPass

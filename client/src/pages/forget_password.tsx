@@ -1,21 +1,21 @@
-import React, { useState }  from 'react'
-import { useDispatch } from 'react-redux';
-import { forgetPassword } from '../redux/actions/authAction';
-import { FormSubmit } from '../utils/TypeScript';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { forgetPassword } from '../redux/actions/authAction'
+import { FormSubmit } from '../utils/TypeScript'
 
 const Forgetpassword = () => {
-  const [account, setAccount] = useState('');
-  const dispatch = useDispatch();
+  const [account, setAccount] = useState('')
+  const dispatch = useDispatch()
 
-  const handleSubmit = (e:FormSubmit) => {
-    e.preventDefault();
+  const handleSubmit = (e: FormSubmit) => {
+    e.preventDefault()
     dispatch(forgetPassword(account) as any)
   }
 
   return (
-    <div className='forget-password'>
-      <div className='head'>Forget password</div>
-      <div className='inputs'>
+    <div className="forget-password">
+      <div className="head">Forget password</div>
+      <div className="inputs">
         <form onSubmit={handleSubmit}>
           <label htmlFor="account">Email</label>
           <div>
@@ -29,7 +29,7 @@ const Forgetpassword = () => {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
 export default Forgetpassword

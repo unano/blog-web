@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 interface IProps {
-    total: number
-    callback: (num: number)=> void
+  total: number
+  callback: (num: number) => void
 }
 
 const Pagination: React.FC<IProps> = ({ total, callback }) => {
-    const navigate = useNavigate();
-    let [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const [page, setPage] = useState(1);
-  const newArr = [...Array(total)].map((_, i) => i + 1);
+  const [page, setPage] = useState(1)
+  //const newArr = [...Array(total)].map((_, i) => i + 1);
   const isActive = (index: number) => {
-    if (index === page) return "choosed";
-    return "";
-  };
+    if (index === page) return 'choosed'
+    return ''
+  }
   const handlePagination = (num: number) => {
-      navigate(`?page=${num}`);
-      callback(num);
-  };
-    
+    navigate(`?page=${num}`)
+    callback(num)
+  }
+
   useEffect(() => {
-    let page = Number(searchParams.get("page"));
-      setPage(page === 0 ? 1: page);
-    }, [searchParams]);
+    const page = Number(searchParams.get('page'))
+    setPage(page === 0 ? 1 : page)
+  }, [searchParams])
 
   return (
     <div className="pagination">
@@ -32,56 +33,95 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
       <ul>
         {page > 1 && (
           <li>
-            <span onClick={() => handlePagination(page - 1)}>&lt;</span>
+            <span
+              onClick={() => handlePagination(page - 1)}
+              onKeyUp={() => handlePagination(page - 1)}
+              role="button"
+              tabIndex={0}
+            >
+              &lt;
+            </span>
           </li>
         )}
-        {page !== 1 && <li className={`${isActive(1)}`} onClick={() => handlePagination(1)}>
-          <span>{1}</span>
-        </li>}
+        {page !== 1 && (
+          <li>
+            <span
+              className={`${isActive(1)}`}
+              onClick={() => handlePagination(1)}
+              onKeyUp={() => handlePagination(1)}
+              role="button"
+              tabIndex={0}
+            >
+              {1}
+            </span>
+          </li>
+        )}
         {total >= 4 && page > 3 && (
           <li
-            className={`${isActive(page + 1)}`}
-            // onClick={() => handlePagination(page + 1)}
+          // className={`${isActive(page + 1)}`}
+          // onClick={() => handlePagination(page + 1)}
           >
             <span>...</span>
           </li>
         )}
         {page > 2 && (
-          <li
-            className={`${isActive(page - 1)}`}
-            onClick={() => handlePagination(page - 1)}
-          >
-            <span>{page - 1}</span>
+          <li>
+            <span
+              className={`${isActive(page - 1)}`}
+              onClick={() => handlePagination(page - 1)}
+              onKeyUp={() => handlePagination(page - 1)}
+              role="button"
+              tabIndex={0}
+            >
+              {page - 1}
+            </span>
           </li>
         )}
-        <li
-          className={`${isActive(page)}`}
-          onClick={() => handlePagination(page)}
-        >
-          <span>{page}</span>
-        </li>
-        {page < total -1 && (
-          <li
-            className={`${isActive(page + 1)}`}
-            onClick={() => handlePagination(page + 1)}
+        <li>
+          <span
+            className={`${isActive(page)}`}
+            onClick={() => handlePagination(page)}
+            onKeyUp={() => handlePagination(page)}
+            role="button"
+            tabIndex={0}
           >
-            <span>{page + 1}</span>
+            {page}
+          </span>
+        </li>
+        {page < total - 1 && (
+          <li>
+            <span
+              className={`${isActive(page + 1)}`}
+              onClick={() => handlePagination(page + 1)}
+              onKeyUp={() => handlePagination(page + 1)}
+              role="button"
+              tabIndex={0}
+            >
+              {page + 1}
+            </span>
           </li>
         )}
         {total >= 4 && page < total - 2 && (
           <li
-            className={`${isActive(page + 1)}`}
-            // onClick={() => handlePagination(page + 1)}
+          // className={`${isActive(page + 1)}`}
+          // onClick={() => handlePagination(page + 1)}
           >
             <span>...</span>
           </li>
         )}
-        {page !== total && <li
-          className={`${isActive(total)}`}
-          onClick={() => handlePagination(total)}
-        >
-          <span>{total}</span>
-        </li>}
+        {page !== total && (
+          <li>
+            <span
+              className={`${isActive(total)}`}
+              onClick={() => handlePagination(total)}
+              onKeyUp={() => handlePagination(total)}
+              role="button"
+              tabIndex={0}
+            >
+              {total}
+            </span>
+          </li>
+        )}
         {/* {newArr.map((num) => (
           <li
             key={num}
@@ -93,12 +133,19 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
         ))} */}
         {page < total && (
           <li>
-            <span onClick={() => handlePagination(page + 1)}>&gt;</span>
+            <span
+              onClick={() => handlePagination(page + 1)}
+              onKeyUp={() => handlePagination(page + 1)}
+              role="button"
+              tabIndex={0}
+            >
+              &gt;
+            </span>
           </li>
         )}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

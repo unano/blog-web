@@ -1,9 +1,4 @@
-
-import {
-  GET_HOME_BLOGS,
-  IGetHomeBlogType,
-  IHomeBlogs,
-} from "../types/blogType";
+import { GET_HOME_BLOGS, IGetHomeBlogType, IHomeBlogs } from '../types/blogType'
 
 const homeBlogsReducer = (
   state: IHomeBlogs[] = [],
@@ -11,10 +6,10 @@ const homeBlogsReducer = (
 ): IHomeBlogs[] => {
   switch (action.type) {
     case GET_HOME_BLOGS:
-      return action.payload;
+      return action.payload
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default homeBlogsReducer;
+export default homeBlogsReducer

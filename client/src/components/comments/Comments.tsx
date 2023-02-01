@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { IComment } from "../../utils/TypeScript";
-import CommentList from "./CommentList";
-import AvatarReply from "./AvatarReply";
+import React, { useState, useEffect } from 'react'
+import { IComment } from '../../utils/TypeScript'
+import CommentList from './CommentList'
+import AvatarReply from './AvatarReply'
 
 interface IProps {
-  comment: IComment;
+  comment: IComment
 }
 
 const Comments: React.FC<IProps> = ({ comment }) => {
-  const [showReply, setShowReply] = useState<IComment[]>([]);
+  const [showReply, setShowReply] = useState<IComment[]>([])
   const [next, setNext] = useState(2)
-  
+
   useEffect(() => {
-    if(!comment.replyCM) return;
+    if (!comment.replyCM) return
     setShowReply(comment.replyCM)
-  },[comment.replyCM])
-  
+  }, [comment.replyCM])
 
   return (
     <div className="blog_outer">
@@ -23,7 +22,7 @@ const Comments: React.FC<IProps> = ({ comment }) => {
         className="blog_comment"
         style={{
           opacity: comment._id ? 1 : 0.5,
-          pointerEvents: comment._id ? "initial" : "none",
+          pointerEvents: comment._id ? 'initial' : 'none',
         }}
       >
         <div className="blog_comment_avatar">
@@ -41,7 +40,7 @@ const Comments: React.FC<IProps> = ({ comment }) => {
                   className="blog_comment"
                   style={{
                     opacity: comment._id ? 1 : 0.5,
-                    pointerEvents: comment._id ? "initial" : "none",
+                    pointerEvents: comment._id ? 'initial' : 'none',
                   }}
                 >
                   <AvatarReply user={comment.user} />
@@ -56,12 +55,24 @@ const Comments: React.FC<IProps> = ({ comment }) => {
             ))}
             <div className="more_comment">
               {showReply.length - next > 0 ? (
-                <small onClick={() => setNext(next + 5)}>
+                <small
+                  onClick={() => setNext(next + 5)}
+                  onKeyUp={() => setNext(next + 5)}
+                  role="button"
+                  tabIndex={0}
+                >
                   See more comments
                 </small>
               ) : (
                 showReply.length > 2 && (
-                  <small onClick={() => setNext(2)}>Hide comments</small>
+                  <small
+                    onClick={() => setNext(2)}
+                    onKeyUp={() => setNext(2)}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    Hide comments
+                  </small>
                 )
               )}
             </div>
@@ -69,7 +80,7 @@ const Comments: React.FC<IProps> = ({ comment }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Comments;
+export default Comments

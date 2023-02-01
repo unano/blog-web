@@ -1,289 +1,310 @@
-
-
-.comments_title{
-    color: black;
-    font-weight: 400;
-    background: linear-gradient(
-        45deg, 
-        gray 0, gray 10%, transparent 10%, transparent 50%, 
-        gray 50%, gray 60%, transparent 60%, transparent
-      );
-      background-size: 10px 10px;
+.comments_title {
+  color: black;
+  font-weight: 400;
+  background: linear-gradient(
+    45deg,
+    gray 0,
+    gray 10%,
+    transparent 10%,
+    transparent 50%,
+    gray 50%,
+    gray 60%,
+    transparent 60%,
+    transparent
+  );
+  background-size: 10px 10px;
 }
-.comments_title h3{
-    margin: 0;
-    margin-left: 1rem;
-    height: 100%;
-    padding: 0.3rem 1rem;
-    background-color: white;
-    display: inline-block;
-    font-weight: 300;
-}
-
-.blog_outer{
-    background: linear-gradient(
-        45deg, 
-        rgb(230, 230, 230) 0, rgb(230, 230, 230) 15%, transparent 10%, transparent 50%, 
-        rgb(230, 230, 230) 50%, rgb(230, 230, 230) 65%, transparent 60%, transparent
-      );
-      background-size: 10px 10px;
-      /* margin-bottom: 1rem; */
-}
-.blog_outer_reply  .comment_content{
-    /* position: relative; */
+.comments_title h3 {
+  margin: 0;
+  margin-left: 1rem;
+  height: 100%;
+  padding: 0.3rem 1rem;
+  background-color: white;
+  display: inline-block;
+  font-weight: 300;
 }
 
-.blog_outer_reply .comment_content .name{
-    display: inline-block;
-    font-size: 1rem;
-    height: 1.4rem;
-    border:  0.8px solid black;
-    background-color: black;
-    padding: 0 0.6rem;
-    vertical-align: middle;
+.blog_outer {
+  background: linear-gradient(
+    45deg,
+    rgb(230, 230, 230) 0,
+    rgb(230, 230, 230) 15%,
+    transparent 10%,
+    transparent 50%,
+    rgb(230, 230, 230) 50%,
+    rgb(230, 230, 230) 65%,
+    transparent 60%,
+    transparent
+  );
+  background-size: 10px 10px;
+  /* margin-bottom: 1rem; */
+}
+.blog_outer_reply .comment_content {
+  /* position: relative; */
 }
 
-.blog_comment_content, .comment_content{
-    width: 100%;
+.blog_outer_reply .comment_content .name {
+  display: inline-block;
+  font-size: 1rem;
+  height: 1.4rem;
+  border: 0.8px solid black;
+  background-color: black;
+  padding: 0 0.6rem;
+  vertical-align: middle;
 }
 
-.blog_outer .more_comment small{
-    background: linear-gradient( 45deg,
-    white 0, white 15%, 
-    transparent 15%, transparent 50%,
-    white 50%, white 65%, 
-    transparent 65%, transparent );
-    background-size: 10px 10px;
-    background-color: rgb(220, 220, 220);
-    padding: 0 0.3rem;
-    border: 1px solid transparent;
-    transition: all 0.5s;
+.blog_comment_content,
+.comment_content {
+  width: 100%;
 }
 
-.blog_outer .more_comment small:hover{
-    border: 1px solid black;
+.blog_outer .more_comment small {
+  background: linear-gradient(
+    45deg,
+    white 0,
+    white 15%,
+    transparent 15%,
+    transparent 50%,
+    white 50%,
+    white 65%,
+    transparent 65%,
+    transparent
+  );
+  background-size: 10px 10px;
+  background-color: rgb(220, 220, 220);
+  padding: 0 0.3rem;
+  border: 1px solid transparent;
+  transition: all 0.5s;
 }
 
-
-
-.comment_content .info .reply_to{
-    font-size: 0.7rem;
-    display: inline-block;
-    height: 1.4rem;
-    font-weight: 300;
-    padding: 0 0.5rem;
-    border:  0.8px solid black;
-    vertical-align: middle;
-    line-height: 1.5rem;
-    margin-left: 0.1rem;
+.blog_outer .more_comment small:hover {
+  border: 1px solid black;
 }
 
-.comment_content .info .reply_to a{
-    color: black;
-    font-weight: 400;
-    text-decoration: none;
+.comment_content .info .reply_to {
+  font-size: 0.7rem;
+  display: inline-block;
+  height: 1.4rem;
+  font-weight: 300;
+  padding: 0 0.5rem;
+  border: 0.8px solid black;
+  vertical-align: middle;
+  line-height: 1.5rem;
+  margin-left: 0.1rem;
 }
 
-.blog_comment{
-    position: relative;
-    background-color: white;
-    width: calc(100% - 1rem);
-    display: flex;
-    margin-left: 1rem;
-    padding-left: 0.5rem;
-    flex-direction: row;
-    gap: 0.5rem;
-    font-weight: 300;
+.comment_content .info .reply_to a {
+  color: black;
+  font-weight: 400;
+  text-decoration: none;
 }
 
-.blog_outer_reply .blog_comment{
-    width: 100%;
-    margin: 0;
-    padding: 0;
+.blog_comment {
+  position: relative;
+  background-color: white;
+  width: calc(100% - 1rem);
+  display: flex;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  flex-direction: row;
+  gap: 0.5rem;
+  font-weight: 300;
 }
 
-.blog_comment_avatar{
-    flex-shrink: 0;
-    gap: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    width: 4rem;
-    height: 4rem;
-    object-fit: cover;
+.blog_outer_reply .blog_comment {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.blog_comment .reply_comment{
-    width: 3rem;
-    height: 3rem;
-    object-fit: cover;
-    flex-shrink: 0;
+.blog_comment_avatar {
+  flex-shrink: 0;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
 }
 
-.blog_outer_reply .comment_content .reply{
-    width: 3rem;
+.blog_comment .reply_comment {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
-.blog_outer_reply .comment_content .reply{
-    font-size: 0.8rem;
-    font-weight: 300;
-    width: 3rem;
-    left: 0rem;
-    top: 3.5rem;
+.blog_outer_reply .comment_content .reply {
+  width: 3rem;
 }
 
-.blog_outer_reply .comment_content .time{
-    font-size: 0.7rem;
+.blog_outer_reply .comment_content .reply {
+  font-size: 0.8rem;
+  font-weight: 300;
+  width: 3rem;
+  left: 0rem;
+  top: 3.5rem;
 }
 
-.comment_content .reply{
-    display: inline-block;
-    width: 4rem;
-    border: 1px solid black;
-    text-align: center;
-    transition: all 0.5s;
-    cursor: pointer;
-    position: absolute;
-    left: 0.5rem;
-    top: 4.5rem;
+.blog_outer_reply .comment_content .time {
+  font-size: 0.7rem;
 }
 
-.comment_content .reply:hover{
-    color: white;
-    background-color: black;
+.comment_content .reply {
+  display: inline-block;
+  width: 4rem;
+  border: 1px solid black;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  position: absolute;
+  left: 0.5rem;
+  top: 4.5rem;
 }
 
-.comment_content .name{
-    font-size: 1.3rem;
-    background-color: black;
-    padding: 0 0.6rem;
+.comment_content .reply:hover {
+  color: white;
+  background-color: black;
 }
 
-.comment_content .name a{
-    color: white;
-    text-decoration: none;
+.comment_content .name {
+  font-size: 1.3rem;
+  background-color: black;
+  padding: 0 0.6rem;
 }
 
-.comment_content .time{
-    font-size: 0.8rem;
-    text-align: right;
-    padding: 0 0.5rem;
-    border:  1px solid black;
+.comment_content .name a {
+  color: white;
+  text-decoration: none;
 }
 
-.make_comment{
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+.comment_content .time {
+  font-size: 0.8rem;
+  text-align: right;
+  padding: 0 0.5rem;
+  border: 1px solid black;
 }
 
-.blog_comment .make_comment button{
-    font-size: 1rem;
-    padding: 0.1rem 0.8rem;
-    margin-bottom: 1rem;
+.make_comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.make_comment button{
-    font-size: 1.2rem;
-    font-weight: 300;
-    border: 1px solid black;
-    background-color: white;
-    padding: 0.2rem 1rem;
-    max-width: fit-content;
-    align-self: flex-end;
-    transition: all 0.5s;
-    color: black;
+.blog_comment .make_comment button {
+  font-size: 1rem;
+  padding: 0.1rem 0.8rem;
+  margin-bottom: 1rem;
 }
 
-.make_comment button:hover{
-    color: white;
-    background-color: black;
+.make_comment button {
+  font-size: 1.2rem;
+  font-weight: 300;
+  border: 1px solid black;
+  background-color: white;
+  padding: 0.2rem 1rem;
+  max-width: fit-content;
+  align-self: flex-end;
+  transition: all 0.5s;
+  color: black;
 }
 
-.blog_comment_content> .comment_content >.info_and_name > .info .edit_and_delete{
-    display: flex;
-    flex-direction: column;
-    left: -1.5rem;
+.make_comment button:hover {
+  color: white;
+  background-color: black;
 }
 
-.blog_comment .edit_and_delete, .blog_comment .delete_others_comment{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    left: -2.4rem;
-    height: 4.8rem;
-    top: 0rem;
-    gap: 0.5rem;
+.blog_comment_content
+  > .comment_content
+  > .info_and_name
+  > .info
+  .edit_and_delete {
+  display: flex;
+  flex-direction: column;
+  left: -1.5rem;
 }
 
-.blog_comment .edit_and_delete div, .blog_comment .delete_others_comment div{
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 1px solid black;
-    text-align: center;
-    transition: all 0.5s;
-    background-color: white;
+.blog_comment .edit_and_delete,
+.blog_comment .delete_others_comment {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  left: -2.4rem;
+  height: 4.8rem;
+  top: 0rem;
+  gap: 0.5rem;
 }
 
-.blog_comment .edit_and_delete div:hover{
-    background-color: black;
-    color: white;
+.blog_comment .edit_and_delete div,
+.blog_comment .delete_others_comment div {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid black;
+  text-align: center;
+  transition: all 0.5s;
+  background-color: white;
 }
 
-.blog_comment .delete_others_comment div:hover{
-    background-color: black;
-    color: white;
+.blog_comment .edit_and_delete div:hover {
+  background-color: black;
+  color: white;
 }
 
-.blog_comment .dels_and_upds{
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s;
+.blog_comment .delete_others_comment div:hover {
+  background-color: black;
+  color: white;
 }
 
-.info_and_name:hover .dels_and_upds{
-    visibility: visible;
-    opacity: 1;
+.blog_comment .dels_and_upds {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
 }
 
-.comment_thumbs{
-    font-size: 1rem;
-    position: absolute;
-    top: 0;
-    right: 0;
+.info_and_name:hover .dels_and_upds {
+  visibility: visible;
+  opacity: 1;
 }
 
-.comment_thumbs .count{
-    width: 2rem;
-    height: 2rem;
-    min-width: fit-content;
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-    position: absolute;
-    right: 0;
-    top: 0;
-    line-height: 1.8rem;
-    font-size: 1rem;
+.comment_thumbs {
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.comment_thumbs .thumbing{
-    color: black;
-    background-color: white;
-    width: 2rem;
-    height: 2rem;
-    position: absolute;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    transition: all 0.5s;
-    line-height: 3rem;
+.comment_thumbs .count {
+  width: 2rem;
+  height: 2rem;
+  min-width: fit-content;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: 1.8rem;
+  font-size: 1rem;
 }
 
-.comment_thumbs .thumbing:hover{
-    position: absolute;
-    right: 0;
-    top: 0;
-    opacity: 1;
-    line-height: 1.6rem;
+.comment_thumbs .thumbing {
+  color: black;
+  background-color: white;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transition: all 0.5s;
+  line-height: 3rem;
+}
+
+.comment_thumbs .thumbing:hover {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 1;
+  line-height: 1.6rem;
 }

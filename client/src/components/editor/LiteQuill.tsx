@@ -1,18 +1,18 @@
-import React from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 interface IProps {
-  body: string;
-  setBody: (value: string) => void;
+  body: string
+  setBody: (value: string) => void
 }
 
 const LiteQuill: React.FC<IProps> = ({ body, setBody }) => {
-  const modules = { toolbar: { container } };
+  const modules = { toolbar: { container } }
 
   const handleChange = (e: any) => {
-    setBody(e);
-  };
+    setBody(e)
+  }
 
   return (
     <ReactQuill
@@ -22,14 +22,14 @@ const LiteQuill: React.FC<IProps> = ({ body, setBody }) => {
       onChange={handleChange}
       value={body}
     />
-  );
-};
+  )
+}
 
-let container = [
-  ["bold", "italic", "underline", "strike"], // toggled buttons
-  ["blockquote", "code-block"],
-  [{ script: "sub" }, { script: "super" }], // superscript/subscript
+const container = [
+  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  ['blockquote', 'code-block'],
+  [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
   [{ font: [] }],
-];
-export default LiteQuill;
+]
+export default LiteQuill

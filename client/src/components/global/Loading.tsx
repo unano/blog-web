@@ -1,5 +1,4 @@
-
-import React from "react";
+import React from 'react'
 
 const Loading = () => {
   return (
@@ -7,14 +6,14 @@ const Loading = () => {
       <div className="d-flex justify-content-center">
         <div
           className="spinner-border"
-          style={{ width: "3rem", height: "3rem" }}
+          style={{ width: '3rem', height: '3rem' }}
           role="status"
         >
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading

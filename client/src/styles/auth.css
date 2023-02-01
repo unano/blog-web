@@ -1,10 +1,7 @@
-.auth_page{
+.auth_page a {
+  text-decoration: none;
 }
 
-.auth_page a{
-    text-decoration: none;
-}
-
-.auth_page a:hover{
-    text-decoration:underline;
+.auth_page a:hover {
+  text-decoration: underline;
 }

@@ -1,13 +1,11 @@
 import React from 'react'
-import { useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
-import { IUser, RootStore } from '../../utils/TypeScript';
+import { Link } from 'react-router-dom'
+import { IUser } from '../../utils/TypeScript'
 
 interface IProps {
-  follow: IUser[];
+  follow: IUser[]
 }
-const Follow: React.FC<IProps> = ({ follow}) => {
-
+const Follow: React.FC<IProps> = ({ follow }) => {
   return (
     <div className="follow_users">
       {follow.map((user) => (
@@ -23,7 +21,7 @@ const Follow: React.FC<IProps> = ({ follow}) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 export default Follow

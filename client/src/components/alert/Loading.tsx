@@ -5,14 +5,14 @@ const Loading = () => {
     <div
       className="loading"
       style={{
-        background: "#0007",
-        color: "white",
+        background: '#0007',
+        color: 'white',
         top: 0,
         left: 0,
         zIndex: 100,
       }}
     >
-      <svg width="205" height="250" viewBox='0 0 62 62'>
+      <svg width="205" height="250" viewBox="0 0 62 62">
         <polygon
           stroke="#fff"
           strokeWidth="1"
@@ -20,11 +20,11 @@ const Loading = () => {
           points="1,1 60,1 60,60 1,60 "
         ></polygon>
         <text fill="#fff" x="7" y="53">
-                  Loading
+          Loading
         </text>
       </svg>
     </div>
-  );
+  )
 }
 
 export default Loading

@@ -1,4 +1,3 @@
-
 import {
   CREATE_COMMENT,
   ICommentType,
@@ -11,12 +10,12 @@ import {
   DELETE_REPLY,
   UPDATE_COMMENT_THUMB,
   UPDATE_REPLY_THUMB,
-} from "../types/commentTypes";
+} from '../types/commentTypes'
 
 const initialState = {
   data: [],
   total: 1,
-};
+}
 
 const commentReducer = (
   state: ICommentState = initialState,
@@ -24,9 +23,9 @@ const commentReducer = (
 ): ICommentState => {
   switch (action.type) {
     case CREATE_COMMENT:
-      return { ...state, data: [action.payload, ...state.data] };
+      return { ...state, data: [action.payload, ...state.data] }
     case GET_COMMENTS:
-      return action.payload;
+      return action.payload
     case REPLY_COMMENT:
       return {
         ...state,
@@ -38,14 +37,14 @@ const commentReducer = (
               }
             : item
         ),
-      };
+      }
     case UPDATE_COMMENT:
       return {
         ...state,
         data: state.data.map((item) =>
           item._id === action.payload._id ? action.payload : item
         ),
-      };
+      }
     case UPDATE_REPLY:
       return {
         ...state,
@@ -59,12 +58,12 @@ const commentReducer = (
               }
             : item
         ),
-      };
+      }
     case DELETE_COMMENT:
       return {
         ...state,
         data: state.data.filter((item) => item._id !== action.payload._id),
-      };
+      }
     case DELETE_REPLY:
       return {
         ...state,
@@ -78,9 +77,9 @@ const commentReducer = (
               }
             : item
         ),
-      };
+      }
     case UPDATE_COMMENT_THUMB:
-      let comment_thumb_count = action.payload.thumbed ? -1 : 1;
+      const comment_thumb_count = action.payload.thumbed ? -1 : 1
       return {
         ...state,
         data: state.data.map((item) =>
@@ -88,9 +87,9 @@ const commentReducer = (
             ? { ...item, thumbs_count: item.thumbs_count + comment_thumb_count }
             : item
         ),
-      };
+      }
     case UPDATE_REPLY_THUMB:
-      let reply_thumb_count = action.payload.thumbed ? -1 : 1;
+      const reply_thumb_count = action.payload.thumbed ? -1 : 1
       return {
         ...state,
         data: state.data.map((item) =>
@@ -108,10 +107,10 @@ const commentReducer = (
               }
             : item
         ),
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default commentReducer;
+export default commentReducer

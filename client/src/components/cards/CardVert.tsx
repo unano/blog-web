@@ -1,15 +1,15 @@
-import React from "react";
-import { IBlog } from "../../utils/TypeScript";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { IBlog } from '../../utils/TypeScript'
+import { Link } from 'react-router-dom'
 
 interface IProps {
-  blog: IBlog;
+  blog: IBlog
 }
 const CardVert: React.FC<IProps> = ({ blog }) => {
   return (
     <div className="card_vert">
       <div className="card_thumbnail">
-        {typeof blog.thumbnail === "string" && (
+        {typeof blog.thumbnail === 'string' && (
           <img src={blog.thumbnail} alt="..." />
         )}
       </div>
@@ -20,7 +20,7 @@ const CardVert: React.FC<IProps> = ({ blog }) => {
         <div className="card_descrp">{blog.description.slice(0, 100)}</div>
         <p className="card_author">
           <small>
-            {typeof blog.user !== "string" && (
+            {typeof blog.user !== 'string' && (
               <Link to={`/profile/${blog.user._id}?page=1`}>
                 <small>By: </small> {blog.user.name}
               </Link>
@@ -30,7 +30,7 @@ const CardVert: React.FC<IProps> = ({ blog }) => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardVert;
+export default CardVert

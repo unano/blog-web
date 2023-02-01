@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { IComment } from "../../utils/TypeScript";
-import { Link } from "react-router-dom";
-import Input from "./Input";
-import { useDispatch, useSelector } from "react-redux";
-import { RootStore } from "../../utils/TypeScript";
-import { handleCommentThumb, replyComment } from "../../redux/actions/commentAction";
-import { IUser } from "../../utils/TypeScript";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { updateComment } from "../../redux/actions/commentAction";
-import { deleteComment } from "../../redux/actions/commentAction";
-import { MdOutlineThumbUpAlt, MdThumbUpAlt } from "react-icons/md";
+import React, { useEffect, useState } from 'react'
+import { IComment, RootStore, IUser } from '../../utils/TypeScript'
+import { Link, useNavigate } from 'react-router-dom'
+import Input from './Input'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  handleCommentThumb,
+  replyComment,
+  updateComment,
+  deleteComment,
+} from '../../redux/actions/commentAction'
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
+import { MdOutlineThumbUpAlt, MdThumbUpAlt } from 'react-icons/md'
 
 interface IProps {
-  comment: IComment;
-  showReply: IComment[];
-  setShowReply: (showReply: IComment[]) => void;
-  children?: React.ReactNode;
-  reply_user?: IUser;
+  comment: IComment
+  showReply: IComment[]
+  setShowReply: (showReply: IComment[]) => void
+  children?: React.ReactNode
+  reply_user?: IUser
 }
 
 const CommentList: React.FC<IProps> = ({
@@ -26,16 +27,16 @@ const CommentList: React.FC<IProps> = ({
   setShowReply,
   reply_user,
 }) => {
-  const { auth } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
-  const [onReply, setOnReply] = useState(false);
-  const [edit, setEdit] = useState<IComment>();
-  const [thumbed, setThumbed] = useState<boolean | null >(null);
-  const [thumb_count, setThumbeCount] = useState(comment.thumbs_count);
-
+  const { auth } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [onReply, setOnReply] = useState(false)
+  const [edit, setEdit] = useState<IComment>()
+  const [thumbed, setThumbed] = useState<boolean | null>(null)
+  const [thumb_count, setThumbeCount] = useState(comment.thumbs_count)
 
   const handleReply = (body: string) => {
-    if (!auth.user || !auth.access_token) return;
+    if (!auth.user || !auth.access_token) return
 
     const data = {
       user: auth.user,
@@ -48,23 +49,26 @@ const CommentList: React.FC<IProps> = ({
       reply_user: comment.user,
       comment_root: comment.comment_root || comment._id,
       createdAt: new Date().toISOString(),
-    };
-    setShowReply([...showReply, data]);
-    dispatch(replyComment(data, auth.access_token) as any);
-    setOnReply(false);
-  };
+    }
+    setShowReply([...showReply, data])
+    dispatch(replyComment(data, auth.access_token) as any)
+    setOnReply(false)
+  }
 
   const handleDelete = (comment: IComment) => {
-    if (!auth.access_token || !auth.user) return;
-    dispatch(deleteComment(comment, auth.access_token) as any);
-  };
+    if (!auth.access_token || !auth.user) return
+    dispatch(deleteComment(comment, auth.access_token) as any)
+  }
 
   const handleThumb = () => {
-    if (!auth.user || !auth.access_token) return;
+    if (!auth.user || !auth.access_token) {
+      navigate(`/login?blog/${comment.blog_id}`)
+      return
+    }
     if (thumbed == null) return
-    const value = thumbed? -1: 1
+    const value = thumbed ? -1 : 1
     setThumbed(!thumbed)
-    setThumbeCount(thumb_count + value);
+    setThumbeCount(thumb_count + value)
     dispatch(
       handleCommentThumb(
         comment,
@@ -72,44 +76,50 @@ const CommentList: React.FC<IProps> = ({
         thumbed,
         auth.access_token
       ) as any
-    );
+    )
   }
 
   const Nav = (comment: IComment) => {
     return (
       <div className="edit_and_delete">
-        <div onClick={() => handleDelete(comment)}>
+        <div
+          onClick={() => handleDelete(comment)}
+          onKeyUp={() => handleDelete(comment)}
+          role="button"
+          tabIndex={0}
+        >
           <AiOutlineDelete />
         </div>
-        <div onClick={() => setEdit(comment)}>
+        <div
+          onClick={() => setEdit(comment)}
+          onKeyUp={() => setEdit(comment)}
+          role="button"
+          tabIndex={0}
+        >
           <AiOutlineEdit />
         </div>
       </div>
-    );
-  };
+    )
+  }
   const handleUpdate = (body: string) => {
-    if (!auth.user || !auth.access_token || !edit) return;
-    if (body === edit.content) return setEdit(undefined);
+    if (!auth.user || !auth.access_token || !edit) return
+    if (body === edit.content) return setEdit(undefined)
 
-    const newComment = { ...edit, content: body };
-    dispatch(updateComment(newComment, auth.access_token) as any);
-    setEdit(undefined);
-  };
+    const newComment = { ...edit, content: body }
+    dispatch(updateComment(newComment, auth.access_token) as any)
+    setEdit(undefined)
+  }
 
   useEffect(() => {
     if (comment.thumbs) {
-            const thumbJudge = !!comment.thumbs.filter(
-              (user_id) => user_id === auth.user?._id
-            ).length;
-            setThumbed(thumbJudge);
+      const thumbJudge = !!comment.thumbs.filter(
+        (user_id) => user_id === auth.user?._id
+      ).length
+      setThumbed(thumbJudge)
     } else {
       setThumbed(false)
     }
   }, [])
-  
-  useEffect(() => {
-    
-  },[])
 
   return (
     <div className="comment_content">
@@ -126,7 +136,7 @@ const CommentList: React.FC<IProps> = ({
               </small>
               {reply_user?._id && (
                 <small className="reply_to">
-                  Reply to{" "}
+                  Reply to{' '}
                   <Link to={`/profile/${reply_user?._id}?page=1`}>
                     {reply_user?.name}
                   </Link>
@@ -145,6 +155,9 @@ const CommentList: React.FC<IProps> = ({
                       <div
                         className="edit_and_delete"
                         onClick={() => handleDelete(comment)}
+                        onKeyUp={() => handleDelete(comment)}
+                        role="button"
+                        tabIndex={0}
                       >
                         <div>
                           <AiOutlineDelete />
@@ -157,20 +170,33 @@ const CommentList: React.FC<IProps> = ({
                 </div>
               </small>
             </div>
-            <div style={{"wordBreak":"break-all"}}
+            <div
+              style={{ wordBreak: 'break-all' }}
               dangerouslySetInnerHTML={{
                 __html: comment.content,
               }}
             />
           </div>
 
-          <small className="reply" onClick={() => setOnReply(!onReply)}>
-            {onReply ? "Cancel" : "Reply"}
+          <small
+            className="reply"
+            onClick={() => setOnReply(!onReply)}
+            onKeyUp={() => setOnReply(!onReply)}
+            role="button"
+            tabIndex={0}
+          >
+            {onReply ? 'Cancel' : 'Reply'}
           </small>
           <div>{onReply && <Input callback={handleReply} />}</div>
           <div className="thumbs comment_thumbs">
             <div className="count">{thumb_count}</div>
-            <div className="thumbing" onClick={handleThumb}>
+            <div
+              className="thumbing"
+              onClick={handleThumb}
+              onKeyUp={handleThumb}
+              role="button"
+              tabIndex={0}
+            >
               {thumbed ? <MdThumbUpAlt /> : <MdOutlineThumbUpAlt />}
             </div>
           </div>
@@ -178,7 +204,7 @@ const CommentList: React.FC<IProps> = ({
       )}
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default CommentList;
+export default CommentList

@@ -1,45 +1,48 @@
-import React, { useState } from "react";
-import Search from "./Search";
-import { Link, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { RootStore } from "../../utils/TypeScript"; 
-import { logout } from "../../redux/actions/authAction";
+import React, { useState } from 'react'
+import Search from './Search'
+import { Link, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootStore } from '../../utils/TypeScript'
+import { logout } from '../../redux/actions/authAction'
 
 const Menu = () => {
   const { auth } = useSelector((state: RootStore) => state)
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
-  
+
   const bfLoginLinks = [
-    { label: "Login", path: "/login" },
-    { label: "Register", path: "/register" },
-  ];
+    { label: 'Login', path: '/login' },
+    { label: 'Register', path: '/register' },
+  ]
 
   const afLoginLinks = [
-    { label: "Home", path: "/" },
-    { label: "CreateBlog", path: "/create_blog" },
-  ];
+    { label: 'Home', path: '/' },
+    { label: 'CreateBlog', path: '/create_blog' },
+  ]
 
   const navLinks = auth.access_token ? afLoginLinks : bfLoginLinks
 
-    const isActive = (pn: string) => {
-      if (pn === pathname) return "actived";
-    };
-  
-  const handleLogout = () => {
-    if (!auth.access_token) return;
-     dispatch(logout(auth.access_token) as any)
+  const isActive = (pn: string) => {
+    if (pn === pathname) return 'actived'
   }
 
-  const [showDropdown, setShowDropdown] = useState(false);
+  const handleLogout = () => {
+    if (!auth.access_token) return
+    dispatch(logout(auth.access_token) as any)
+  }
+
+  const [showDropdown, setShowDropdown] = useState(false)
   return (
     <>
       <div className="head">
-      <Link to="/">
-          <img src="https://res.cloudinary.com/drspqpjo3/image/upload/v1674656342/source/blorg_gtallk.png" alt="logo" />
+        <Link to="/">
+          <img
+            src="https://res.cloudinary.com/drspqpjo3/image/upload/v1674656342/source/blorg_gtallk.png"
+            alt="logo"
+          />
         </Link>
-      <Search />
+        <Search />
       </div>
       <ul className="navs">
         {navLinks.map((link, index) => (
@@ -48,15 +51,20 @@ const Menu = () => {
           </li>
         ))}
 
-        {auth.user?.role === "admin" && (
-          <li className={`${isActive("/category")}`}>
+        {auth.user?.role === 'admin' && (
+          <li className={`${isActive('/category')}`}>
             <Link to="/category">Category</Link>
           </li>
         )}
 
         {auth.user && (
           <li className="nav-item dropdown">
-            <span onClick={() => setShowDropdown(!showDropdown)}>
+            <span
+              onClick={() => setShowDropdown(!showDropdown)}
+              onKeyUp={() => setShowDropdown(!showDropdown)}
+              role="button"
+              tabIndex={0}
+            >
               <img src={auth.user.avatar} alt="avatar" className="avatar" />
             </span>
             {showDropdown && (
@@ -75,7 +83,7 @@ const Menu = () => {
         )}
       </ul>
     </>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

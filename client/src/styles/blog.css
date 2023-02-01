@@ -1,21 +1,20 @@
-
-.detail_blog{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid silver;
-    padding: 1rem;
-    gap: 1.4rem;
+.detail_blog {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid silver;
+  padding: 1rem;
+  gap: 1.4rem;
 }
-.detail_blog img{
-    max-width: 100%;
+.detail_blog img {
+  max-width: 100%;
 }
 
-.detail_blog .blog_up{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    position: relative;
+.detail_blog .blog_up {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  position: relative;
 }
 
 /* .detail_blog .blog_intro{
@@ -23,99 +22,98 @@
     flex-direction: column;
     gap: 0.1rem;
 } */
-.detail_blog .thumbs{
-    /* position: absolute;
+.detail_blog .thumbs {
+  /* position: absolute;
     top: 6rem;
     left: 0; */
-    display: flex;
-    align-items: flex-start;
-    font-size: 1.5rem;
-    justify-content: flex-end;
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.5rem;
+  justify-content: flex-end;
 }
 
-.detail_blog .count{
-    background-color: black;
-    color: whitesmoke;
-    width: 2rem;
-    height: 2rem;
-    text-align: center;
+.detail_blog .count {
+  background-color: black;
+  color: whitesmoke;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
 }
-.detail_blog .thumbing{
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid black;
-    text-align: center;
-    line-height: 1.7rem;
-}
-
-.detail_blog h5 a{
-    border: 1px solid black;
-    text-decoration: none;
-    color: white;
-    background-color: black;
-    padding: 0 0.3rem;
-    transition: all 0.5s;
+.detail_blog .thumbing {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 1.7rem;
 }
 
-.detail_blog h5 a:hover{
-    border: 1px solid black;
-    color: black;
-    background-color: white;
+.detail_blog h5 a {
+  border: 1px solid black;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 0 0.3rem;
+  transition: all 0.5s;
 }
 
-.detail_blog .blog_intro .blog_intro_extra{  
-    display: inline-block;
-    flex-grow: 0;
-    border: 1px solid black;
-    padding-right: 1rem;
-}
-.detail_blog .blog_intro .blog_intro_extra .blog_author{
-    display: inline-block;
-    background-color: black;
-    color: white;
-    padding: 0 0.5rem;
-    font-weight: 600;
+.detail_blog h5 a:hover {
+  border: 1px solid black;
+  color: black;
+  background-color: white;
 }
 
-.detail_blog .blog_intro .blog_intro_extra .blog_date{
-    padding-left: 1rem;
-    font-size: 0.8rem;
-    font-weight: 300;
+.detail_blog .blog_intro .blog_intro_extra {
+  display: inline-block;
+  flex-grow: 0;
+  border: 1px solid black;
+  padding-right: 1rem;
+}
+.detail_blog .blog_intro .blog_intro_extra .blog_author {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 0 0.5rem;
+  font-weight: 600;
 }
 
-.detail_blog .blog_intro h2{
-    color: white;
-    display: inline-block;
-    background-color: black;
-    padding: 0.2rem 0.8rem;
-    font-size: 2.5rem;
-    display: block;
+.detail_blog .blog_intro .blog_intro_extra .blog_date {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  font-weight: 300;
 }
 
-.detail_blog .blog_thumbnail{
-    height: 5.7rem;
-    width: 5.7rem;
-    border: 1px solid black;
-    flex-shrink: 0;
+.detail_blog .blog_intro h2 {
+  color: white;
+  display: inline-block;
+  background-color: black;
+  padding: 0.2rem 0.8rem;
+  font-size: 2.5rem;
+  display: block;
 }
 
-.detail_blog .blog_thumbnail img{
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+.detail_blog .blog_thumbnail {
+  height: 5.7rem;
+  width: 5.7rem;
+  border: 1px solid black;
+  flex-shrink: 0;
+}
+
+.detail_blog .blog_thumbnail img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-    .detail_blog .blog_intro h2{
-        font-size: 1.6rem;
-    }
-    .detail_blog{
-        width: 100%;
-    }
-
+  .detail_blog .blog_intro h2 {
+    font-size: 1.6rem;
+  }
+  .detail_blog {
+    width: 100%;
+  }
 }
 
-.blog_content{
-    width: 100%;
-    word-break: break-word;
+.blog_content {
+  width: 100%;
+  word-break: break-word;
 }

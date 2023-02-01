@@ -1,52 +1,62 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import NotFound from "../components/global/NotFound";
-import { FormSubmit, RootStore, ICategory } from "../utils/TypeScript";
-import { createCategory, updateCategory, deleteCategory } from "../redux/actions/categoryAction";
-import { RiDeleteBin2Line, RiEditLine } from "react-icons/ri";
-import { MdClose } from "react-icons/md";
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import NotFound from '../components/global/NotFound'
+import { FormSubmit, RootStore, ICategory } from '../utils/TypeScript'
+import {
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} from '../redux/actions/categoryAction'
+import { RiDeleteBin2Line, RiEditLine } from 'react-icons/ri'
+import { MdClose } from 'react-icons/md'
 
 const Category = () => {
-  const [name, setName] = useState("")
+  const [name, setName] = useState('')
   const [edit, setEdit] = useState<ICategory | null>(null)
 
-  const { auth, categories } = useSelector((state: RootStore) => state);
-  const dispatch = useDispatch();
+  const { auth, categories } = useSelector((state: RootStore) => state)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if(edit) setName(edit.name)
-  },[edit])
+    if (edit) setName(edit.name)
+  }, [edit])
 
   const handleSubmit = (e: FormSubmit) => {
     e.preventDefault()
     if (!auth.access_token || !name) return
 
     if (edit) {
-      if (edit.name === name) return;
+      if (edit.name === name) return
       const data = { ...edit, name }
-      dispatch(updateCategory(data, auth.access_token) as any);
+      dispatch(updateCategory(data, auth.access_token) as any)
     } else {
-      dispatch(createCategory(name, auth.access_token) as any);
+      dispatch(createCategory(name, auth.access_token) as any)
     }
-    setName("")
+    setName('')
     setEdit(null)
-  };
+  }
 
-  const handeleDelete = (id:string) => {
-    if (!auth.access_token) return;
+  const handeleDelete = (id: string) => {
+    if (!auth.access_token) return
     if (window.confirm('Are you sure to delete this catetgory?')) {
-       dispatch(deleteCategory(id, auth.access_token) as any);
+      dispatch(deleteCategory(id, auth.access_token) as any)
     }
   }
 
-  if (auth.user?.role !== "admin") return <NotFound />;
+  if (auth.user?.role !== 'admin') return <NotFound />
   return (
     <div className="categories">
       <form onSubmit={handleSubmit}>
         <label htmlFor="category">Category</label>
         <div>
           {edit && (
-            <div className="categ_close" onClick={() => setEdit(null)}>
+            <div
+              className="categ_close"
+              onClick={() => setEdit(null)}
+              onKeyUp={() => setEdit(null)}
+              role="button"
+              tabIndex={0}
+            >
               <MdClose />
             </div>
           )}
@@ -57,7 +67,7 @@ const Category = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <button type="submit">{edit ? "update" : "create"}</button>
+          <button type="submit">{edit ? 'update' : 'create'}</button>
         </div>
       </form>
       <div>
@@ -69,6 +79,9 @@ const Category = () => {
                 <div
                   className="category_edit"
                   onClick={() => setEdit(category)}
+                  onKeyUp={() => setEdit(category)}
+                  role="button"
+                  tabIndex={0}
                 >
                   <RiEditLine />
                 </div>
@@ -76,6 +89,9 @@ const Category = () => {
               <div
                 className="category_delete"
                 onClick={() => handeleDelete(category._id)}
+                onKeyUp={() => handeleDelete(category._id)}
+                role="button"
+                tabIndex={0}
               >
                 <RiDeleteBin2Line />
               </div>
@@ -84,7 +100,7 @@ const Category = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category

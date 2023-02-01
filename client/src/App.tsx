@@ -1,35 +1,36 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import Header from "./components/global/Header";
-import PageRender from "./pageRender";
-import Footer from "./components/global/Footer";
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import Header from './components/global/Header'
+import PageRender from './pageRender'
+import Footer from './components/global/Footer'
 
-import { Alert } from "./components/alert/Alert";
-import { refreshToken } from "./redux/actions/authAction";
-import { getCategories } from "./redux/actions/categoryAction";
-import { getHomeBlogs } from "./redux/actions/blogAction";
+import { Alert } from './components/alert/Alert'
+import { refreshToken } from './redux/actions/authAction'
+import { getCategories } from './redux/actions/categoryAction'
+import { getHomeBlogs } from './redux/actions/blogAction'
 
-import io from "socket.io-client";
+import io from 'socket.io-client'
 
-import SocketClient from "./SocketClient";
-import { API_URL } from "./utils/config";
+import SocketClient from './SocketClient'
+import { API_URL } from './utils/config'
 
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(refreshToken() as any);
-    dispatch(getCategories() as any);
-    dispatch(getHomeBlogs() as any);
-  }, [dispatch]);
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const socket = io(API_URL);
-    dispatch({ type: "SOCKET", payload: socket });
+    dispatch(refreshToken() as any)
+    dispatch(getCategories() as any)
+    dispatch(getHomeBlogs() as any)
+  }, [dispatch])
+
+  useEffect(() => {
+    const socket = io(API_URL)
+    dispatch({ type: 'SOCKET', payload: socket })
     return () => {
-      socket.close();
-    };
-  }, []);
+      socket.close()
+    }
+  }, [dispatch])
 
   return (
     <div className="container">
@@ -45,7 +46,7 @@ const App = () => {
         <Footer />
       </Router>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

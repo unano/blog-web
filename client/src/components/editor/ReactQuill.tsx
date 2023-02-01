@@ -1,66 +1,65 @@
-import React, { useEffect, useRef, useCallback, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { useEffect, useRef, useCallback, useState } from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
-import { useDispatch } from "react-redux";
-import { checkImage, imageUpload } from "../../utils/ImageUpload";
-import { ALERT } from "../../redux/types/alertType";
+import { useDispatch } from 'react-redux'
+import { checkImage, imageUpload } from '../../utils/ImageUpload'
+import { ALERT } from '../../redux/types/alertType'
 
 interface IProps {
-  setBody: (value: string) => void;
+  setBody: (value: string) => void
   body: string
 }
 
-
-const Quill: React.FC<IProps> = ({ setBody, body}) => {
-  const dispatch = useDispatch();
-  const quillRef = useRef<ReactQuill>(null);
-  const modules = { toolbar: { container } };
-  const [changed, setChanged] = useState(false);
+const Quill: React.FC<IProps> = ({ setBody, body }) => {
+  const dispatch = useDispatch()
+  const quillRef = useRef<ReactQuill>(null)
+  const modules = { toolbar: { container } }
+  const [changed, setChanged] = useState(false)
 
   const handleChange = (e: any) => {
-    setBody(e);
-  };
+    setBody(e)
+  }
 
   const handleChangeImage = useCallback(() => {
     //question
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.click();
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+    input.click()
     input.onchange = async () => {
-      const files = input.files;
+      const files = input.files
       if (!files)
         return dispatch({
           type: ALERT,
-          payload: { errors: "File does not esxists" },
-        });
+          payload: { errors: 'File does not esxists' },
+        })
 
-      const file = files[0];
-      const check = checkImage(file);
-      if (check) return dispatch({ type: ALERT, payload: { errors: check } });
+      const file = files[0]
+      const check = checkImage(file)
+      if (check) return dispatch({ type: ALERT, payload: { errors: check } })
 
-      dispatch({ type: ALERT, payload: { loading: true } });
-      const photo = await imageUpload(file);
-      const quill = quillRef.current;
-      const range = quill?.getEditor().getSelection()?.index;
+      dispatch({ type: ALERT, payload: { loading: true } })
+      const photo = await imageUpload(file)
+      const quill = quillRef.current
+      const range = quill?.getEditor().getSelection()?.index
       if (range !== undefined) {
-        quill?.getEditor().insertEmbed(range, "image", `${photo.url}`);
+        quill?.getEditor().insertEmbed(range, 'image', `${photo.url}`)
       }
-      dispatch({ type: ALERT, payload: { loading: false } });
-    };
-  }, [dispatch]); //dispatch 不要写
+      dispatch({ type: ALERT, payload: { loading: false } })
+    }
+  }, [dispatch]) //dispatch 不要写
   useEffect(() => {
-    const quill = quillRef.current;
-    if (!quill) return;
+    const quill = quillRef.current
+    if (!quill) return
     //question
-    let toolbar = quill.getEditor().getModule("toolbar");
-    toolbar.addHandler("image", handleChangeImage);
-  }, [handleChangeImage,changed]);
+    const toolbar = quill.getEditor().getModule('toolbar')
+    toolbar.addHandler('image', handleChangeImage)
+  }, [handleChangeImage, changed])
 
   useEffect(() => {
     if (body && changed === false) setChanged(true)
-  },[body])
+  }, [body])
 
   return (
     <ReactQuill
@@ -70,29 +69,29 @@ const Quill: React.FC<IProps> = ({ setBody, body}) => {
       onChange={handleChange}
       ref={quillRef}
       defaultValue={body}
-      key={body ? "notLoadedYet" : "loaded"}
+      key={body ? 'notLoadedYet' : 'loaded'}
       //value={body} //problem
     />
-  );
-};
+  )
+}
 
-let container = [
-  ["bold", "italic", "underline", "strike"], // toggled buttons
-  ["blockquote", "code-block"],
+const container = [
+  ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  ['blockquote', 'code-block'],
 
   [{ header: 1 }, { header: 2 }], // custom button values
-  [{ list: "ordered" }, { list: "bullet" }],
-  [{ script: "sub" }, { script: "super" }], // superscript/subscript
-  [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-  [{ direction: "rtl" }], // text direction
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+  [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+  [{ direction: 'rtl' }], // text direction
 
-  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+  [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
   [{ font: [] }],
   [{ align: [] }],
 
-  ["clean", "link", "image", "video"], // remove formatting button
-];
-export default Quill;
+  ['clean', 'link', 'image', 'video'], // remove formatting button
+]
+export default Quill

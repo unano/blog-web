@@ -1,16 +1,16 @@
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { RootStore } from '../utils/TypeScript';
-import CardVert from "../components/cards/CardVert"
-import Loading from "../components/global/Loading";
-import Categories from "../components/sideBar/Categories"
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { RootStore } from '../utils/TypeScript'
+import CardVert from '../components/cards/CardVert'
+import Loading from '../components/global/Loading'
+import Categories from '../components/sideBar/Categories'
 
 const Index = () => {
-  const { homeBlogs } = useSelector((state: RootStore) => state);
-  if(homeBlogs.length === 0) return <Loading/>
+  const { homeBlogs } = useSelector((state: RootStore) => state)
+  if (homeBlogs.length === 0) return <Loading />
   return (
     <div className="home_page">
-      <Categories/>
+      <Categories />
       <div className="home_blogs">
         {homeBlogs.map((homeBlog) => (
           <div key={homeBlog._id}>
@@ -37,7 +37,7 @@ const Index = () => {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default Index;
+export default Index

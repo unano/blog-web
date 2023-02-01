@@ -1,30 +1,29 @@
-
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootStore, IBlog, InputChange } from "../../utils/TypeScript";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { RootStore, IBlog, InputChange } from '../../utils/TypeScript'
 
 interface IProps {
-  blog: IBlog;
-  setBlog: (blog: IBlog) => void;
+  blog: IBlog
+  setBlog: (blog: IBlog) => void
 }
 
 //question
 const CreateForm: React.FC<IProps> = ({ blog, setBlog }) => {
-  const { categories } = useSelector((state: RootStore) => state);
+  const { categories } = useSelector((state: RootStore) => state)
 
   const handleChangeInput = (e: InputChange) => {
-      const { value, name } = e.target;
-    setBlog({ ...blog, [name]: value });
-  };
-    
-    const handleChangeThumbnail = (e: InputChange) => {
-        const target = e.target as HTMLInputElement
-        const files = target.files
-        if (files) {
-            const file = files[0]
-            setBlog({...blog, thumbnail: file})
-        }
-    };
+    const { value, name } = e.target
+    setBlog({ ...blog, [name]: value })
+  }
+
+  const handleChangeThumbnail = (e: InputChange) => {
+    const target = e.target as HTMLInputElement
+    const files = target.files
+    if (files) {
+      const file = files[0]
+      setBlog({ ...blog, thumbnail: file })
+    }
+  }
   return (
     <form>
       <div className="form_group">
@@ -72,7 +71,7 @@ const CreateForm: React.FC<IProps> = ({ blog, setBlog }) => {
         </select>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default CreateForm;
+export default CreateForm
