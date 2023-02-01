@@ -1,5 +1,7 @@
+
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 //const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
@@ -15,12 +17,28 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+              cacheCompression: false,
+              plugins:["@babel/plugin-transform-runtime"]
+            },
           },
         ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['postcss-preset-env'],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
@@ -43,6 +61,7 @@ module.exports = {
     // new CopyPlugin({
     //   patterns: [{ from: 'source', to: 'dest' }],
     // }),
+    new MiniCssExtractPlugin(),
   ],
   stats: 'errors-only',
 }
