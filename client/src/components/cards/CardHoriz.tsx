@@ -37,7 +37,7 @@ const CardHoriz: React.FC<IProps> = ({ blog }) => {
               <Link to={`/blog/${blog._id}`}>
                 <LazyLoadImage
                   src={blog.thumbnail}
-                  effect="black-and-white"
+                  effect="blur"
                   alt="thumbnail"
                 />
               </Link>
