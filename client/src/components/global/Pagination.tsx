@@ -44,9 +44,8 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
           </li>
         )}
         {page !== 1 && (
-          <li>
+          <li className={`${isActive(1)}`}>
             <span
-              className={`${isActive(1)}`}
               onClick={() => handlePagination(1)}
               onKeyUp={() => handlePagination(1)}
               role="button"
@@ -65,9 +64,8 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
           </li>
         )}
         {page > 2 && (
-          <li>
+          <li className={`${isActive(page - 1)}`}>
             <span
-              className={`${isActive(page - 1)}`}
               onClick={() => handlePagination(page - 1)}
               onKeyUp={() => handlePagination(page - 1)}
               role="button"
@@ -77,9 +75,8 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
             </span>
           </li>
         )}
-        <li>
+        <li className={`${isActive(page)}`}>
           <span
-            className={`${isActive(page)}`}
             onClick={() => handlePagination(page)}
             onKeyUp={() => handlePagination(page)}
             role="button"
@@ -89,9 +86,8 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
           </span>
         </li>
         {page < total - 1 && (
-          <li>
+          <li className={`${isActive(page + 1)}`}>
             <span
-              className={`${isActive(page + 1)}`}
               onClick={() => handlePagination(page + 1)}
               onKeyUp={() => handlePagination(page + 1)}
               role="button"
@@ -110,9 +106,8 @@ const Pagination: React.FC<IProps> = ({ total, callback }) => {
           </li>
         )}
         {page !== total && (
-          <li>
+          <li className={`${isActive(total)}`}>
             <span
-              className={`${isActive(total)}`}
               onClick={() => handlePagination(total)}
               onKeyUp={() => handlePagination(total)}
               role="button"

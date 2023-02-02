@@ -1,6 +1,7 @@
 import React from 'react'
 import { IBlog } from '../../utils/TypeScript'
 import { Link } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface IProps {
   blog: IBlog
@@ -10,7 +11,13 @@ const CardVert: React.FC<IProps> = ({ blog }) => {
     <div className="card_vert">
       <div className="card_thumbnail">
         {typeof blog.thumbnail === 'string' && (
-          <img src={blog.thumbnail} alt="..." />
+          <LazyLoadImage
+            style={{ transition: 'all 0.5s' }}
+            src={blog.thumbnail}
+            effect="blur"
+            className="image"
+            alt="b"
+          />
         )}
       </div>
       <div className="card_content">

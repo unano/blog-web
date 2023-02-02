@@ -193,16 +193,12 @@
   box-shadow: 0 0 10px 0px silver;
 }
 
-.card_vert:hover img {
-  transform: scale(120%);
-}
-
 .card_vert:hover .card_thumbnail {
   transform: scale(110%);
   box-shadow: 0 0 10px 0 rgb(124, 124, 124);
 }
 
-.card_vert:hover .card_title > a {
+.card_vert:hover .card_title {
   transform: scale(105%);
   box-shadow: 0 0 10px 0 rgb(48, 48, 48);
 }
@@ -221,13 +217,22 @@
   transition: all 0.5s;
 }
 
-.card_vert img {
+.card_vert span {
+  height: 100%;
+  width: 100%;
+}
+
+.card_vert span img {
   height: 100%;
   width: 100%;
   background-color: black;
   object-fit: cover;
   transition: all 0.5s;
 }
+
+/* .card_vert:hover span {
+  transform: scale(120%);
+} */
 
 .card_vert .card_content {
   padding-top: 0.1rem;
@@ -244,6 +249,7 @@
   color: white;
   background-color: black;
   padding-right: 0.5rem;
+  transition: all 0.5s;
 }
 
 .card_vert .card_title a {

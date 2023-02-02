@@ -219,6 +219,10 @@ textarea::-webkit-scrollbar-thumb {
   background-color: rgb(244, 244, 244);
   flex-shrink: 0;
 }
+.cardHoriz .thumbnail span {
+  width: 100%;
+  height: 100%;
+}
 
 .cardHoriz .thumbnail img {
   width: 100%;

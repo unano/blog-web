@@ -1,4 +1,3 @@
-
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -20,7 +19,7 @@ module.exports = {
             options: {
               cacheDirectory: true,
               cacheCompression: false,
-              plugins:["@babel/plugin-transform-runtime"]
+              plugins: ['@babel/plugin-transform-runtime'],
             },
           },
         ],
@@ -53,6 +52,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '..', './build'),
     filename: 'bundle.js',
+    publicPath: '/',
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { TfiPencilAlt, TfiEraser } from 'react-icons/tfi'
 import { deleteBlog } from '../../redux/actions/blogAction'
 import { ALERT } from '../../redux/types/alertType'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface IProps {
   blog: IBlog
@@ -33,7 +34,11 @@ const CardHoriz: React.FC<IProps> = ({ blog }) => {
           <>
             {typeof blog.thumbnail === 'string' ? (
               <Link to={`/blog/${blog._id}`}>
-                <img src={blog.thumbnail} alt="thumbnail" />
+                <LazyLoadImage
+                  src={blog.thumbnail}
+                  effect="black-and-white"
+                  alt="thumbnail"
+                />
               </Link>
             ) : (
               <Link to={`/blog/${blog._id}`}>

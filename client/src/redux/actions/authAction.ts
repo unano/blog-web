@@ -61,6 +61,7 @@ export const register =
 export const refreshToken =
   () => async (dispatch: Dispatch<IAuthType | IAlertType>) => {
     const logged = localStorage.getItem('logged')
+    console.log(logged)
     if (logged !== 'true') return
 
     try {
@@ -69,6 +70,7 @@ export const refreshToken =
         payload: { loading: true },
       })
       const res = await getAPI('refresh_token')
+      console.log(res)
       dispatch({
         type: AUTH,
         payload: res.data,

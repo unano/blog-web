@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootStore } from '../../utils/TypeScript'
 import { logout } from '../../redux/actions/authAction'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const Menu = () => {
   const { auth } = useSelector((state: RootStore) => state)
