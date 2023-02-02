@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useState } from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
@@ -15,7 +15,7 @@ const Quill: React.FC<IProps> = ({ setBody, body }) => {
   const dispatch = useDispatch()
   const quillRef = useRef<ReactQuill>(null)
   const modules = { toolbar: { container } }
-  const [changed, setChanged] = useState(false)
+  //const [changed, setChanged] = useState(false)
 
   const handleChange = (e: any) => {
     setBody(e)
@@ -55,11 +55,11 @@ const Quill: React.FC<IProps> = ({ setBody, body }) => {
     //question
     const toolbar = quill.getEditor().getModule('toolbar')
     toolbar.addHandler('image', handleChangeImage)
-  }, [handleChangeImage, changed])
+  }, [handleChangeImage])
 
-  useEffect(() => {
-    if (body && changed === false) setChanged(true)
-  }, [body])
+  // useEffect(() => {
+  //   if (body && changed === false) setChanged(true)
+  // }, [body])
 
   return (
     <ReactQuill
@@ -69,7 +69,7 @@ const Quill: React.FC<IProps> = ({ setBody, body }) => {
       onChange={handleChange}
       ref={quillRef}
       defaultValue={body}
-      key={body ? 'notLoadedYet' : 'loaded'}
+      //key={body ? 'notLoadedYet' : 'loaded'}
       //value={body} //problem
     />
   )

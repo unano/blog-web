@@ -6,6 +6,7 @@ import { TfiPencilAlt, TfiEraser } from 'react-icons/tfi'
 import { deleteBlog } from '../../redux/actions/blogAction'
 import { ALERT } from '../../redux/types/alertType'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 interface IProps {
   blog: IBlog

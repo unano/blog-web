@@ -9,7 +9,7 @@ import ReactQuill from '../components/editor/ReactQuill'
 import { ALERT } from '../redux/types/alertType'
 import { createBlog, updateBlog } from '../redux/actions/blogAction'
 import { getAPI } from '../utils/FetchData'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 interface IProps {
   id?: string
@@ -34,6 +34,7 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
   const dispatch = useDispatch()
   const [oldData, setOldData] = useState<IBlog>(initState)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     if (!id) return
@@ -112,7 +113,9 @@ const CreateBlog: React.FC<IProps> = ({ id }) => {
         </div>
       </div>
       <div className="create_blog_down">
-        <ReactQuill setBody={setBody} body={body} />
+        {(blog.content || location.pathname === '/create_blog') && (
+          <ReactQuill setBody={setBody} body={body} />
+        )}
         <div
           ref={divRef}
           dangerouslySetInnerHTML={{

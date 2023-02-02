@@ -97,6 +97,10 @@ export const deleteComment =
       })
 
       await deleteAPI(`comment/${data._id}`, access_token)
+      dispatch({
+        type: ALERT,
+        payload: { loading: false },
+      })
     } catch (err: any) {
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
     }
