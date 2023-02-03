@@ -11,8 +11,6 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)[![TypeScript](https://img.shields.io/badge/TypeScript-3d85c6?style=for-the-badge&logo=TypeScript&logoColor=white)](https://www.typescriptlang.org)[![Redux](https://img.shields.io/badge/Redux-f3f6f4?style=for-the-badge&logo=redux&logoColor=674ea7)](https://redux.js.org)[![Node.js](https://img.shields.io/badge/Node.js-38ad03?style=for-the-badge&logo=node.js&logoColor=black)](https://nodejs.org)[![Express](https://img.shields.io/badge/express-f3f6f4?style=for-the-badge&logo=express&logoColor=black)](https://expressjs.com)[![MongoDB](https://img.shields.io/badge/Mongodb-783f04?style=for-the-badge&logo=mongodb&logoColor=38ad03)](http://forthebadge.com)[![Socket.io](https://img.shields.io/badge/Socket.io-f3f6f4?style=for-the-badge&logo=socket.io&logoColor=black
 )](https://socket.io/)
 
-<br/>
-
 ### Deployed on  ###
 
 [![Netlify](https://img.shields.io/badge/Netlify-005eff?style=for-the-badge&logo=netlify&logoColor=26d7b2)](https://www.netlify.com/)[![Render](https://img.shields.io/badge/Render-073763?style=for-the-badge&logo=render&logoColor=28f2c8)](https://render.com)
