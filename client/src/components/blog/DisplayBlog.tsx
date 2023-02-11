@@ -96,7 +96,7 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
   }, [blog.thumbs_count])
 
   useEffect(() => {
-    if (comments.data.length === 0) return
+    //if (comments.data.length === 0) return
     setShowComments(comments.data)
     //setTotal(comments.total);
   }, [comments.data])
@@ -167,7 +167,7 @@ const DisplayBlog: React.FC<IProps> = ({ blog }) => {
       {loading ? (
         <Loading />
       ) : (
-        showComments?.map((comment, index) => (
+        showComments.map((comment, index) => (
           <Comments key={index} comment={comment} />
         ))
       )}

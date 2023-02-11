@@ -12,6 +12,8 @@ import {
   IUpdateThumbType,
   UPDATE_COMMENT_THUMB,
   UPDATE_REPLY_THUMB,
+  DELETE_REPLY,
+  DELETE_COMMENT,
 } from '../types/commentTypes'
 import { IComment } from '../../utils/TypeScript'
 import { postAPI, getAPI, patchAPI, deleteAPI } from '../../utils/FetchData'
@@ -91,16 +93,20 @@ export const deleteComment =
     const result = await checkTokenExp(token, dispatch)
     const access_token = result ? result : token
     try {
+      // dispatch({
+      //   type: ALERT,
+      //   payload: { loading: true },
+      // })
       dispatch({
-        type: ALERT,
-        payload: { loading: true },
+        type: data.comment_root ? DELETE_REPLY : DELETE_COMMENT,
+        payload: data,
       })
 
       await deleteAPI(`comment/${data._id}`, access_token)
-      dispatch({
-        type: ALERT,
-        payload: { loading: false },
-      })
+      // dispatch({
+      //   type: ALERT,
+      //   payload: { loading: false },
+      // })
     } catch (err: any) {
       dispatch({ type: ALERT, payload: { errors: err.response.data.msg } })
     }
